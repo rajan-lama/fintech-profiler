@@ -32,7 +32,7 @@ if (! defined('ABSPATH')) {
 
 /**
  * ------------------ SHORTCODES ------------------
- * [wp_like_login] - frontend login form
+ * [financial_login] - frontend login form
  * [financial_register] - frontend registration form
  * [financial_reset] - request password reset form (sends email with reset link)
  * [fp_logout] - logout link

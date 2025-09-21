@@ -32,7 +32,7 @@ const fp_LOCKOUT_DURATION = 900; // seconds (e.g. 15 minutes) lockout after exce
 
 /**
  * ------------------ SHORTCODES ------------------
- * [wp_like_login] - frontend login form
+ * [financial_login] - frontend login form
  * [fintech_register] - frontend registration form
  * [fintech_reset] - request password reset form (sends email with reset link)
  * [fp_logout] - logout link
