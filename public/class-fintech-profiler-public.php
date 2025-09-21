@@ -126,28 +126,96 @@ class Fintech_Profiler_Public
 
 	public function template_loader($template)
 	{
-		if (is_singular('fintech')) {
-			$theme_template = locate_template(array('fintech-profiler/single-fintech.php'));
+		if (is_singular('fintech_profiles')) {
+			$theme_template = locate_template(array('fintech-profiler/single-fintech_profiles.php'));
 			if ($theme_template) {
 				return $theme_template; // Use theme override
 			}
-			$plugin_template = FINTECH_PROFILER_BASE . 'templates/single-fintech.php';
+			$plugin_template = FINTECH_PROFILER_BASE . 'templates/single-fintech_profiles.php';
 			if (file_exists($plugin_template)) {
 				return $plugin_template; // Fallback to plugin template
 			}
 		}
 
-		if (is_post_type_archive('fintech')) {
-			$theme_template = locate_template(array('fintech-profiler/archive-fintech.php'));
+		if (is_post_type_archive('fintech_profiles')) {
+			$theme_template = locate_template(array('fintech-profiler/archive-fintech_profiles.php'));
 			if ($theme_template) {
 				return $theme_template; // Use theme override
 			}
-			$plugin_template = FINTECH_PROFILER_BASE . 'templates/archive-fintech.php';
+			$plugin_template = FINTECH_PROFILER_BASE . 'templates/archive-fintech_profiles.php';
 			if (file_exists($plugin_template)) {
 				return $plugin_template; // Fallback to plugin template
+			}
+		}
+
+		if (isset($_GET['create_financial_profile'])) {
+			$plugin_template = plugin_dir_path(__FILE__) . 'templates/template-create_profile.php';
+			if (file_exists($plugin_template)) {
+				return $plugin_template;
 			}
 		}
 
 		return $template;
 	}
 }
+
+
+/*
+
+add_action('template_redirect', array($this, 'handle_create_profile_form'));
+
+public function handle_create_profile_form() {
+    if (!isset($_POST['submit_profile'])) return;
+
+    if (!isset($_POST['create_financial_profile_nonce']) || !wp_verify_nonce($_POST['create_financial_profile_nonce'], 'create_financial_profile')) {
+        wp_die(__('Nonce verification failed', 'fintech-profiler'));
+    }
+s
+    if (!current_user_can('edit_financial_profiles')) {
+        wp_die(__('You do not have permission to create a profile.', 'fintech-profiler'));
+    }
+
+    $title = sanitize_text_field($_POST['profile_title']);
+    $content = wp_kses_post($_POST['profile_content']);
+
+    $post_id = wp_insert_post(array(
+        'post_title'   => $title,
+        'post_content' => $content,
+        'post_status'  => 'publish',
+        'post_type'    => 'financial_profiles',
+    ));
+
+    if (is_wp_error($post_id)) {
+        wp_die(__('Error creating profile', 'fintech-profiler'));
+    }
+
+    // Handle featured image upload
+    if (!empty($_FILES['profile_image']['name'])) {
+        require_once(ABSPATH . 'wp-admin/includes/file.php');
+        require_once(ABSPATH . 'wp-admin/includes/media.php');
+        require_once(ABSPATH . 'wp-admin/includes/image.php');
+
+        $attachment_id = media_handle_upload('profile_image', $post_id);
+        if (!is_wp_error($attachment_id)) {
+            set_post_thumbnail($post_id, $attachment_id);
+        }
+    }
+
+    // Redirect to profile page after creation
+    wp_redirect(get_permalink($post_id));
+    exit;
+}
+
+
+add_filter('template_include', array($this, 'load_create_profile_template'));
+
+public function load_create_profile_template($template) {
+    if (isset($_GET['create_financial_profile'])) {
+        $plugin_template = plugin_dir_path(__FILE__) . 'templates/template-create_profile.php';
+        if (file_exists($plugin_template)) {
+            return $plugin_template;
+        }
+    }
+    return $template;
+}
+ */

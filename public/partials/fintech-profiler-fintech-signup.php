@@ -65,7 +65,7 @@
           </div>
         <?php endif; ?>
 
-        <input type="hidden" name="fp_action" value="register" />
+        <input type="hidden" name="fp_action" value="fintech_register" />
         <input type="hidden" name="redirect_to" value="<?php echo esc_attr($redirect); ?>" />
         <?php wp_nonce_field('fp_register_nonce', 'fp_nonce');
         ?>

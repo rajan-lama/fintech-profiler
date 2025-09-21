@@ -101,6 +101,10 @@ class Fintech_Profiler
 	private function load_dependencies()
 	{
 
+		if (FINTECH_PROFILER_BASE . '/lib/cmb2/init.php') {
+			require_once FINTECH_PROFILER_BASE . '/lib/cmb2/init.php';
+		}
+
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
@@ -116,7 +120,8 @@ class Fintech_Profiler
 		/**
 		 * The class responsible for defining Custom Post Type.
 		 */
-		require_once FINTECH_PROFILER_BASE . 'includes/class-fintech-profiler-cpt.php';
+		require_once FINTECH_PROFILER_BASE . 'includes/class-fintech-profiler-cpt-financial.php';
+		require_once FINTECH_PROFILER_BASE . 'includes/class-fintech-profiler-cpt-fintech.php';
 
 		/**
 		 * The class responsible for defining Custom Post Type.
@@ -142,9 +147,15 @@ class Fintech_Profiler
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once FINTECH_PROFILER_BASE . 'includes/form.php';
-		require_once FINTECH_PROFILER_BASE . 'includes/form-fintech-profiler-registration.php';
-		// require_once FINTECH_PROFILER_BASE . 'includes/form-financial-profiler-registration.php';
+		require_once FINTECH_PROFILER_BASE . 'includes/forms/login.php';
+		require_once FINTECH_PROFILER_BASE . 'includes/forms/fintech-registration.php';
+		require_once FINTECH_PROFILER_BASE . 'includes/forms/financial-registration.php';
+
+		/**
+		 * The class responsible for orchestrating the actions and filters of the
+		 * core plugin.
+		 */
+		require_once FINTECH_PROFILER_BASE . 'includes/class-fintech-profiler-template.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -152,13 +163,14 @@ class Fintech_Profiler
 		 */
 		require_once FINTECH_PROFILER_BASE . 'public/class-fintech-profiler-public.php';
 
+
 		$this->loader = new Fintech_Profiler_Loader();
 
 		/**
 		 * The core plugin class that is used to define internationalization,
 		 * admin-specific hooks, and public-facing site hooks.
 		 */
-		require FINTECH_PROFILER_BASE . 'includes/cmb-functions.php';
+		// require FINTECH_PROFILER_BASE . 'includes/cmb-functions.php';
 
 		require FINTECH_PROFILER_BASE . 'includes/helper-functions.php';
 

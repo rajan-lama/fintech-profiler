@@ -270,3 +270,105 @@ jQuery(document).ready(function ($) {
     // });
   });
 });
+
+jQuery(document).ready(function ($) {
+  let totalPages = $(".fp-page").length;
+  console.log("Total Pages:", totalPages);
+  let currentPage = 1;
+  console.log("currentPage Pages:", currentPage);
+  $("#prevBtn").hide();
+
+  $("#nextBtn").on("click", function () {
+    console.log("currentPage Pages inc:", currentPage);
+    if (currentPage < totalPages) {
+      currentPage = currentPage + 1;
+      $("#currentPage").val(currentPage);
+
+      $(".fp-page").hide();
+      $("#fp-page-" + currentPage).show();
+      if (currentPage === totalPages) {
+        $("#nextBtn").hide();
+        $("#fp-submit-btn").show();
+      } else {
+        $("#nextBtn").show();
+        $("#fp-submit-btn").hide();
+      }
+      if (currentPage > 1) {
+        $("#prevBtn").show();
+        $("#prevBtn").prop("disabled", false);
+      }
+      if (currentPage === 1) {
+        $("#prevBtn").hide();
+        $("#prevBtn").prop("disabled", true);
+      } else {
+        $("#prevBtn").show();
+        $("#prevBtn").prop("disabled", false);
+      }
+      // scrollToPage(currentPage + 1);
+    }
+  });
+
+  $("#prevBtn").on("click", function () {
+    console.log("currentPage Pages dec:", currentPage);
+    if (currentPage > 1) {
+      currentPage = currentPage - 1;
+      $("#currentPage").val(currentPage);
+      // scrollToPage(currentPage - 1);
+
+      $(".fp-page").hide();
+      $("#fp-page-" + currentPage).show();
+      if (currentPage === totalPages) {
+        $("#nextBtn").hide();
+        $("#fp-submit-btn").show();
+      } else {
+        $("#nextBtn").show();
+        $("#fp-submit-btn").hide();
+      }
+      if (currentPage > 1) {
+        $("#prevBtn").show();
+        $("#prevBtn").prop("disabled", false);
+      }
+      if (currentPage === 1) {
+        $("#prevBtn").hide();
+        $("#prevBtn").prop("disabled", true);
+      } else {
+        $("#prevBtn").show();
+        $("#prevBtn").prop("disabled", false);
+      }
+    }
+  });
+});
+
+jQuery(document).ready(function ($) {
+  // Add Pricing Plan
+  $("#add-pricing-plan").on("click", function () {
+    let clone = $("#pricing-plans-wrapper .pricing-plan-item:first").clone();
+    clone.find("input").val(""); // clear values
+    $("#pricing-plans-wrapper").append(clone);
+  });
+
+  // Remove Pricing Plan
+  $(document).on("click", ".remove-plan", function () {
+    if ($("#pricing-plans-wrapper .pricing-plan-item").length > 1) {
+      $(this).closest(".pricing-plan-item").remove();
+    } else {
+      alert("At least one plan is required.");
+    }
+  });
+
+  // Add Case Study
+  $("#add-case-study").on("click", function () {
+    let clone = $("#case-studies-wrapper .case-study-item:first").clone();
+    clone.find("input").val(""); // clear values
+    $("#case-studies-wrapper").append(clone);
+  });
+
+  // Remove Case Study
+  $(document).on("click", ".remove-case", function () {
+    if ($("#case-studies-wrapper .case-study-item").length > 1) {
+      $(this).closest(".case-study-item").remove();
+    } else {
+      alert("At least one case study is required.");
+    }
+  });
+});

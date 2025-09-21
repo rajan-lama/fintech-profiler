@@ -33,15 +33,15 @@ const fp_LOCKOUT_DURATION = 900; // seconds (e.g. 15 minutes) lockout after exce
 /**
  * ------------------ SHORTCODES ------------------
  * [wp_like_login] - frontend login form
- * [wp_like_register] - frontend registration form
- * [wp_like_reset] - request password reset form (sends email with reset link)
+ * [fintech_register] - frontend registration form
+ * [fintech_reset] - request password reset form (sends email with reset link)
  * [fp_logout] - logout link
  */
 
 require_once ABSPATH . 'wp-includes/pluggable.php';
 
-add_shortcode('wp_like_register', 'fp_render_register_shortcode');
-add_shortcode('wp_like_reset', 'fp_render_reset_request_shortcode');
+add_shortcode('fintech_register', 'fp_render_register_shortcode');
+add_shortcode('fintech_reset', 'fp_render_reset_request_shortcode');
 
 
 /**
@@ -141,8 +141,12 @@ function fp_handle_frontend_actions()
   //   fp_process_login();
   // }
 
-  if ($action === 'register') {
+  if ($action === 'fintech_register') {
     fp_process_register();
+  }
+
+  if ($action === 'financial_register') {
+    financial_process_register();
   }
 
   if ($action === 'reset_request') {
