@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Check if user can edit financial profiles
-if (!current_user_can('edit_financial_profiles')) {
+if (!current_user_can('edit_fintech_profiles')) {
   wp_die(__('You do not have permission to access this page.', 'fintech-profiler'));
 }
 
@@ -21,65 +21,69 @@ get_header();
           <button type="button" class="button" id="prevBtn" disabled>Previous</button>
           <button type="button" class="button" id="skipBtn">Skip</button>
           <button type="button" class="button" id="nextBtn">Next</button>
-          <button type="submit" name="submit_profile" id="fp-submit-btn" class="button button-primary" style="display: none;">Proceed</button>
+          <button type="submit" name="submit_profile" id="fp-submit-btn" class="button button-primary" style="display: none;">Create Profile</button>
 
         </div>
       </div>
       <div class="fp-page" id="fp-page-1">
         <div class="fp-row">
           <div class="fp-col-6">
-            <span class="form-pagination">
-              <==>
-            </span>
-            <h2>Account Verification </h2>
-            <p>Upload necessary documents and information and we will verify your account to claim</p>
+            <span class="form-pagination">1/4</span>
+            <h2>Settings</h2>
+            <ul>
+              <li>Edit Profile</li>
+              <li>Account</li>
+            </ul>
           </div>
           <div class="fp-col-6">
+            <h2>Edit Profile</h2>
             <p>
-              <label for="existing_profile">Existing Profile</label>
-              <span class="desc">Provide link to existing profile in FinExplore 360 that you want to claim</span>
-              <input type="text" name="existing_profile" id="existing_profile" placeholder="finexplore360.com/profile" required>
-            </p>
-            <hr />
-
-            <p>
-            <h4>Website Link</h4>
-            <span class="desc">Provide link to your existing website</span>
-            <label for="website_link">Website Link</label>
-            <input type="text" name="website_link" id="website_link" placeholder="Enter website link" required>
-            </p>
-
-            <p>
-            <h4>Contact information</h4>
-            <span class="desc">Incase we need to get in contact with you for further verification, how do we reach you?</span>
-            </p>
-
-            <p>
-              <label for="email">Email</label>
-              <input type="text" name="email" id="email" required>
-            </p>
-
-            <p>
-              <label for="contact_number">Contact number</label>
-              <input type="text" name="contact_number" id="contact_number" required>
-            </p>
-
-            <hr />
-
-            <p>
-            <h4>Upload Documents</h4>
-            <span class="desc">These will be used to verify your authenticity.</span>
-            <ul>
-              <li>A small video proving with showing you are real</li>
-              <li>Any documents that may help</li>
-            </ul>
-            </p>
-
-            <p>
-              <label for="attach_media">Attach media</label>
-              <input type="file" name="attach_media" id="attach_media" accept="image/*" required>
+              <label for="company_logo">Company Logo</label>
+              <input type="file" name="company_logo" id="company_logo" accept="image/*" required>
               <input type="hidden" name="action" value="upload_company_logo">
             </p>
+            <p>
+              <label for="company_name">Company Name</label>
+              <input type="text" name="company_name" id="company_name" placeholder="Enter company name" required>
+            </p>
+            <p>
+              <label for="website_link">Website Link</label>
+              <input type="text" name="website_link" id="website_link" placeholder="Enter website link" required>
+            </p>
+            <p>
+              <label for="founded_in">Founded in</label>
+              <input type="number" name="founded_in" id="founded_in" required>
+            </p>
+            <p>
+              <label for="company_size">Company Size</label>
+              <select name="company_size" id="company_size" required>
+                <option value="">Select Size</option>
+                <option value="1-10">1-10</option>
+                <option value="11-50">11-50</option>
+                <option value="51-200">51-200</option>
+                <option value="201-500">201-500</option>
+                <option value="501-1000">501-1000</option>
+                <option value="1001+">1001+</option>
+              </select>
+            </p>
+            <p>
+              <label for="slogan"> Slogan <span>(opt.)</span></label>
+              <input type="text" name="slogan" id="slogan" placeholder="Enter company slogan">
+            </p>
+            <hr />
+            <p>
+              <label for="services">What services do you offer?</label>
+              <select name="services" id="services" required>
+                <option value="">Select Size</option>
+                <option value="1-10">1-10</option>
+                <option value="11-50">11-50</option>
+                <option value="51-200">51-200</option>
+                <option value="201-500">201-500</option>
+                <option value="501-1000">501-1000</option>
+                <option value="1001+">1001+</option>
+              </select>
+            </p>
+            <P>Category selection checkbox</P>
           </div>
         </div>
       </div>

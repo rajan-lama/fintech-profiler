@@ -22,7 +22,16 @@ class Fintech_Profiler_Template
   // Add plugin template to page editor dropdown
   public function add_plugin_template_to_dropdown($templates)
   {
+    $templates['template-create_fintech_profile.php'] = __('Create Fintech Profile', 'fintech-profiler');
+    $templates['template-claim_fintech_profile.php'] = __('Claim Fintech Profile', 'fintech-profiler');
+    $templates['template-edit_fintech_profile.php'] = __('Edit Fintech Profile', 'fintech-profiler');
+    $templates['template-view_fintech_profile.php'] = __('View Financial Profile', 'fintech-profiler');
+    $templates['template-forget_password.php'] = __('Forget Password', 'fintech-profiler');
+
     $templates['template-create_financial_profile.php'] = __('Create Financial Profile', 'fintech-profiler');
+    $templates['template-edit_financial_profile.php'] = __('Edit Financial Profile', 'fintech-profiler');
+    $templates['template-view_financial_profile.php'] = __('View Financial Profile', 'fintech-profiler');
+
     return $templates;
   }
 
@@ -32,14 +41,29 @@ class Fintech_Profiler_Template
 
     if (is_page()) {
       $page_template = get_post_meta(get_the_ID(), '_wp_page_template', true);
-      $theme_template = locate_template(array('fintech-profiler/template-create_financial_profile.php'));
-      if ($theme_template) {
-        return $theme_template; // Use theme override
+
+      // List of plugin-supported templates
+      $supported_templates = array(
+        'template-create_fintech_profile.php',
+        'template-claim_fintech_profile.php',
+        'template-edit_fintech_profile.php',
+        'template-view_financial_profile.php',
+        'template-forget_password.php',
+        'template-create_financial_profile.php',
+        'template-edit_financial_profile.php'
+      );
+
+      // Check if theme has override
+      foreach ($supported_templates as $tpl) {
+        $theme_template = locate_template(array('fintech-profiler/' . $tpl));
+        if ($page_template === $tpl && $theme_template) {
+          return $theme_template; // Use theme override if exists
+        }
       }
 
-      if ($page_template === 'template-create_financial_profile.php') {
-        $plugin_template = FINTECH_PROFILER_BASE . 'templates/template-create_financial_profile.php';
-
+      // Fallback to plugin templates
+      if (in_array($page_template, $supported_templates, true)) {
+        $plugin_template = FINTECH_PROFILER_BASE . 'templates/' . $page_template;
         if (file_exists($plugin_template)) {
           return $plugin_template;
         }

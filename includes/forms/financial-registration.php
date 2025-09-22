@@ -58,36 +58,6 @@ function financial_render_register_shortcode($atts)
 
   include FINTECH_PROFILER_BASE . 'public/partials/fintech-profiler-financial-signup.php';
 ?>
-  <!-- <form class="fp-form" method="post" action="">
-    <?php if ($msg) : ?>
-      <div class="fp-notice fp-info"><?php echo esc_html($msg); ?></div>
-    <?php endif; ?>
-
-    <p class="fp-field">
-      <label for="fp_reg_user">Username</label>
-      <input type="text" name="fp_reg_user" id="fp_reg_user" required />
-    </p>
-    <p class="fp-field">
-      <label for="fp_reg_email">Email</label>
-      <input type="email" name="fp_reg_email" id="fp_reg_email" required />
-    </p>
-    <p class="fp-field">
-      <label for="fp_reg_pass">Password</label>
-      <input type="password" name="fp_reg_pass" id="fp_reg_pass" required />
-    </p>
-
-    <?php if (fp_RECAPTCHA_ENABLED) : ?>
-      <p class="fp-field">
-        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-reg" />
-      </p>
-    <?php endif; ?>
-
-    <input type="hidden" name="fp_action" value="register" />
-    <input type="hidden" name="redirect_to" value="<?php echo esc_attr($redirect); ?>" />
-    <?php wp_nonce_field('fp_register_nonce', 'fp_nonce'); ?>
-
-    <p class="fp-actions"><button type="submit" class="button">Register</button></p>
-  </form> -->
 <?php
   return ob_get_clean();
 }

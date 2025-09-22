@@ -60,37 +60,3 @@
 
   </div>
 </div>
-
-
-
-<!---
-  <form class="cfl-form" method="post" action="">
-    <?php if ($login_error) : ?>
-      <div class="cfl-notice cfl-error">Login failed. Please check your credentials and try again.</div>
-    <?php elseif ($login_msg) : ?>
-      <div class="cfl-notice cfl-info"><?php echo esc_html($login_msg); ?></div>
-    <?php endif; ?>
-
-  
-    <p class="cfl-field">
-      <label for="cfl_user_login">Username or Email</label>
-      <input type="text" name="cfl_user_login" id="cfl_user_login" autocomplete="username" required />
-    </p>
-    <p class="cfl-field">
-      <label for="cfl_user_pass">Password</label>
-      <input type="password" name="cfl_user_pass" id="cfl_user_pass" autocomplete="current-password" required />
-    </p>
-    <p class="cfl-field cfl-remember">
-      <label>
-        <input type="checkbox" name="cfl_remember" value="1" /> Remember Me
-      </label>
-    </p>
-
-    <input type="hidden" name="cfl_action" value="login" />
-    <input type="hidden" name="redirect_to" value="<?php echo esc_url($redirect_to); ?>" />
-    <?php wp_nonce_field('cfl_login_nonce', 'cfl_nonce'); ?>
-
-    <p class="cfl-actions">
-      <button type="submit" class="button button-primary">Log In</button>
-    </p>
-  </form> --->

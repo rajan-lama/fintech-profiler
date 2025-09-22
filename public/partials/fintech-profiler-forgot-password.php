@@ -19,9 +19,9 @@
     <h3>Verification</h3>
     <p>A 6 number verification code has been sent to you email address ending with ***********ny@gmail.com</p>
     <form id="company-login-form" method="post" enctype="multipart/form-data">
-      <div>
+      <div class="form-holder">
         <label for="enter_code">Enter Code </label>
-        <div>
+        <div class="verification-code-section">
           <input type="text" id="enter_code[0]" name="enter_code[0]" required>
           <input type="text" id="enter_code[1]" name="enter_code[1]" required>
           <input type="text" id="enter_code[2]" name="enter_code[2]" required>

@@ -1240,3 +1240,21 @@ body.single-fintech_profiles,
   line-height: 160%;
   letter-spacing: -0.32px;
 }
+
+/* .fp-page { */
+/* display: none;
+}
+
+.fp-page.active {
+  display: block;
+} */
+
+.verification-code-section {
+  display: flex;
+  gap: 30px;
+}
+
+div#tabs {
+  width: 100%;
+  display: flex;
+}

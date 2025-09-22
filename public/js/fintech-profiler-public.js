@@ -309,6 +309,7 @@ jQuery(document).ready(function ($) {
   });
 
   $("#prevBtn").on("click", function () {
+    $(".fp-page").removeClass("active");
     console.log("currentPage Pages dec:", currentPage);
     if (currentPage > 1) {
       currentPage = currentPage - 1;

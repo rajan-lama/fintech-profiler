@@ -52,7 +52,6 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       );
 
       $fintech_capabilities = array(
-
         'read_post' => 'read_fintech_profile',
         'delete_post' => 'delete_fintech_profile',
         'edit_posts' => 'edit_fintech_profiles',
@@ -67,9 +66,6 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         'edit_published_posts' => 'edit_published_fintech_profiles',
         'create_posts' => 'edit_fintech_profiles',
       );
-
-
-
 
       register_post_type('fintech_profiles', array(
         'labels'          => $labels,
@@ -95,7 +91,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       $caps = array(
         'delete_private_fintech_profiles',
         'delete_published_fintech_profiles',
-        'edit_private_fintechs_profile',
+        'edit_private_fintech_profile',
         'edit_published_fintech_profiles',
         'publish_fintech_profiles',
         'edit_fintech_profiles',
