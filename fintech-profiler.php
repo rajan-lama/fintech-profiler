@@ -89,3 +89,10 @@ add_action('after_setup_theme', function () {
 	add_image_size('fintech_profiler_slider', 615, 400, true);
 	add_image_size('fintech-profiler-three-col', 350, 227, true);
 });
+
+
+function add_category_to_custom_post_type()
+{
+	register_taxonomy_for_object_type('category', 'fintech_profiles');
+}
+add_action('init', 'add_category_to_custom_post_type');

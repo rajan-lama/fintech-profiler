@@ -35,7 +35,7 @@ if (! class_exists('Fintech_Profiler_Taxonomy')) {
                 'show_in_rest'      => true, // enables Gutenberg support
             );
 
-            register_taxonomy('fintech-category', array('fintech_profiles'), $args);
+            // register_taxonomy('fintech-category', array('fintech_profiles'), $args);
 
             $labels = array(
                 'name'              => _x('Size', 'taxonomy general name', 'fintech-profiler'),

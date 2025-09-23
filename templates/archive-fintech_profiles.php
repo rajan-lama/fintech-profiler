@@ -69,13 +69,13 @@ get_header();
 
                         $taxonomies = get_object_taxonomies($post_type);
 
-                        $categories = get_terms(['taxonomy' => 'fintech-category', 'hide_empty' => false]);
+                        $categories = get_terms(['taxonomy' => 'category', 'hide_empty' => false]);
 
-                        $taxonomy = 'fintech-category';
+                        $taxonomy = 'category';
 
                         $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
                         echo '<ul>';
-                        render_taxonomy_tree('fintech-category', 0, $selected_cats);
+                        render_taxonomy_tree('category', 0, $selected_cats);
                         echo '</ul>';
                         ?>
 
