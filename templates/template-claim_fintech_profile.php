@@ -14,7 +14,7 @@ get_header();
 <div class="container">
   <div class="row">
     <form method="post" enctype="multipart/form-data" class="fp-form">
-      <?php wp_nonce_field('create_financial_profile', 'create_financial_profile_nonce'); ?>
+      <?php wp_nonce_field('claim_fintech_profile', 'claim_fintech_profile_nonce'); ?>
       <input type="hidden" id="currentPage" name=" currentPage" value="1">
 
       <div class="fp-page" id="fp-page-1">

@@ -22,18 +22,12 @@
       <p>Create for a Financial Company instead? <a href="#">Switch</a></p>
     </div>
 
-
     <form class="fp-form" method="post" action="">
       <?php if ($msg) :
       ?>
         <div class="fp-notice fp-info"><?php echo esc_html($msg);  ?></div>
       <?php endif;
       ?>
-
-      <!-- <div class="fp-field">
-        <label for="fp_reg_user">Username</label>
-        <input type="text" name="fp_reg_user" id="fp_reg_user" required />
-      </div> -->
 
       <div class="fp-hidden-field show">
         <div class="fp-field">
@@ -76,7 +70,7 @@
     </form>
 
     <div class="fp-login-info">
-      <p>Already have an account? <a href="#">Log in</a></p>
+      <p>Already have an account? <a href="<?php echo esc_url(get_site_url() . '/fintech-login'); ?>">Log in</a></p>
     </div>
   </div>
 </div>

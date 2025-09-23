@@ -148,7 +148,7 @@ class Fintech_Profiler_Public
 			}
 		}
 
-		if (isset($_GET['create_financial_profile'])) {
+		if (isset($_GET['create_fintech_profile'])) {
 			$plugin_template = plugin_dir_path(__FILE__) . 'templates/template-create_profile.php';
 			if (file_exists($plugin_template)) {
 				return $plugin_template;
@@ -167,7 +167,7 @@ add_action('template_redirect', array($this, 'handle_create_profile_form'));
 public function handle_create_profile_form() {
     if (!isset($_POST['submit_profile'])) return;
 
-    if (!isset($_POST['create_financial_profile_nonce']) || !wp_verify_nonce($_POST['create_financial_profile_nonce'], 'create_financial_profile')) {
+    if (!isset($_POST['create_fintech_profile_nonce']) || !wp_verify_nonce($_POST['create_fintech_profile_nonce'], 'create_fintech_profile')) {
         wp_die(__('Nonce verification failed', 'fintech-profiler'));
     }
 s
@@ -210,7 +210,7 @@ s
 add_filter('template_include', array($this, 'load_create_profile_template'));
 
 public function load_create_profile_template($template) {
-    if (isset($_GET['create_financial_profile'])) {
+    if (isset($_GET['create_fintech_profile'])) {
         $plugin_template = plugin_dir_path(__FILE__) . 'templates/template-create_profile.php';
         if (file_exists($plugin_template)) {
             return $plugin_template;

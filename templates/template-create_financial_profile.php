@@ -14,8 +14,6 @@ get_header();
 <div class="container">
   <div class="row">
     <form method="post" enctype="multipart/form-data" class="fp-form">
-      <?php wp_nonce_field('create_financial_profile', 'create_financial_profile_nonce'); ?>
-      <input type="hidden" id="currentPage" name=" currentPage" value="1">
       <div class="fp-page" id="fp-page-1">
         <div class="fp-row">
           <div class="fp-col-6">
@@ -35,12 +33,21 @@ get_header();
             </p>
             <p>
               <label for="company_name">Company Name</label>
-              <input type="text" name="company_name" id="company_name" placeholder="Enter company name" required>
+              <input type="text" name="user_name" id="company_name" placeholder="Enter company name" required>
             </p>
             <p>
               <label for="website_link">Website Link</label>
-              <input type="text" name="website_link" id="website_link" placeholder="Enter website link" required>
+              <input type="text" name="user_profile_website" id="website_link" placeholder="Enter website link" required>
             </p>
+            </p>
+            <button type="submit" class="button">Create Profile</button>
+            </p>
+
+            <input type="hidden" name="fp_action" value="create_financial_profile" />
+            <input type="hidden" name="redirect_to" value="<?php echo home_url('/edit-financial-profile'); ?>" />
+            <?php wp_nonce_field('create_financial_profile', 'create_financial_profile_nonce'); ?>
+            <input type="hidden" name="_wp_http_referer" value="/create-financial-profile/">
+            <input type="hidden" id="currentPage" name=" currentPage" value="1">
           </div>
         </div>
       </div>

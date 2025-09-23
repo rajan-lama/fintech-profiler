@@ -1258,3 +1258,7 @@ div#tabs {
   width: 100%;
   display: flex;
 }
+
+.page-template-template-fintech_profile_dashboard .site-header {
+  display: none;
+}

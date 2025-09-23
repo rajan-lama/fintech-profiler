@@ -52,7 +52,7 @@ function financial_render_register_shortcode($atts)
   if (is_user_logged_in()) return '<p>You are already logged in.</p>';
 
   $msg = isset($_GET['fp_reg_msg']) ? sanitize_text_field(wp_unslash($_GET['fp_reg_msg'])) : '';
-  $redirect = isset($_REQUEST['redirect_to']) ? esc_url_raw(wp_unslash($_REQUEST['redirect_to'])) : home_url(fp_DEFAULT_REDIRECT);
+  $redirect = isset($_REQUEST['redirect_to']) ? esc_url_raw(wp_unslash($_REQUEST['redirect_to'])) : home_url('/create-financial-profile');
 
   ob_start();
 
@@ -291,7 +291,7 @@ function financial_process_register()
   $email    = isset($_POST['fp_reg_email']) ? sanitize_email(wp_unslash($_POST['fp_reg_email'])) : '';
   $pass     = isset($_POST['fp_reg_pass']) ? $_POST['fp_reg_pass'] : '';
   $role     = isset($_POST['fp_reg_role']) ? sanitize_key(wp_unslash($_POST['fp_reg_role'])) : 'financial_manager';
-  $redirect = isset($_POST['redirect_to']) ? esc_url_raw(wp_unslash($_POST['redirect_to'])) : home_url(fp_DEFAULT_REDIRECT);
+  $redirect = isset($_POST['redirect_to']) ? esc_url_raw(wp_unslash($_POST['redirect_to'])) : home_url('/create-financial-profile');
 
   $errors = new WP_Error();
 

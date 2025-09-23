@@ -9,51 +9,61 @@ if (!current_user_can('edit_financial_profiles')) {
 }
 
 get_header();
+
+// Get current user data
+$current_user = wp_get_current_user();
+$company_logo = get_user_meta($current_user->ID, '_profile_picture', true); // Fetch company logo (profile picture)
+$company_name = $current_user->display_name; // Fetch display name (company name)
+$website_link = $current_user->user_url; // Fetch website link
+
 ?>
 
 <div class="container">
   <div class="row">
-    <form method="post" enctype="multipart/form-data" class="fp-form">
-      <?php wp_nonce_field('create_financial_profile', 'create_financial_profile_nonce'); ?>
-      <input type="hidden" id="currentPage" name=" currentPage" value="1">
-      <div class="fp-row reversed">
-        <div class="fp-submit-buttons">
-          <button type="button" class="button" id="prevBtn" disabled>Previous</button>
-          <button type="button" class="button" id="skipBtn">Skip</button>
-          <button type="button" class="button" id="nextBtn">Next</button>
-          <button type="submit" name="submit_profile" id="fp-submit-btn" class="button button-primary" style="display: none;">Create Profile</button>
-        </div>
-      </div>
-      <div class="fp-page" id="fp-page-1">
-        <div class="fp-row">
-          <div id="tabs">
-            <div class="fp-col-6">
-              <h2>Settings</h2>
-              <ul>
-                <li><a href="#tabs-1">Edit Account</a></li>
-                <li><a href="#tabs-2">Account</a></li>
-              </ul>
-            </div>
-            <div class="fp-col-6">
-              <div id="tabs-1">
-                <h2>Edit Profile</h2>
+    <div class="fp-page" id="fp-page-1">
+      <div class="fp-row">
+        <div id="tabs">
+          <div class="fp-col-6">
+            <h2>Settings</h2>
+            <ul>
+              <li><a href="#tabs-1">Edit Account</a></li>
+              <li><a href="#tabs-2">Account</a></li>
+            </ul>
+          </div>
+          <div class="fp-col-6">
+            <div id="tabs-1">
+              <h2>Edit Profile</h2>
+
+              <form method="post" enctype="multipart/form-data" class="fp-form">
                 <p>
-                  <label for="company_logo">Company Logo</label>
-                  <input type="file" name="company_logo" id="company_logo" accept="image/*" required>
-                  <input type="hidden" name="action" value="upload_company_logo">
+                <div>
+                  <?php if ($company_logo) : ?>
+                    <img src="<?php echo esc_url($company_logo); ?>" alt="Company Logo" style="max-width: 150px;">
+                  <?php endif; ?>
+                </div>
+                <label for="company_logo">Company Logo</label>
+                <input type="file" name="company_logo" id="company_logo" accept="image/*" required value="<?php echo esc_url($company_logo); ?>">
+                <input type="hidden" name="action" value="upload_company_logo">
                 </p>
                 <p>
                   <label for="company_name">Company Name</label>
-                  <input type="text" name="company_name" id="company_name" placeholder="Enter company name" required>
+                  <input type="text" name="company_name" id="company_name" value="<?php echo esc_attr($company_name); ?>" placeholder="Enter company name" required>
                 </p>
                 <p>
                   <label for="website_link">Website Link</label>
-                  <input type="text" name="website_link" id="website_link" placeholder="Enter website link" required>
+                  <input type="text" name="website_link" id="website_link" value="<?php echo esc_url($website_link); ?>" placeholder="Enter website link" required>
                 </p>
-                <button type="button">Update Profile</button>
-              </div>
-              <div id="tabs-2">
-                <h2>Account</h2>
+
+                <?php wp_nonce_field('edit_financial_profile', 'edit_financial_profile_nonce'); ?>
+                <input type="hidden" name="fp_action" value="edit_financial_profile" />
+                <input type="hidden" name="redirect_to" value="<?php echo home_url('/financial-dashboard'); ?>" />
+                <input type="hidden" id="currentPage" name=" currentPage" value="1">
+                <button type="submit" name="update_profile">Update Profile</button>
+              </form>
+            </div>
+            <div id="tabs-2">
+              <h2>Account</h2>
+              <form method="post" enctype="multipart/form-data" class="fp-form">
                 <div class="password-setting-header">
                   <label for="password_setting">Password Setting</label>
                   <span>Choose a strong password to keep your profile secure</span>
@@ -65,7 +75,7 @@ get_header();
                     <input type="hidden" name="action" value="upload_company_logo">
                   </p>
 
-                  <a href="#">Change Password</a>
+                  <a href="<?php echo home_url('/forgot-password'); ?>">Change Password</a>
                 </div>
                 <div class="password-settings" id="password-settings-2">
                   <p>
@@ -92,7 +102,7 @@ get_header();
                   </p>
 
                   <button type="button">Cancel</button>
-                  <button type="submit"></button>
+                  <button type="submit">Save Password</button>
                 </div>
                 <hr />
 
@@ -102,13 +112,14 @@ get_header();
                 </div>
 
                 <a href="#">Delete Account</a>
-              </div>
-
-
+              </form>
             </div>
+
+
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
 

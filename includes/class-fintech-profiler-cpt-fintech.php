@@ -22,7 +22,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       add_action('cmb2_admin_init', array($this, 'fintech_register_more_info_metabox'));
       add_action('cmb2_admin_init', array($this, 'fintech_register_slider_metabox'));
 
-      add_action('init', array($this, 'fp_handle_financial_profile_submission'));
+      add_action('init', array($this, 'fp_handle_fintech_profile_submission'));
 
       // add_action('init', array($this, 'register_cpt'));
       // register_activation_hook(__FILE__, array($this, 'add_custom_roles_caps'));
@@ -444,12 +444,12 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       ));
     }
 
-    function fp_handle_financial_profile_submission()
+    function fp_handle_fintech_profile_submission()
     {
       if (
-        isset($_POST['create_financial_profile'])
-        && isset($_POST['create_financial_profile_nonce'])
-        && wp_verify_nonce($_POST['create_financial_profile_nonce'], 'create_financial_profile')
+        isset($_POST['create_fintech_profile'])
+        && isset($_POST['create_fintech_profile_nonce'])
+        && wp_verify_nonce($_POST['create_fintech_profile_nonce'], 'create_fintech_profile')
       ) {
 
         // Sanitize inputs

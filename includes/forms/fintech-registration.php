@@ -18,7 +18,7 @@ if (! defined('ABSPATH')) {
 // Usermeta key that contains the desired role slug for that user.
 const fp_CUSTOM_ROLE_META_KEY = 'custom_role';
 // Default redirect after login/registration
-const fp_DEFAULT_REDIRECT = '/';
+const fp_DEFAULT_REDIRECT = '/create-fintech-profile';
 // Whether to validate role slug against WP roles before applying
 const fp_VALIDATE_ROLE = true;
 // Enable reCAPTCHA verification (set to true to validate server-side)

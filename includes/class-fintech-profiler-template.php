@@ -25,13 +25,12 @@ class Fintech_Profiler_Template
     $templates['template-create_fintech_profile.php'] = __('Create Fintech Profile', 'fintech-profiler');
     $templates['template-claim_fintech_profile.php'] = __('Claim Fintech Profile', 'fintech-profiler');
     $templates['template-edit_fintech_profile.php'] = __('Edit Fintech Profile', 'fintech-profiler');
-    $templates['template-view_fintech_profile.php'] = __('View Financial Profile', 'fintech-profiler');
+    $templates['template-fintech_profile_dashboard.php'] = __('Fintech  Dashboard', 'fintech-profiler');
     $templates['template-forget_password.php'] = __('Forget Password', 'fintech-profiler');
 
     $templates['template-create_financial_profile.php'] = __('Create Financial Profile', 'fintech-profiler');
     $templates['template-edit_financial_profile.php'] = __('Edit Financial Profile', 'fintech-profiler');
-    $templates['template-view_financial_profile.php'] = __('View Financial Profile', 'fintech-profiler');
-    $templates['template-fintech_profile_dashboard.php'] = __('View Profile', 'fintech-profiler');
+    $templates['template-financial_profile_dashboard.php'] = __('Financial Dashboard', 'fintech-profiler');
 
     return $templates;
   }
@@ -46,13 +45,15 @@ class Fintech_Profiler_Template
       // List of plugin-supported templates
       $supported_templates = array(
         'template-create_fintech_profile.php',
-        'template-claim_fintech_profile.php',
         'template-edit_fintech_profile.php',
-        'template-view_financial_profile.php',
+        'template-fintech_profile_dashboard.php',
+
         'template-forget_password.php',
+        'template-claim_fintech_profile.php',
+
         'template-create_financial_profile.php',
         'template-edit_financial_profile.php',
-        'template-fintech_profile_dashboard.php'
+        'template-financial_profile_dashboard.php',
       );
 
       // Check if theme has override
