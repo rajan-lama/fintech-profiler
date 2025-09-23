@@ -1259,6 +1259,117 @@ div#tabs {
   display: flex;
 }
 
-.page-template-template-fintech_profile_dashboard .site-header {
-  display: none;
+ul.ui-tabs-nav {
+  background-color: white;
+  display: flex;
+  color: black;
+  gap: 4px;
+  margin-right: 104px;
+  justify-items: center;
+  flex-direction: column;
+}
+
+a[href="#"] {
+  border-radius: 8px;
+  background: linear-gradient(180deg, #8943e2 0%, #6815d1 100%);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  display: inline-block;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+div.profile-getting-started {
+  background-color: white;
+  border-radius: 12px;
+  padding: 32px 24px 32px 24px;
+}
+
+div.dashboard-page-title {
+  display: flex;
+  width: 1163px;
+  padding: 15px 104px 12px 104px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+div.dashboard-page-header {
+  display: flex;
+  width: 608px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-bottom: 32px;
+}
+
+div.dashboard-section {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 240px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+div.dashboard-section div.dashboard-left {
+  width: 200px;
+}
+
+div.dashboard-section div.dashboard-left label {
+  width: 200px;
+  color: rgba(0, 0, 0, 0.88);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 20.8px */
+  letter-spacing: -0.32px;
+}
+
+div.dashboard-section div.dashboard-right {
+  display: flex;
+  width: 413px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+}
+
+div.dashboard-section div.dashboard-right p {
+  display: flex;
+  height: 66px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  align-self: stretch;
+}
+
+div.dashboard-section div.dashboard-right p input {
+  display: flex;
+  padding: 8px 56px 8px 12px;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+div.dashboard-section div.dashboard-right p select {
+  display: flex;
+  padding: 8px 56px 8px 12px;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+div.dashboard-section div.dashboard-right textarea {
+  height: 664px;
+  align-self: stretch;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
 }
