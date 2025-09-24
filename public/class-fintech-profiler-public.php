@@ -77,10 +77,12 @@ class Fintech_Profiler_Public
 		 * class.
 		 */
 		// wp_enqueue_style('jquery-ui-slider');
-		if (is_post_type_archive('fintech')) {
+		if (is_post_type_archive('fintech') || is_page_template('templates/create_fintech_profile.php')) {
 			wp_enqueue_style('jquery-ui', 'https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css', array(), '2.3.4', 'all');
 		}
-		// wp_enqueue_style( 'jQuery-ui',  FINTECH_PROFILER_BASE_URL . 'public/css/jQuery-ui.css', array(), 'v1.14.1', 'all' );
+
+		wp_enqueue_style('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0-rc.0', 'all');
+
 		wp_enqueue_style('owl-carousel', FINTECH_PROFILER_BASE_URL . 'public/css/owl.carousel.min.css', array(), '2.3.4', 'all');
 		wp_enqueue_style('owl-theme', FINTECH_PROFILER_BASE_URL . 'public/css/owl.theme.default.min.css', array(), '2.3.4', 'all');
 		wp_enqueue_style('fintech-profiler-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css', array(), '4.7.0', 'all');
@@ -112,6 +114,8 @@ class Fintech_Profiler_Public
 
 		wp_enqueue_script('jquery-ui-slider');
 		wp_enqueue_script('jquery-ui-accordion');
+
+		wp_enqueue_script('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '4.1.0-rc.0', true);
 
 		wp_enqueue_script('owl-carousel', FINTECH_PROFILER_BASE_URL . 'public/js/owl.carousel.min.js', array('jquery'), '2.3.4', true);
 

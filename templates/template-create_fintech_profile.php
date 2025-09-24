@@ -69,17 +69,73 @@ get_header();
             <hr />
             <p>
               <label for="services">What services do you offer?</label>
-              <select name="services" id="services" required>
-                <option value="">Select Size</option>
-                <option value="1-10">1-10</option>
-                <option value="11-50">11-50</option>
-                <option value="51-200">51-200</option>
-                <option value="201-500">201-500</option>
-                <option value="501-1000">501-1000</option>
-                <option value="1001+">1001+</option>
-              </select>
+            <div class="sidebar-section category-filter">
+              <?php
+              $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
+
+              $taxonomy = 'fintech-category';
+
+              $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
+
+              echo '<select class="multi-select" multiple="multiple" style="width:100%;" name="services" id="services" required>';
+              $terms = get_terms([
+                'taxonomy'   => $taxonomy,
+                'hide_empty' => false,
+                'parent'     => 0
+              ]);
+
+              if (!empty($terms) && !is_wp_error($terms)) {
+                foreach ($terms as $term) {
+                  $checked = in_array($term->slug, $selected_cats) ? 'checked' : '';
+                  echo '<option value="' . esc_attr($term->slug) . '">' . esc_html($term->name) . '</option>';
+                }
+              }
+              echo '</select>';
+              ?>
+
+              <div class="sidebar-section category-filter">
+                <?php
+                $categories = get_terms(['taxonomy' => $taxonomy, 'hide_empty' => false]);
+
+                $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
+
+                $terms = get_terms([
+                  'taxonomy'   => $taxonomy,
+                  'hide_empty' => false,
+                  'parent'     => 0
+                ]);
+
+                if (!empty($terms) && !is_wp_error($terms)) {
+                  echo '<ul>';
+                  foreach ($terms as $term) {
+                    $children = get_terms([
+                      'taxonomy'   => $taxonomy,
+                      'hide_empty' => false,
+                      'parent'     => $term->term_id
+                    ]);
+
+                    $checked = in_array($term->slug, $selected_cats) ? 'checked' : '';
+
+                    // Add class if has children
+                    $li_class = !empty($children) ? 'has-children' : '';
+
+                    echo '<li class="parent-list category-' . esc_html($term->slug) . ' ' . esc_attr($li_class) . '">';
+                    echo '<label class="parent-label">' . esc_html($term->name) . '</label>';
+                    // Recursively render children
+                    if (!empty($children)) {
+                      echo '<ul class="children">';
+                      render_taxonomy_tree($taxonomy, $term->term_id, $selected_cats);
+                      echo '</ul>';
+                    }
+
+                    echo '</li>';
+                  }
+                  echo '</ul>';
+                }
+                ?>
+              </div>
+            </div>
             </p>
-            <P>Category selection checkbox</P>
           </div>
         </div>
       </div>

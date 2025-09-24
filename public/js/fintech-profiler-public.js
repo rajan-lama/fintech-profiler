@@ -54,23 +54,70 @@
     $("#tabs").tabs();
   });
 
+  // $(document).ready(function () {
+  //   $("#services").on("change", function () {
+  //     // Get all selected values
+  //     let selectedValues = $(this).val() || [];
+  //     $(".parent-list").hide();
+  //     selectedValues.forEach(function (val) {
+  //       $(".category-" + val).show();
+  //     });
+  //   });
+  // });
+
+  $(document).ready(function () {
+    // Initialize select2 if not already
+    $("#services").select2({
+      placeholder: "Select Categories",
+    });
+
+    $(".parent-list").hide();
+
+    // Function to sync and merge values
+    function syncValues() {
+      let select2Values = $("#services").val() || [];
+      let checkboxValues = $('input[name="category[]"]:checked')
+        .map(function () {
+          return $(this).val();
+        })
+        .get();
+
+      // Merge and remove duplicates
+      let mergedValues = [...new Set([...select2Values, ...checkboxValues])];
+
+      // Update Select2
+      $("#services").val(mergedValues).trigger("change.select2");
+
+      console.log("mergedValues:", mergedValues);
+    }
+
+    // Whenever select2 changes → sync
+    $("#services").on("change", function () {
+      syncValues();
+      let selectedValues = $(this).val() || [];
+      $(".parent-list").hide();
+      selectedValues.forEach(function (val) {
+        $(".category-" + val).show();
+      });
+    });
+
+    // Whenever checkboxes change → sync
+    $('input[name="category[]"]').on("change", function () {
+      syncValues();
+    });
+
+    // On form submit → make sure values are synced
+    $("form").on("submit", function () {
+      syncValues();
+    });
+  });
+
   $(function () {
     var icons = {
       header: "ui-icon-circle-arrow-e",
       activeHeader: "ui-icon-circle-arrow-s",
     };
-    $("#accordion").accordion({
-      // icons: icons,
-    });
-    $("#toggle")
-      .button()
-      .on("click", function () {
-        if ($("#accordion").accordion("option", "icons")) {
-          $("#accordion").accordion("option", "icons", null);
-        } else {
-          $("#accordion").accordion("option", "icons", icons);
-        }
-      });
+    $("#accordion").accordion({});
   });
 })(jQuery);
 
