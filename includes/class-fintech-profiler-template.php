@@ -27,6 +27,7 @@ class Fintech_Profiler_Template
     $templates['template-edit_fintech_profile.php'] = __('Edit Fintech Profile', 'fintech-profiler');
     $templates['template-fintech_profile_dashboard.php'] = __('Fintech  Dashboard', 'fintech-profiler');
     $templates['template-forget_password.php'] = __('Forget Password', 'fintech-profiler');
+    $templates['template-listing_fintech.php'] = __('Listing Fintech', 'fintech-profiler');
 
     $templates['template-create_financial_profile.php'] = __('Create Financial Profile', 'fintech-profiler');
     $templates['template-edit_financial_profile.php'] = __('Edit Financial Profile', 'fintech-profiler');
@@ -47,6 +48,7 @@ class Fintech_Profiler_Template
         'template-create_fintech_profile.php',
         'template-edit_fintech_profile.php',
         'template-fintech_profile_dashboard.php',
+        'template-listing_fintech.php',
 
         'template-forget_password.php',
         'template-claim_fintech_profile.php',

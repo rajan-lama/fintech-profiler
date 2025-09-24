@@ -24,7 +24,8 @@
 }
 
 body.single-fintech_profiles,
-.post-type-archive-fintech_profiles {
+.post-type-archive-fintech_profiles,
+.page-template-template-listing_fintech {
   background-color: var(--background-light);
 }
 
@@ -481,7 +482,8 @@ body.single-fintech_profiles,
   }
 }
 
-.post-type-archive-fintech_profiles {
+.post-type-archive-fintech_profiles,
+.page-template-template-listing_fintech {
   .inner-contents {
     width: 100%;
     padding: 0 15px;
@@ -910,6 +912,7 @@ body.single-fintech_profiles,
       background: var(--background-light);
     }
 
+    .page-template-template-listing_fintech,
     .post-type-archive-fintech_profiles .fintech-archive {
       border-top: 0px;
     }
