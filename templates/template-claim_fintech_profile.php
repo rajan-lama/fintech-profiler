@@ -14,11 +14,15 @@ get_header();
 <div class="container">
   <div class="row">
     <form method="post" enctype="multipart/form-data" class="fp-form">
-      <?php wp_nonce_field('claim_fintech_profile', 'claim_fintech_profile_nonce'); ?>
-      <input type="hidden" id="currentPage" name=" currentPage" value="1">
-
       <div class="fp-page" id="fp-page-1">
         <div class="fp-row">
+          <div class="fp-col-6"></div>
+          <div class="fp-col-6">
+            <p>
+              <button type="submit" name="submit_claim" class="btn">Submit</button>
+            </p>
+          </div>
+
           <div class="fp-col-6">
             <span class="form-pagination">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,14 +35,14 @@ get_header();
           <div class="fp-col-6">
             <p>
               <label for="existing_profile">Existing Profile</label>
-              <span class="desc">Provide link to existing profile in FinExplore 360 that you want to claim</span>
-              <input type="text" name="existing_profile" id="existing_profile" placeholder="finexplore360.com/profile" required>
+            <div class="desc">Provide link to existing profile in FinExplore 360 that you want to claim</div>
+            <input type="text" name="existing_profile" id="existing_profile" placeholder="finexplore360.com/profile" required>
             </p>
             <hr />
 
             <p>
             <h4>Website Link</h4>
-            <span class="desc">Provide link to your existing website</span>
+            <div class="desc">Provide link to your existing website</div>
             <label for="website_link">Website Link</label>
             <input type="text" name="website_link" id="website_link" placeholder="Enter website link" required>
             </p>
@@ -74,6 +78,10 @@ get_header();
               <input type="file" name="attach_media" id="attach_media" accept="image/*" required>
               <input type="hidden" name="action" value="upload_company_logo">
             </p>
+
+            <?php wp_nonce_field('claim_fintech_profile', 'claim_fintech_profile_nonce'); ?>
+            <input type="hidden" id="currentPage" name=" currentPage" value="1">
+
           </div>
         </div>
       </div>

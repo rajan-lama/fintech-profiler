@@ -83,6 +83,8 @@ class Fintech_Profiler_Public
 
 		wp_enqueue_style('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0-rc.0', 'all');
 
+		//wp_enqueue_script('tinymce', 'https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js', array(), '12323132', 'all');
+
 		wp_enqueue_style('owl-carousel', FINTECH_PROFILER_BASE_URL . 'public/css/owl.carousel.min.css', array(), '2.3.4', 'all');
 		wp_enqueue_style('owl-theme', FINTECH_PROFILER_BASE_URL . 'public/css/owl.theme.default.min.css', array(), '2.3.4', 'all');
 		wp_enqueue_style('fintech-profiler-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css', array(), '4.7.0', 'all');

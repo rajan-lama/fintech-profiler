@@ -56,7 +56,7 @@ $website_link = $current_user->user_url; // Fetch website link
 
                 <?php wp_nonce_field('edit_financial_profile', 'edit_financial_profile_nonce'); ?>
                 <input type="hidden" name="fp_action" value="edit_financial_profile" />
-                <input type="hidden" name="redirect_to" value="<?php echo home_url('/financial-dashboard'); ?>" />
+                <input type="hidden" name="redirect_to" value="<?php echo home_url('/fintech-dashboard'); ?>" />
                 <input type="hidden" id="currentPage" name=" currentPage" value="1">
                 <button type="submit" name="update_profile">Update Profile</button>
               </form>

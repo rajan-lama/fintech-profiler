@@ -44,7 +44,7 @@ get_header();
             </p>
 
             <input type="hidden" name="fp_action" value="create_financial_profile" />
-            <input type="hidden" name="redirect_to" value="<?php echo home_url('/edit-financial-profile'); ?>" />
+            <input type="hidden" name="redirect_to" value="<?php echo home_url('/financial-dashboard'); ?>" />
             <?php wp_nonce_field('create_financial_profile', 'create_financial_profile_nonce'); ?>
             <input type="hidden" name="_wp_http_referer" value="/create-financial-profile/">
             <input type="hidden" id="currentPage" name=" currentPage" value="1">

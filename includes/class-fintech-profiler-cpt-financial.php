@@ -14,7 +14,7 @@ if (! class_exists('Fintech_Profiler_CPT_Financial')) {
   {
     public function __construct()
     {
-      add_action('init', array($this, 'register_cpt'));
+      //add_action('init', array($this, 'register_cpt'));
       add_action('init', array($this, 'add_custom_roles_caps'));
 
       add_action('get_avatar', array($this, 'custom_avatar'), 10, 5);

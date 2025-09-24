@@ -73,7 +73,7 @@ get_header();
               <?php
               $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
 
-              $taxonomy = 'fintech-category';
+              $taxonomy = 'category';
 
               $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
 
@@ -140,7 +140,7 @@ get_header();
         </div>
       </div>
 
-      <div class="fp-page" id="fp-page-2">
+      <div class="fp-page" id="fp-page-2" style="display:none">
         <div class="fp-row">
           <div class="fp-col-6">
             <span class="">2/4</span>
@@ -149,14 +149,27 @@ get_header();
           </div>
           <div class="fp-col-6">
             <p>
-              <label for="objective_and_description">Company Name</label>
-              <textarea cols="30" rows="10" name="objective_and_description" id="objective_and_description" placeholder="Enter company Description" required></textarea>
+              <label for="objective_and_description">Overview and Description</label>
+              <?php
+              $content = '';
+              $editor_id = 'objective_and_description';
+              $settings = array(
+                'textarea_name' => 'objective_and_description',
+                'media_buttons' => false,
+                'teeny'         => true,
+                'quicktags'     => true,
+                'textarea_rows' => 10,
+                'editor_height' => 300,
+              );
+              wp_editor($content, $editor_id, $settings);
+              ?>
             </p>
+
           </div>
         </div>
       </div>
 
-      <div class="fp-page" id="fp-page-3">
+      <div class="fp-page" id="fp-page-3" style="display:none">
         <div class="fp-row">
           <div class="fp-col-6">
             <span class="">3/4</span>
@@ -186,7 +199,7 @@ get_header();
         </div>
       </div>
 
-      <div class="fp-page" id="fp-page-4">
+      <div class="fp-page" id="fp-page-4" style="display:none">
         <div class="fp-row">
           <div class="fp-col-6">
             <span class="">4/4</span>
@@ -219,8 +232,10 @@ get_header();
 
             <p>
               <label for="business_phone">Phone Number</label>
-              <input type="text" name="business_phone_code" id="business_phone" placeholder="+91" required>
+            <div class="phone-input">
+              <input type="text" name="business_phone_code" id="business_phone_code" placeholder="+91" required>
               <input type="text" name="business_phone" id="business_phone" placeholder="Enter business Phone" required>
+            </div>
             </p>
             <hr />
             <h4>Social Links</h4>
@@ -271,9 +286,8 @@ get_header();
                 <button type="button" class="remove-case button">Remove</button>
               </div>
             </div>
-            <button type="button" id="add-case-study" class="button">+ Add Another Case Study</button>
+            <button type="button" id="add-case-study" class="button">+ Add More</button>
           </div>
-          <button type="button" class="button">Add More</button>
         </div>
       </div>
     </form>

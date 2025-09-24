@@ -62,80 +62,78 @@ get_header();
           <div class="dashboard-page-title">
             <h2>General Info</h2>
             <div class="dashboard-button-holder">
-              <button>Preview</button>
-              <button>Save Changes</button>
+              <button class="btn-preview" id="btn-preview">Preview</button>
+              <button class="btn-save" id="btn-save">Save Changes</button>
             </div>
           </div>
           <div class="dashboard-page-body">
-            <div class="dashboard-page-header">
+            <div class="dashboard-section">
               <h3>Basic Information</h3>
               <p>The most basic required information needed to qualify for listing</p>
             </div>
-            <div class="dashboard-page-sections">
-              <div class="dashboard-section">
-                <div class="dashboard-left">
-                  <label for="attach_media">Company Profile Picture</label>
-                </div>
-                <div class="dashboard-right">
-                  <input type="file" name="attach_media" id="attach_media" accept="image/*" required>
-                  <input type="hidden" name="action" value="upload_company_logo">
-                </div>
+            <div class="dashboard-section">
+              <div class="dashboard-left">
+                <label for="attach_media">Company Profile Picture</label>
               </div>
-              <div class="dashboard-section">
-                <div class="dashboard-left">
-                  <label for="attach_media">Basic Information</label>
-                </div>
-                <div class="dashboard-right">
-                  <p>
-                    <label for="company_name">Company Name</label>
-                    <input type="text" name="company_name" id="company_name" placeholder="Enter company name" required>
-                  </p>
-                  <p>
-                    <label for="website_link">Website Link</label>
-                    <input type="text" name="website_link" id="website_link" placeholder="Enter website link" required>
-                  </p>
-                  <p>
-                    <label for="founded_in">Founded in</label>
-                    <input type="number" name="founded_in" id="founded_in" required>
-                  </p>
-                  <p>
-                    <label for="company_size">Company Size</label>
-                    <select name="company_size" id="company_size" required>
-                      <option value="">Select Size</option>
-                      <option value="1-10">1-10</option>
-                      <option value="11-50">11-50</option>
-                      <option value="51-200">51-200</option>
-                      <option value="201-500">201-500</option>
-                      <option value="501-1000">501-1000</option>
-                      <option value="1001+">1001+</option>
-                    </select>
-                  </p>
-                  <p>
-                    <label for="slogan"> Slogan <span>(opt.)</span></label>
-                    <input type="text" name="slogan" id="slogan" placeholder="Enter company slogan">
-                  </p>
-                </div>
+              <div class="dashboard-right">
+                <input type="file" name="attach_media" id="attach_media" accept="image/*" required>
+                <input type="hidden" name="action" value="upload_company_logo">
               </div>
+            </div>
+            <div class="dashboard-section">
+              <div class="dashboard-left">
+                <label for="attach_media">Basic Information</label>
+              </div>
+              <div class="dashboard-right">
+                <p>
+                  <label for="company_name">Company Name</label>
+                  <input type="text" name="company_name" id="company_name" placeholder="Enter company name" required>
+                </p>
+                <p>
+                  <label for="website_link">Website Link</label>
+                  <input type="text" name="website_link" id="website_link" placeholder="Enter website link" required>
+                </p>
+                <p>
+                  <label for="founded_in">Founded in</label>
+                  <input type="number" name="founded_in" id="founded_in" required>
+                </p>
+                <p>
+                  <label for="company_size">Company Size</label>
+                  <select name="company_size" id="company_size" required>
+                    <option value="">Select Size</option>
+                    <option value="1-10">1-10</option>
+                    <option value="11-50">11-50</option>
+                    <option value="51-200">51-200</option>
+                    <option value="201-500">201-500</option>
+                    <option value="501-1000">501-1000</option>
+                    <option value="1001+">1001+</option>
+                  </select>
+                </p>
+                <p>
+                  <label for="slogan"> Slogan <span>(opt.)</span></label>
+                  <input type="text" name="slogan" id="slogan" placeholder="Enter company slogan">
+                </p>
+              </div>
+            </div>
 
-              <div class="dashboard-section">
-                <div class="dashboard-left">
-                  <label for="attach_media">Services Provided</label>
-                </div>
-                <div class="dashboard-right">
-                  <p>
-                    <label for="services">What services do you offer?</label>
-                    <select name="services" id="services" required>
-                      <option value="">Select Size</option>
-                      <option value="1-10">1-10</option>
-                      <option value="11-50">11-50</option>
-                      <option value="51-200">51-200</option>
-                      <option value="201-500">201-500</option>
-                      <option value="501-1000">501-1000</option>
-                      <option value="1001+">1001+</option>
-                    </select>
-                  </p>
-                  <P>Category selection checkbox</P>
-                </div>
+            <div class="dashboard-section">
+              <div class="dashboard-left">
+                <label for="attach_media">Services Provided</label>
+              </div>
+              <div class="dashboard-right">
+                <p>
+                  <label for="services">What services do you offer?</label>
+                  <select name="services" id="services" required>
+                    <option value="">Select Size</option>
+                    <option value="1-10">1-10</option>
+                    <option value="11-50">11-50</option>
+                    <option value="51-200">51-200</option>
+                    <option value="201-500">201-500</option>
+                    <option value="501-1000">501-1000</option>
+                    <option value="1001+">1001+</option>
+                  </select>
+                </p>
+                <P>Category selection checkbox</P>
               </div>
             </div>
           </div>
@@ -144,26 +142,24 @@ get_header();
           <div class="dashboard-page-title">
             <h2>Overview</h2>
             <div class="dashboard-button-holder">
-              <button>Preview</button>
-              <button>Save Changes</button>
+              <button class="btn-preview" id="btn-preview">Preview</button>
+              <button class="btn-save" id="btn-save">Save Changes</button>
             </div>
           </div>
           <div class="dashboard-page-body">
-            <div class="dashboard-page-header">
+            <div class="dashboard-section">
               <h3>Describe your Company</h3>
               <p>Write something about your company that clicks for the financial institutions</p>
             </div>
-            <div class="dashboard-page-sections">
-              <div class="dashboard-section">
-                <div class="dashboard-left">
-                  <label for="attach_media">About</label>
-                  <p>What is company does, services, advantages and key features you provide</p>
-                </div>
-                <div class="dashboard-right">
-                  <textarea cols="30" rows="10" name="objective_and_description" id="objective_and_description" placeholder="Enter company Description" required></textarea>
-                </div>
-                </p>
+            <div class="dashboard-section">
+              <div class="dashboard-left">
+                <label for="attach_media">About</label>
+                <p>What is company does, services, advantages and key features you provide</p>
               </div>
+              <div class="dashboard-right">
+                <textarea cols="30" rows="10" name="objective_and_description" id="objective_and_description" placeholder="Enter company Description" required></textarea>
+              </div>
+              </p>
             </div>
           </div>
         </div>
@@ -171,12 +167,11 @@ get_header();
           <div class="dashboard-page-title">
             <h2>Images & Videos</h2>
             <div class="dashboard-button-holder">
-              <button>Preview</button>
-              <button>Save Changes</button>
+              <button class="btn-preview" id="btn-preview">Preview</button>
+              <button class="btn-save" id="btn-save">Save Changes</button>
             </div>
           </div>
           <div class="dashboard-page-body">
-
             <div class="dashboard-page-sections">
               <div class="dashboard-section">
                 <div class="dashboard-left">
@@ -184,7 +179,7 @@ get_header();
                   <p>Add images and videos of your product giving glimpses of your service and stand out</p>
 
                   <span>Limited to 1 video and 4 images</span>
-                  <button>Upload Files</button>
+                  <button class="btn-upload">Upload Files</button>
                 </div>
                 <div class="dashboard-right">
                   <img src="#" />
@@ -222,8 +217,8 @@ get_header();
           <div class="dashboard-page-title">
             <h2>Pricing Plans</h2>
             <div class="dashboard-button-holder">
-              <button>Preview</button>
-              <button>Save Changes</button>
+              <button class="btn-preview" id="btn-preview">Preview</button>
+              <button class="btn-save" id="btn-save">Save Changes</button>
             </div>
           </div>
           <div class="dashboard-page-body">
@@ -291,8 +286,8 @@ get_header();
           <div class="dashboard-page-title">
             <h2>Case Studies & Demos</h2>
             <div class="dashboard-button-holder">
-              <button>Preview</button>
-              <button>Save Changes</button>
+              <button class="btn-preview" id="btn-preview">Preview</button>
+              <button class="btn-save" id="btn-save">Save Changes</button>
             </div>
           </div>
           <div class="dashboard-page-body">
@@ -338,8 +333,8 @@ get_header();
           <div class="dashboard-page-title">
             <h2>Contact Information</h2>
             <div class="dashboard-button-holder">
-              <button>Preview</button>
-              <button>Save Changes</button>
+              <button class="btn-preview" id="btn-preview">Preview</button>
+              <button class="btn-save" id="btn-save">Save Changes</button>
             </div>
           </div>
           <div class="dashboard-page-body">

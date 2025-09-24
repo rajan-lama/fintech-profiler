@@ -54,17 +54,6 @@
     $("#tabs").tabs();
   });
 
-  // $(document).ready(function () {
-  //   $("#services").on("change", function () {
-  //     // Get all selected values
-  //     let selectedValues = $(this).val() || [];
-  //     $(".parent-list").hide();
-  //     selectedValues.forEach(function (val) {
-  //       $(".category-" + val).show();
-  //     });
-  //   });
-  // });
-
   $(document).ready(function () {
     // Initialize select2 if not already
     $("#services").select2({

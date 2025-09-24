@@ -23,6 +23,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       add_action('cmb2_admin_init', array($this, 'fintech_register_slider_metabox'));
 
       add_action('init', array($this, 'fp_handle_fintech_profile_submission'));
+      add_action('init', array($this, 'fp_handle_claim_fintech_profile'));
 
       // add_action('init', array($this, 'register_cpt'));
       // register_activation_hook(__FILE__, array($this, 'add_custom_roles_caps'));
@@ -125,7 +126,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
     /**
      * Hook in and add a metabox to demonstrate repeatable grouped fields
      */
-    function fintech_register_pricing_plans_metabox()
+    public function fintech_register_pricing_plans_metabox()
     {
 
       /**
@@ -170,7 +171,12 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         'name'       => esc_html__('Cost', 'fintech-profiler'),
         'id'         => 'cost',
         'type'       => 'text_money',
-        // 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
+      ));
+
+      $cmb_group->add_group_field($group_field_id, array(
+        'name'       => esc_html__('Financial Manager (Owner)', 'fintech-profiler'),
+        'id'         => 'owner',
+        'type'       => 'text',
       ));
     }
 
@@ -178,7 +184,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
     /**
      * Hook in and add a metabox to demonstrate repeatable grouped fields
      */
-    function fintech_register_case_studies_metabox()
+    public function fintech_register_case_studies_metabox()
     {
 
       /**
@@ -224,7 +230,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
     /**
      * Hook in and add a metabox to demonstrate repeatable grouped fields
      */
-    function fintech_register_more_info_metabox()
+    public function fintech_register_more_info_metabox()
     {
       /**
        * Repeatable Field Groups
@@ -391,7 +397,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
     /**
      * Hook in and add a metabox to demonstrate repeatable grouped fields
      */
-    function fintech_register_slider_metabox()
+    public function fintech_register_slider_metabox()
     {
 
       /**
@@ -444,7 +450,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       ));
     }
 
-    function fp_handle_fintech_profile_submission()
+    public function fp_handle_fintech_profile_submission()
     {
       if (
         isset($_POST['create_fintech_profile'])
@@ -565,6 +571,52 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
           wp_redirect(get_permalink($post_id));
           exit;
         }
+      }
+    }
+
+    public function fp_handle_claim_fintech_profile()
+    {
+      if (isset($_POST['submit_claim'])) {
+
+        if (!empty($_FILES['attach_media']['name'])) {
+          require_once(ABSPATH . 'wp-admin/includes/file.php');
+          $uploaded = media_handle_upload('attach_media', 0);
+
+          if (!is_wp_error($uploaded)) {
+            $file_url = wp_get_attachment_url($uploaded);
+            $message .= "\nUploaded File: $file_url";
+          }
+        }
+
+        // Verify nonce
+        if (
+          !isset($_POST['claim_fintech_profile_nonce']) ||
+          !wp_verify_nonce($_POST['claim_fintech_profile_nonce'], 'claim_fintech_profile')
+        ) {
+          wp_die('Security check failed.');
+        }
+
+        // Sanitize inputs
+        $existing_profile = sanitize_text_field($_POST['existing_profile'] ?? '');
+        $website_link     = sanitize_text_field($_POST['website_link'] ?? '');
+        $email            = sanitize_email($_POST['email'] ?? '');
+        $contact_number   = sanitize_text_field($_POST['contact_number'] ?? '');
+
+        // Prepare email
+        $to = get_option('admin_email'); // send to admin email
+        $subject = "New Claim Request from $email";
+        $message  = "A new claim form was submitted:\n\n";
+        $message .= "Existing Profile: " . $existing_profile . "\n";
+        $message .= "Website Link: " . $website_link . "\n";
+        $message .= "Email: " . $email . "\n";
+        $message .= "Contact Number: " . $contact_number . "\n";
+
+        // Send email
+        wp_mail($to, $subject, $message);
+
+        // Redirect or show success
+        wp_redirect(add_query_arg('claim_submitted', '1', wp_get_referer()));
+        exit;
       }
     }
   }
