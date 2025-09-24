@@ -10,8 +10,8 @@ if (!current_user_can('edit_fintech_profiles')) {
 
 get_header();
 ?>
-<div class="container full-width">
-  <div class="row">
+<div class="dashboard-container full-width">
+  <div class="dashboard-row">
     <div class="left-sidebar">
       <div id="tabs">
         <ul>
