@@ -42,7 +42,7 @@ $website_link = $current_user->user_url; // Fetch website link
                   <?php endif; ?>
                 </div>
                 <label for="company_logo">Company Logo</label>
-                <input type="file" name="company_logo" id="company_logo" accept="image/*" required value="<?php echo esc_url($company_logo); ?>">
+                <input type="file" name="company_logo" id="company_logo" accept="image/*" value="<?php echo esc_url($company_logo); ?>">
                 <input type="hidden" name="action" value="upload_company_logo">
                 </p>
                 <p>
@@ -51,7 +51,7 @@ $website_link = $current_user->user_url; // Fetch website link
                 </p>
                 <p>
                   <label for="website_link">Website Link</label>
-                  <input type="text" name="website_link" id="website_link" value="<?php echo esc_url($website_link); ?>" placeholder="Enter website link" required>
+                  <input type="text" name="website_link" id="website_link" value="<?php echo esc_url($website_link); ?>" placeholder="Enter website link">
                 </p>
 
                 <?php wp_nonce_field('edit_financial_profile', 'edit_financial_profile_nonce'); ?>

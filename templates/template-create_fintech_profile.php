@@ -35,24 +35,24 @@ get_header();
           <div class="fp-col-6">
             <p>
               <label for="company_logo">Company Logo</label>
-              <input type="file" name="company_logo" id="company_logo" accept="image/*" required>
+              <input type="file" name="company_logo" id="company_logo" accept="image/*">
               <input type="hidden" name="action" value="upload_company_logo">
             </p>
             <p>
               <label for="company_name">Company Name</label>
-              <input type="text" name="company_name" id="company_name" placeholder="Enter company name" required>
+              <input type="text" name="company_name" id="company_name" placeholder="Enter company name">
             </p>
             <p>
               <label for="website_link">Website Link</label>
-              <input type="text" name="website_link" id="website_link" placeholder="Enter website link" required>
+              <input type="text" name="website_link" id="website_link" placeholder="Enter website link">
             </p>
             <p>
               <label for="founded_in">Founded in</label>
-              <input type="number" name="founded_in" id="founded_in" required>
+              <input type="number" name="founded_in" id="founded_in">
             </p>
             <p>
               <label for="company_size">Company Size</label>
-              <select name="company_size" id="company_size" required>
+              <select name="company_size" id="company_size">
                 <option value="">Select Size</option>
                 <option value="1-10">1-10</option>
                 <option value="11-50">11-50</option>
@@ -77,7 +77,7 @@ get_header();
 
               $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
 
-              echo '<select class="multi-select" multiple="multiple" style="width:100%;" name="services" id="services" required>';
+              echo '<select class="multi-select" multiple="multiple" style="width:100%;" name="services" id="services" >';
               $terms = get_terms([
                 'taxonomy'   => $taxonomy,
                 'hide_empty' => false,
@@ -181,15 +181,15 @@ get_header();
               <div class="pricing-plan-item">
                 <p>
                   <label>Plan Type</label>
-                  <input type="text" name="plan_type[]" placeholder="Name the plan" required>
+                  <input type="text" name="plan_type[]" placeholder="Name the plan">
                 </p>
                 <p>
                   <label>Description</label>
-                  <input type="text" name="plan_description[]" placeholder="Plan benefits" required>
+                  <input type="text" name="plan_description[]" placeholder="Plan benefits">
                 </p>
                 <p>
                   <label>Cost</label>
-                  <input type="text" name="plan_cost[]" placeholder="Price" required>
+                  <input type="text" name="plan_cost[]" placeholder="Price">
                 </p>
                 <button type="button" class="remove-plan button">Remove</button>
               </div>
@@ -210,31 +210,31 @@ get_header();
             <h4 for="company_size">Contact Information</h4>
             <p>
               <label for="country">Country</label>
-              <select name="country" id="country" required>
+              <select name="country" id="country">
                 <option value="">Select country</option>
               </select>
             </p>
             <p>
               <label for="state">State <span>(opt.)</span></label>
-              <select name="state" id="state" required>
+              <select name="state" id="state">
                 <option value="">Select state</option>
               </select>
             </p>
 
             <p>
               <label for="city">City <span>(opt.)</span></label>
-              <input type="text" name="city" id="city" placeholder="Enter city" required>
+              <input type="text" name="city" id="city" placeholder="Enter city">
             </p>
             <p>
               <label for="business_email">Business Email</label>
-              <input type="text" name="business_email" id="business_email" placeholder="Enter business email" required>
+              <input type="text" name="business_email" id="business_email" placeholder="Enter business email">
             </p>
 
             <p>
               <label for="business_phone">Phone Number</label>
             <div class="phone-input">
-              <input type="text" name="business_phone_code" id="business_phone_code" placeholder="+91" required>
-              <input type="text" name="business_phone" id="business_phone" placeholder="Enter business Phone" required>
+              <input type="text" name="business_phone_code" id="business_phone_code" placeholder="+91">
+              <input type="text" name="business_phone" id="business_phone" placeholder="Enter business Phone">
             </div>
             </p>
             <hr />
@@ -242,19 +242,19 @@ get_header();
             <div class="fp-social-links">
               <p>
                 <label for="linkedin_url">Linkedin Url</label>
-                <input type="text" name="linkedin_url" id="linkedin_url" required>
+                <input type="text" name="linkedin_url" id="linkedin_url">
               </p>
               <p>
                 <label for="x_url">x Url</label>
-                <input type="text" name="x_url" id="x_url" required>
+                <input type="text" name="x_url" id="x_url">
               </p>
               <p>
                 <label for="instagram_url">Instagram Url</label>
-                <input type="text" name="instagram_url" id="instagram_url" required>
+                <input type="text" name="instagram_url" id="instagram_url">
               </p>
               <p>
                 <label for="facebook_url">Facebook Url</label>
-                <input type="text" name="facebook_url" id="facebook_url" required>
+                <input type="text" name="facebook_url" id="facebook_url">
               </p>
             </div>
             <p>
@@ -277,13 +277,13 @@ get_header();
               <div class="case-study-item">
                 <p>
                   <label>Case Title</label>
-                  <input type="text" name="case_title[]" placeholder="Case title" required>
+                  <input type="text" name="case_title[]" placeholder="Case title">
                 </p>
                 <p>
                   <label>Case Link</label>
-                  <input type="text" name="case_link[]" placeholder="Case link" required>
+                  <input type="text" name="case_link[]" placeholder="Case link">
                 </p>
-                <button type="button" class="remove-case button">Remove</button>
+                <button type="button" class="remove-case button">x</button>
               </div>
             </div>
             <button type="button" id="add-case-study" class="button">+ Add More</button>

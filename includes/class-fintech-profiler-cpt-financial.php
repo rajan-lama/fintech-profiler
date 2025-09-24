@@ -173,11 +173,17 @@ if (! class_exists('Fintech_Profiler_CPT_Financial')) {
             }
 
             // Upload the file
+            // $upload = media_handle_upload('company_logo', 0);
+
+            // if (! is_wp_error($upload)) {
+            //   // Update the user meta with the uploaded file URL
+            //   update_user_meta($user_id, '_profile_picture', wp_get_attachment_url($upload));
+            // }
             $upload = media_handle_upload('company_logo', 0);
 
             if (! is_wp_error($upload)) {
-              // Update the user meta with the uploaded file URL
-              update_user_meta($user_id, '_profile_picture', wp_get_attachment_url($upload));
+              // Save the attachment ID instead of URL
+              update_user_meta($user_id, '_profile_picture', $upload);
             }
           }
 

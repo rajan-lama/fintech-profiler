@@ -77,7 +77,7 @@ get_header();
                   <label for="attach_media">Company Profile Picture</label>
                 </div>
                 <div class="dashboard-right">
-                  <input type="file" name="attach_media" id="attach_media" accept="image/*" required>
+                  <input type="file" name="attach_media" id="attach_media" accept="image/*">
                   <input type="hidden" name="action" value="upload_company_logo">
                 </div>
               </div>
@@ -88,19 +88,19 @@ get_header();
                 <div class="dashboard-right">
                   <p>
                     <label for="company_name">Company Name</label>
-                    <input type="text" name="company_name" id="company_name" placeholder="Enter company name" required>
+                    <input type="text" name="company_name" id="company_name" placeholder="Enter company name">
                   </p>
                   <p>
                     <label for="website_link">Website Link</label>
-                    <input type="text" name="website_link" id="website_link" placeholder="Enter website link" required>
+                    <input type="text" name="website_link" id="website_link" placeholder="Enter website link">
                   </p>
                   <p>
                     <label for="founded_in">Founded in</label>
-                    <input type="number" name="founded_in" id="founded_in" required>
+                    <input type="number" name="founded_in" id="founded_in">
                   </p>
                   <p>
                     <label for="company_size">Company Size</label>
-                    <select name="company_size" id="company_size" required>
+                    <select name="company_size" id="company_size">
                       <option value="">Select Size</option>
                       <option value="1-10">1-10</option>
                       <option value="11-50">11-50</option>
@@ -124,7 +124,7 @@ get_header();
                 <div class="dashboard-right">
                   <p>
                     <label for="services">What services do you offer?</label>
-                    <select name="services" id="services" required>
+                    <select name="services" id="services">
                       <option value="">Select Size</option>
                       <option value="1-10">1-10</option>
                       <option value="11-50">11-50</option>
@@ -160,7 +160,7 @@ get_header();
                   <p>What is company does, services, advantages and key features you provide</p>
                 </div>
                 <div class="dashboard-right">
-                  <textarea cols="30" rows="10" name="objective_and_description" id="objective_and_description" placeholder="Enter company Description" required></textarea>
+                  <textarea cols="30" rows="10" name="objective_and_description" id="objective_and_description" placeholder="Enter company Description"></textarea>
                 </div>
                 </p>
               </div>
@@ -245,7 +245,7 @@ get_header();
                 </div>
                 <div class="dashboard-right">
                   <p>
-                    <input type="text" name="pricing_plan_link" id="pricing_plan_link" required>
+                    <input type="text" name="pricing_plan_link" id="pricing_plan_link">
                   </p>
                 </div>
               </div>
@@ -270,7 +270,7 @@ get_header();
                 </div>
                 <div class="dashboard-right">
                   <p>
-                    <textarea cols="30" rows="10" name="pricing_plan_description" id="pricing_plan_description" placeholder="Enter company Description" required></textarea>
+                    <textarea cols="30" rows="10" name="pricing_plan_description" id="pricing_plan_description" placeholder="Enter company Description"></textarea>
                   </p>
                 </div>
               </div>
@@ -361,30 +361,30 @@ get_header();
                 <div class="dashboard-right">
                   <p>
                     <label for="country">Country</label>
-                    <select name="country" id="country" required>
+                    <select name="country" id="country">
                       <option value="">Select country</option>
                     </select>
                   </p>
                   <p>
                     <label for="state">State <span>(opt.)</span></label>
-                    <select name="state" id="state" required>
+                    <select name="state" id="state">
                       <option value="">Select state</option>
                     </select>
                   </p>
 
                   <p>
                     <label for="city">City <span>(opt.)</span></label>
-                    <input type="text" name="city" id="city" placeholder="Enter city" required>
+                    <input type="text" name="city" id="city" placeholder="Enter city">
                   </p>
                   <p>
                     <label for="business_email">Business Email</label>
-                    <input type="text" name="business_email" id="business_email" placeholder="Enter business email" required>
+                    <input type="text" name="business_email" id="business_email" placeholder="Enter business email">
                   </p>
 
                   <p>
                     <label for="business_phone">Phone Number</label>
-                    <input type="text" name="business_phone_code" id="business_phone" placeholder="+91" required>
-                    <input type="text" name="business_phone" id="business_phone" placeholder="Enter business Phone" required>
+                    <input type="text" name="business_phone_code" id="business_phone" placeholder="+91">
+                    <input type="text" name="business_phone" id="business_phone" placeholder="Enter business Phone">
                   </p>
                 </div>
               </div>
@@ -397,19 +397,19 @@ get_header();
                   <div class="fp-social-links">
                     <p>
                       <label for="linkedin_url">Linkedin Url</label>
-                      <input type="text" name="linkedin_url" id="linkedin_url" required>
+                      <input type="text" name="linkedin_url" id="linkedin_url">
                     </p>
                     <p>
                       <label for="x_url">x Url</label>
-                      <input type="text" name="x_url" id="x_url" required>
+                      <input type="text" name="x_url" id="x_url">
                     </p>
                     <p>
                       <label for="instagram_url">Instagram Url</label>
-                      <input type="text" name="instagram_url" id="instagram_url" required>
+                      <input type="text" name="instagram_url" id="instagram_url">
                     </p>
                     <p>
                       <label for="facebook_url">Facebook Url</label>
-                      <input type="text" name="facebook_url" id="facebook_url" required>
+                      <input type="text" name="facebook_url" id="facebook_url">
                     </p>
                   </div>
                 </div>

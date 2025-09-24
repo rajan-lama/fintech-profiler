@@ -8,7 +8,7 @@
 
 get_header();
 ?>
-<main id="main" class="site-main full-width">
+<main id="main" class="site-main">
   <div class="container">
     <header class="page-header">
       <?php
@@ -31,13 +31,14 @@ get_header();
 
       <?php
 
-      $fintech_qry = new WP_Query(array('post_type' => 'fintech_profiles', 'post_status' => 'publish', 'posts_per_page' => 12));
-      if ($fintech_qry->have_posts()) : ?>
+      $fintech_qry = new WP_Query(array('post_type' => 'fintech_profiles', 'post_status' => 'publish', 'posts_per_page' => 12)); ?>
 
-        <div id="primary" class="content-area fintech-archive">
-          <div class="inner-contents">
-            <div class="inner-row">
-              <?php
+
+      <div id="primary" class="content-area fintech-archive">
+        <div class="inner-contents">
+          <div class="inner-row">
+            <?php
+            if ($fintech_qry->have_posts()) :
               /* Start the Loop */
               while ($fintech_qry->have_posts()) :
                 $fintech_qry->the_post();
@@ -45,19 +46,17 @@ get_header();
                 // global $post;
 
                 do_action('fintech_profiler_archive_content');
-              ?>
+              endwhile;
+            else :
+              echo "<h2>No Item Found </h2>";
 
-
-              <?php endwhile; ?>
-            </div>
-            <?php  // bakery_shop_pro_pagination(); //Pagination 
+            endif;
             ?>
           </div>
-        </div><!-- #primary -->
-      <?php else :
-        echo "<h2>No Item Found </h2>";
-
-      endif; ?>
+          <?php  // bakery_shop_pro_pagination(); //Pagination 
+          ?>
+        </div>
+      </div><!-- #primary -->
 
       <aside id="sidebar">
         <form method="post" id="fintech-filter-form">

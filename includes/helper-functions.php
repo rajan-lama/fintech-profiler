@@ -841,3 +841,24 @@ add_action('cmb2_after_form', function () {
     </script>
 <?php
 });
+
+
+function fintech_profiler_get_users()
+{
+    $args = array(
+        'role__in' => array('fintech_manager', 'financial_manager'),
+        'orderby' => 'display_name',
+        'order'   => 'ASC',
+    );
+
+    $users   = get_users($args);
+    $options = array();
+
+    if (! empty($users)) {
+        foreach ($users as $user) {
+            $options[$user->ID] = $user->display_name . ' (' . $user->user_email . ')';
+        }
+    }
+
+    return $options;
+}

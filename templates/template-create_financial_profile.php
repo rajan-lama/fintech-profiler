@@ -28,16 +28,16 @@ get_header();
           <div class="fp-col-6">
             <p>
               <label for="company_logo">Company Logo</label>
-              <input type="file" name="company_logo" id="company_logo" accept="image/*" required>
+              <input type="file" name="company_logo" id="company_logo" accept="image/*">
               <input type="hidden" name="action" value="upload_company_logo">
             </p>
             <p>
               <label for="company_name">Company Name</label>
-              <input type="text" name="user_name" id="company_name" placeholder="Enter company name" required>
+              <input type="text" name="user_name" id="company_name" placeholder="Enter company name">
             </p>
             <p>
               <label for="website_link">Website Link</label>
-              <input type="text" name="user_profile_website" id="website_link" placeholder="Enter website link" required>
+              <input type="text" name="user_profile_website" id="website_link" placeholder="Enter website link">
             </p>
             </p>
             <button type="submit" class="button">Create Profile</button>

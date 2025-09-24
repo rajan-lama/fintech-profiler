@@ -172,12 +172,6 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         'id'         => 'cost',
         'type'       => 'text_money',
       ));
-
-      $cmb_group->add_group_field($group_field_id, array(
-        'name'       => esc_html__('Financial Manager (Owner)', 'fintech-profiler'),
-        'id'         => 'owner',
-        'type'       => 'text',
-      ));
     }
 
 
@@ -391,6 +385,13 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         'name'          => esc_html__('Demo Url', 'fintech-profiler'),
         'id'            => 'fintech_demo_url',
         'type'          => 'text_url',
+      ));
+
+      $cmb_group->add_field(array(
+        'name'       => esc_html__('Financial Manager (Owner)', 'fintech-profiler'),
+        'id'         => 'owner',
+        'type'       => 'select',
+        'options_cb' => 'fintech_profiler_get_users',
       ));
     }
 
