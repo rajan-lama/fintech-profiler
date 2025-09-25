@@ -1007,7 +1007,7 @@ body.single-fintech_profiles,
 }
 
 .login-form {
-  width: 414px;
+  /*   width: 414px; */
   margin: 0 auto;
 
   .fp-hidden-field {
@@ -1469,4 +1469,109 @@ body.single-fintech_profiles,
   align-items: flex-start;
   gap: 8px;
   flex-shrink: 0;
+}
+
+.page-template-template-fintech_profile_dashboard .dashboard-left label {
+  color: rgba(0, 0, 0, 0.88);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 20.8px */
+  letter-spacing: -0.32px;
+}
+
+.page-template-template-fintech_profile_dashboard .dashboard-left p {
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.68);
+  text-overflow: ellipsis;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 25.6px */
+  letter-spacing: -0.32px;
+}
+
+/*Images & videos  */
+.page-template-template-fintech_profile_dashboard .dashboard-page-title h2 {
+  color: rgba(0, 0, 0, 0.88);
+  font-family: Inter;
+  font-size: 24px;
+  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 24px */
+  letter-spacing: -0.48px;
+}
+
+.page-template-template-fintech_profile_dashboard .dashboard-left .btn-upload {
+  display: flex;
+  padding: 16px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  color: #fdfdfd;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #8943e2 0%, #6815d1 100%);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+}
+.page-template-template-fintech_profile_dashboard .dashboard-left span {
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.68);
+  text-overflow: ellipsis;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 20.8px */
+  letter-spacing: -0.26px;
+}
+
+.page-template-template-fintech_profile_dashboard .dashboard-section p {
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.68);
+  text-overflow: ellipsis;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  width: 400px;
+  white-space: nowrap;
+  font-weight: 400;
+  line-height: 160%; /* 25.6px */
+  letter-spacing: -0.32px;
+}
+
+/*general info*/
+.page-template-template-fintech_profile_dashboard
+  .dashboard-page-body
+  .dashboard-page-header {
+  display: flex;
+  width: 608px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border: 2px solid red;
+}
+
+.page-template-template-fintech_profile_dashboard
+  .dashboard-page-body
+  .dashboard-page-sections
+  .dashboard-section {
+  border: 2px solid blue;
+  margin-bottom: 59px;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 240px;
+}
+
+.page-template-template-fintech_profile_dashboard
+  .dashboard-page-body
+  .dashboard-page-sections
+  .dashboard-section
+  .dashboard-left {
+  width: 200px;
 }

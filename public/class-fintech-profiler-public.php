@@ -92,6 +92,10 @@ class Fintech_Profiler_Public
 
 
 		wp_enqueue_style($this->plugin_name, FINTECH_PROFILER_BASE_URL . 'public/css/fintech-profiler-public.css', array(), $this->version, 'all');
+
+		wp_enqueue_style($this->plugin_name . '-part1', FINTECH_PROFILER_BASE_URL . 'public/css/fintech-profiler-public-p2.css', array(), $this->version, 'all');
+
+		wp_enqueue_style($this->plugin_name . '-part2', FINTECH_PROFILER_BASE_URL . 'public/css/fintech-profiler-public-p3.css', array(), $this->version, 'all');
 	}
 
 	/**

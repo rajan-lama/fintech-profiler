@@ -72,16 +72,17 @@ get_header();
               <p>The most basic required information needed to qualify for listing</p>
             </div>
             <div class="dashboard-page-sections">
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="company-logo">
                 <div class="dashboard-left">
                   <label for="attach_media">Company Profile Picture</label>
                 </div>
                 <div class="dashboard-right">
+                  <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
                   <input type="file" name="attach_media" id="attach_media" accept="image/*">
                   <input type="hidden" name="action" value="upload_company_logo">
                 </div>
               </div>
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="basic-info">
                 <div class="dashboard-left">
                   <label for="attach_media">Basic Information</label>
                 </div>
@@ -117,7 +118,7 @@ get_header();
                 </div>
               </div>
 
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="services-provided">
                 <div class="dashboard-left">
                   <label for="attach_media">Services Provided</label>
                 </div>
@@ -154,7 +155,7 @@ get_header();
               <p>Write something about your company that clicks for the financial institutions</p>
             </div>
             <div class="dashboard-page-sections">
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="objective-and-description">
                 <div class="dashboard-left">
                   <label for="attach_media">About</label>
                   <p>What is company does, services, advantages and key features you provide</p>
@@ -178,7 +179,7 @@ get_header();
           <div class="dashboard-page-body">
 
             <div class="dashboard-page-sections">
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="multimedia-upload">
                 <div class="dashboard-left">
                   <label for="attach_media">Upload Multimedia</label>
                   <p>Add images and videos of your product giving glimpses of your service and stand out</p>
@@ -190,7 +191,7 @@ get_header();
                   <img src="#" />
                 </div>
               </div>
-              <div class="dashboard-section">
+              <div class="dashboard-section.has-table" id="multimedia-table">
                 <h4>Upload Multimedia</h4>
                 <p>Uploaded files will be shown in order in the detail page </p>
 
@@ -229,7 +230,7 @@ get_header();
           <div class="dashboard-page-body">
 
             <div class="dashboard-page-sections">
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="pricing-plan-info">
                 <div class="dashboard-left">
                   <label for="attach_media">Plans and Pricing Models</label>
                   <p>Mention the pricing models and plans your company offers</p>
@@ -238,7 +239,7 @@ get_header();
                   <img src="#" />
                 </div>
               </div>
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="pricing-plan-info">
                 <div class="dashboard-left">
                   <h4>Link to Pricing Page</h4>
                   <p>For cases of unsynced information.</p>
@@ -249,7 +250,7 @@ get_header();
                   </p>
                 </div>
               </div>
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="pricing-model">
                 <div class="dashboard-left">
                   <h4>Pricing Model</h4>
                 </div>
@@ -264,7 +265,7 @@ get_header();
                   </p>
                 </div>
               </div>
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="pricing-plan-description">
                 <div class="dashboard-left">
                   <h4>Description</h4>
                 </div>
@@ -274,7 +275,7 @@ get_header();
                   </p>
                 </div>
               </div>
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="pricing-plans-repeater">
                 <div class="dashboard-left">
                   <h4>Pricing Plans</h4>
                 </div>
@@ -298,7 +299,7 @@ get_header();
           <div class="dashboard-page-body">
 
             <div class="dashboard-page-sections">
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="case-study-and-demo">
                 <div class="dashboard-left">
                   <label for="attach_media">Showcase your Product</label>
                   <p>Help your users to decide why they should choose you by showing your experiences</p>
@@ -307,7 +308,7 @@ get_header();
 
                 </div>
               </div>
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="demo-link">
                 <div class="dashboard-left">
                   <label for="attach_media">Demo</label>
                 </div>
@@ -318,7 +319,7 @@ get_header();
                 </div>
               </div>
 
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="case-study">
                 <div class="dashboard-left">
                   <label for="attach_media">Case Study</label>
                 </div>
@@ -345,7 +346,7 @@ get_header();
           <div class="dashboard-page-body">
 
             <div class="dashboard-page-sections">
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="contact-info">
                 <div class="dashboard-left">
                   <h4>How to Reach Out to You?</h4>
                   <p>Help your users to decide why they should choose you by showing your experiences</p>
@@ -354,7 +355,7 @@ get_header();
 
                 </div>
               </div>
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="contact-information">
                 <div class="dashboard-left">
                   <label for="attach_media">Contact Information</label>
                 </div>
@@ -389,7 +390,7 @@ get_header();
                 </div>
               </div>
 
-              <div class="dashboard-section">
+              <div class="dashboard-section" id="social-links">
                 <div class="dashboard-left">
                   <label for="attach_media">Socials</label>
                 </div>

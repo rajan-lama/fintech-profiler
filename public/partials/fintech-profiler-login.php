@@ -48,15 +48,16 @@
     <div class="fp-form-options">
       <div>
         <label>
+          <!------- need to work on cookie setting here ------>
           <input type="checkbox" name="fp_remember" value="1" /> Remember Me
         </label>
       </div>
-      <a href="#" class="fp_forgot-pw">Forgot Password?</a>
+      <a href="<?php echo home_url("/forgot-password"); ?>" class="fp_forgot-pw">Forgot Password?</a>
     </div>
 
     <!--- shortcode for google login --->
 
-    <div>Already Have an Account? <a href="#">Sign Up</a></div>
+    <div>Already Have an Account? <a href="<?php echo home_url("/fintech-signup"); ?>">Sign Up</a></div>
 
   </div>
 </div>

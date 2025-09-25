@@ -75,6 +75,7 @@ get_header();
 
             <p>
               <label for="attach_media">Attach media</label>
+              <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
               <input type="file" name="attach_media" id="attach_media" accept="image/*" required>
               <input type="hidden" name="action" value="upload_company_logo">
             </p>

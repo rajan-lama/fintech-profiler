@@ -35,6 +35,7 @@ get_header();
           <div class="fp-col-6">
             <p>
               <label for="company_logo">Company Logo</label>
+              <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
               <input type="file" name="company_logo" id="company_logo" accept="image/*">
               <input type="hidden" name="action" value="upload_company_logo">
             </p>
