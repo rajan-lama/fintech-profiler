@@ -418,6 +418,59 @@ get_header();
             </div>
           </div>
         </div>
+        <div id="tabs-8">
+          <div class="dashboard-page-title">
+            <div class="dashboard-page-title-logo__holder">
+              <img src="<?php echo esc_url( plugins_url( 'fin360/public/img/plan-icon.svg' ) ); ?>" alt="Plans Icon"/>
+              <h2>Plan</h2>
+            </div>
+            <div class="dashboard-page-body">
+              <div class="dashboard-page-sections">
+                <div class="dashboard-section" id="plans-info">
+                  <div class="dashboard-page-plan">
+                    <h4>Checkout Membership Plans</h4>
+                    <p>For added benefits and exclusive service</p>
+                  </div>
+                </div>
+                <div class="dashboard-section" id="plans-type-selector">
+                  <div class="dashboard-plan-type-selector">
+                      <span>Monthly</span>
+                      <label class="switch">
+                        <input type="checkbox" id="toggle">
+                        <span class="slider"></span>
+                      </label>
+                      <span>Yearly</span>
+                  </div>
+                </div>
+                <div class="dashboard-section" id="plan-pricing-cards">
+                  <div class="dashboard-page-plan__holder">
+                    <p class="dashboard-plan-type__tag">Basic Plan</p>
+                    <h2 class="dashboard-plan-type__pricing">Free</h2>
+                  </div>
+                  <p class="dashboard-page-plan-status">You are on Basic Plan</p>
+                  <div class="dashboard-page-plan-includes">
+                    <h3>Package includes:</h3>
+                    <ul>
+                      <li>Basic fintech directory access</li>
+                      <li>Save up to 5 favorites</li>
+                      <li>Messaging service up to 5 months</li>
+                      <li>Basic profile listing and visibility</li>
+                      <li>Free Articles and content access</li>
+                    </ul>
+                  </div>
+                  <div class="dashboard-page-plan-excludes">
+                    <h3>Not included:</h3>
+                    <ul>
+                      <li>No Analytics</li>
+                      <li>No networking events</li>
+                      <li>No dedicated support</li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
       <div class="main"></div>
     </div>

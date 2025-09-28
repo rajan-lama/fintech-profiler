@@ -1411,16 +1411,15 @@ body.single-fintech_profiles,
 
 /* Overview */
 .page-template-template-fintech_profile_dashboard div.dashboard-page-body {
-  margin-left: 104px;
+  /* margin-left: 104px; */
 }
 
 .page-template-template-fintech_profile_dashboard div.dashboard-page-title {
   display: flex;
-  gap: 500px;
+  gap: 0;
   width: 100%;
   padding: 15px 104px 12px 104px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  align-items: center;
 }
 
 .page-template-template-fintech_profile_dashboard div.dashboard-button-holder {
@@ -1795,4 +1794,84 @@ body.single-fintech_profiles,
   background: url(<path-to-image>) lightgray 0.439px -31.047px / 99.886% 113.323%
     no-repeat;
   box-shadow: 0 3.955px 19.776px 0 rgba(0, 0, 0, 0.25);
+}
+
+/**Plan Page CSS */
+  .toggle-container {
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    gap: 8px;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+  }
+
+  /* Hide default checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* Slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 24px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: #4CAF50; /* Green when ON */
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+
+  div#plan-pricing-cards {
+    display: flex
+;
+    flex-direction: column;
+    gap: 0;
+}
+
+.page-template-template-fintech_profile_dashboard #tabs-8 .dashboard-page-title {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    padding: 15px 0 12px 104px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+}
+
+#plans-info{
+  margin-bottom: 32px;
+}
+
+#plans-type-selector {
+    flex-direction: row-reverse;
+    padding-right: 104px;
 }
