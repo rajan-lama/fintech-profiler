@@ -513,25 +513,29 @@ get_header();
                     <div class="plan-inner__holder">
                       <div class="plan-heading__holder">
                         <p class="dashboard-plan-type__tag">Premium Plan</p>
-                        <h2 class="dashboard-plan-type__pricing">$149</h2><span class="pricing-renewal-=duration"> / Yearly</span>
+                          <div class="dashboard-page-plan-price-duration__holder">
+                            <h2 class="dashboard-plan-type__pricing">$149</h2><span class="pricing-renewal-duration"> / Yearly</span>
+                          </div>
                         <a href="#" class="dashboard-page-plan-status">Upgrade</a>
-                      </div>                  
-                    <div class="dashboard-page-plan-includes">
-                      <h3>Package includes:</h3>
-                      <ul>
-                        <li>Featured fintech directory access</li>
-                        <li>Save unlimited favorites</li>
-                        <li>Unlimited Messaging service</li>
-                        <li>Featured profile listing and visibility</li>
-                        <li>Publish & showcase own articles</li>
-                        <li>Custom reports</li>
-                        <li>Account manager</li>
-                      </ul>
+                      </div>
+                      <div class="basic-plan-content__holder">                  
+                        <div class="dashboard-page-plan-includes">
+                          <h3>Package includes:</h3>
+                          <ul>
+                            <li>Featured fintech directory access</li>
+                            <li>Save unlimited favorites</li>
+                            <li>Unlimited Messaging service</li>
+                            <li>Featured profile listing and visibility</li>
+                            <li>Publish & showcase own articles</li>
+                            <li>Custom reports</li>
+                            <li>Account manager</li>
+                          </ul>
+                        </div>
+                        <div class="dashboard-page-plan-premium-note">
+                          <p>Includes everything with added 24/7 support</p>
+                        </div>
+                      </div>                 
                     </div>
-                    <div class="dashboard-page-plan-premium-note">
-                      <p>Includes everything with added 24/7 support</p>
-                    </div>                  
-                  </div>
                   </div>
                 </div>
             </div>
