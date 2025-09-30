@@ -475,36 +475,47 @@ get_header();
                       </div>
                     </div>                   
                   </div>
-                  <div class="dashboard-professional-plan">                    
-                    <div class="dashboard-page-popular-plan-tag__holder">
-                      <p class="dashboard-plan-type__tag">Professional Plan</p>
-                      <p class="dashboard-popular-plan-type__tag">Popular</p>
-                    </div>
-                    <h2 class="dashboard-plan-type__pricing">$99</h2><span class="pricing-renewal-=duration"> / Yearly</span>
-                    <p class="dashboard-page-plan-status">Upgrade</p>
-                    <div class="dashboard-page-plan-includes">
-                      <h3>Package includes:</h3>
-                      <ul>
-                        <li>Enhanced fintech directory access</li>
-                        <li>Save unlimited favorites</li>
-                        <li>Unlimited Messaging service</li>
-                        <li>Basic profile listing and visibility</li>
-                        <li>Premium reports and content access</li>
-                        <li>Basic engagement Data</li>
-                        <li>Basic email support</li>
-                      </ul>
-                    </div>
-                    <div class="dashboard-page-plan-excludes">
-                      <h3>Not included:</h3>
-                      <ul>
-                        <li>No networking events</li>
-                      </ul>
-                    </div>                  
+                  <div class="dashboard-professional-plan">
+                    <div class="plan-inner__holder">
+                      <div class="plan-heading__holder">
+                        <div class="dashboard-page-popular-plan-tag__holder">
+                          <p class="dashboard-plan-type__tag">Professional Plan</p>
+                          <p class="dashboard-popular-plan-type__tag">POPULAR</p>
+                        </div>
+                        <div class="dashboard-page-plan-price-duration__holder">
+                          <h2 class="dashboard-plan-type__pricing">$99</h2><span class="pricing-renewal-duration"> / Yearly</span>
+                        </div>
+                        <a href="#" class="dashboard-page-plan-status">Upgrade</a>
+                      </div>
+                      <div class="basic-plan-content__holder">
+                        <div class="dashboard-page-plan-includes">
+                          <h3>Package includes:</h3>
+                          <ul>
+                            <li>Enhanced fintech directory access</li>
+                            <li>Save unlimited favorites</li>
+                            <li>Unlimited Messaging service</li>
+                            <li>Basic profile listing and visibility</li>
+                            <li>Premium reports and content access</li>
+                            <li>Basic engagement Data</li>
+                            <li>Basic email support</li>
+                          </ul>
+                        </div>
+                        <div class="dashboard-page-plan-excludes">
+                          <h3>Not included:</h3>
+                          <ul>
+                            <li>No networking events</li>
+                          </ul>
+                        </div>                  
+                      </div>
+                    </div>                    
                   </div>
-                  <div class="dashboard-premium-plan">                    
-                    <p class="dashboard-plan-type__tag">Premium Plan</p>
-                    <h2 class="dashboard-plan-type__pricing">$149</h2><span class="pricing-renewal-=duration"> / Yearly</span>
-                    <p class="dashboard-page-plan-status">Upgrade</p>
+                  <div class="dashboard-premium-plan">
+                    <div class="plan-inner__holder">
+                      <div class="plan-heading__holder">
+                        <p class="dashboard-plan-type__tag">Premium Plan</p>
+                        <h2 class="dashboard-plan-type__pricing">$149</h2><span class="pricing-renewal-=duration"> / Yearly</span>
+                        <a href="#" class="dashboard-page-plan-status">Upgrade</a>
+                      </div>                  
                     <div class="dashboard-page-plan-includes">
                       <h3>Package includes:</h3>
                       <ul>
@@ -520,6 +531,7 @@ get_header();
                     <div class="dashboard-page-plan-premium-note">
                       <p>Includes everything with added 24/7 support</p>
                     </div>                  
+                  </div>
                   </div>
                 </div>
             </div>
