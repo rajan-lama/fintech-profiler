@@ -418,6 +418,129 @@ get_header();
             </div>
           </div>
         </div>
+        <div id="tabs-8">
+          <div class="dashboard-page-title">
+            <div class="dashboard-page-title-logo__holder">
+              <img src="<?php echo esc_url( plugins_url( 'fin360/public/img/plan-icon.svg' ) ); ?>" alt="Plans Icon"/>
+              <h2 class="">Plan</h2>
+            </div>
+          </div>
+          <div class="dashboard-page-body">
+            <div class="dashboard-page-sections" id="plans-info">
+              <div class="dashboard-section" id="plan-page-title-desc">
+                <div class="dashboard-page-plan">
+                  <h4>Checkout Membership Plans</h4>
+                  <p>For added benefits and exclusive service</p>
+                </div>
+              </div>
+
+              <div class="dashboard-section" id="plans-type-selector">
+                <div class="dashboard-plan-type-selector">
+                  <span>Monthly</span>
+                  <label class="switch">
+                    <input type="checkbox" id="toggle">
+                    <span class="slider"></span>
+                  </label>
+                  <span>Yearly</span>
+                </div>
+              </div>
+
+              <div class="dashboard-section" id="plan-pricing-cards">
+                  <div class="dashboard-basic-plan"> 
+                    <div class="basic-plan-inner__holder">
+                      <div class="basic-plan-heading__holder">
+                        <p class="dashboard-plan-type__tag">Basic Plan</p>
+                        <h2 class="dashboard-plan-type__pricing">Free</h2>
+                        <p class="dashboard-page-plan-status">You are on Basic Plan</p>
+                      </div>
+                      <div class="basic-plan-content__holder">
+                        <div class="dashboard-page-plan-includes">
+                        <h3>Package includes:</h3>
+                        <ul>
+                          <li>Basic fintech directory access</li>
+                          <li>Save up to 5 favorites</li>
+                          <li>Messaging service up to 5 months</li>
+                          <li>Basic profile listing and visibility</li>
+                          <li>Free Articles and content access</li>
+                        </ul>
+                        </div>
+                        <div class="dashboard-page-plan-excludes">
+                          <h3>Not included:</h3>
+                          <ul>
+                            <li>No Analytics</li>
+                            <li>No networking events</li>
+                            <li>No dedicated support</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>                   
+                  </div>
+                  <div class="dashboard-professional-plan">
+                    <div class="plan-inner__holder">
+                      <div class="plan-heading__holder">
+                        <div class="dashboard-page-popular-plan-tag__holder">
+                          <p class="dashboard-plan-type__tag">Professional Plan</p>
+                          <p class="dashboard-popular-plan-type__tag">POPULAR</p>
+                        </div>
+                        <div class="dashboard-page-plan-price-duration__holder">
+                          <h2 class="dashboard-plan-type__pricing">$99</h2><span class="pricing-renewal-duration"> / Yearly</span>
+                        </div>
+                        <a href="#" class="dashboard-page-plan-status">Upgrade</a>
+                      </div>
+                      <div class="basic-plan-content__holder">
+                        <div class="dashboard-page-plan-includes">
+                          <h3>Package includes:</h3>
+                          <ul>
+                            <li>Enhanced fintech directory access</li>
+                            <li>Save unlimited favorites</li>
+                            <li>Unlimited Messaging service</li>
+                            <li>Basic profile listing and visibility</li>
+                            <li>Premium reports and content access</li>
+                            <li>Basic engagement Data</li>
+                            <li>Basic email support</li>
+                          </ul>
+                        </div>
+                        <div class="dashboard-page-plan-excludes">
+                          <h3>Not included:</h3>
+                          <ul>
+                            <li>No networking events</li>
+                          </ul>
+                        </div>                  
+                      </div>
+                    </div>                    
+                  </div>
+                  <div class="dashboard-premium-plan">
+                    <div class="plan-inner__holder">
+                      <div class="plan-heading__holder">
+                        <p class="dashboard-plan-type__tag">Premium Plan</p>
+                          <div class="dashboard-page-plan-price-duration__holder">
+                            <h2 class="dashboard-plan-type__pricing">$149</h2><span class="pricing-renewal-duration"> / Yearly</span>
+                          </div>
+                        <a href="#" class="dashboard-page-plan-status">Upgrade</a>
+                      </div>
+                      <div class="basic-plan-content__holder">                  
+                        <div class="dashboard-page-plan-includes">
+                          <h3>Package includes:</h3>
+                          <ul>
+                            <li>Featured fintech directory access</li>
+                            <li>Save unlimited favorites</li>
+                            <li>Unlimited Messaging service</li>
+                            <li>Featured profile listing and visibility</li>
+                            <li>Publish & showcase own articles</li>
+                            <li>Custom reports</li>
+                            <li>Account manager</li>
+                          </ul>
+                        </div>
+                        <div class="dashboard-page-plan-premium-note">
+                          <p>Includes everything with added 24/7 support</p>
+                        </div>
+                      </div>                 
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="main"></div>
     </div>

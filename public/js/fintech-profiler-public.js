@@ -427,4 +427,18 @@ jQuery(document).ready(function ($) {
       alert("At least one case study is required.");
     }
   });
+
+  if ($('#toggle').is(':checked')) {
+    $('.pricing-renewal-duration').text('/ Yearly');
+  } else {
+    $('.pricing-renewal-duration').text('/ Monthly');
+  }
+
+  $('#toggle').change(function () {
+    if ($(this).is(':checked')) {
+      $('.pricing-renewal-duration').text('/ Yearly');
+    } else {
+      $('.pricing-renewal-duration').text('/ Monthly');
+    }
+  });
 });
