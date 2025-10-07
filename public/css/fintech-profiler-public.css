@@ -1007,7 +1007,7 @@ body.single-fintech_profiles,
 }
 
 .login-form {
-  /*   width: 414px; */
+  max-width: 414px;
   margin: 0 auto;
 
   .fp-hidden-field {
@@ -1156,6 +1156,7 @@ body.single-fintech_profiles,
   width: 1170px;
   margin: auto;
   padding: 0 15px;
+  position: relative;
 }
 
 .row {
@@ -1164,6 +1165,7 @@ body.single-fintech_profiles,
 
 .fp-row {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .fp-page {
@@ -1795,4 +1797,74 @@ body.single-fintech_profiles,
   background: url(<path-to-image>) lightgray 0.439px -31.047px / 99.886% 113.323%
     no-repeat;
   box-shadow: 0 3.955px 19.776px 0 rgba(0, 0, 0, 0.25);
+}
+
+/*** edit-financial-profile-tabs  **/
+.edit-financial-profile-tabs .ui-tabs {
+  width: 100%;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.fp-logo-preview img {
+  width: 100px;
+  height: 100px;
+}
+
+.fp-logo-preview {
+  display: flex;
+  gap: 21px;
+}
+
+.fp-logo-file-input {
+  width: calc(100% - 121px);
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.fp-logo-image {
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.fintech-welcome-notice {
+  width: 100%;
+  text-align: center;
+  /* max-width: 665px; */
+  margin: auto;
+  /* justify-content: center; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20%;
+  display: none;
+}
+
+/** Verification code **/
+.verification-code-section input[type="text"] {
+  width: 10px;
+}
+
+.login-form.password-update-form {
+  display: none;
+}
+.login-form.password-update-form.show {
+  display: block;
+}
+.login-form.verification-form {
+  text-align: center;
 }

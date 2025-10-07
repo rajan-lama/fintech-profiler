@@ -292,16 +292,13 @@ get_header();
         </div>
       </div>
     </form>
-    <div class="fintech-welcome-notice">
-      <div class="fintect-welcome-logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.6667 19L4 12M4 12L10.6667 5M4 12L20 12" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
-      <div class="fintech-welcome-info">
-        <h2>Well done! Everything is ready to go</h2>
-        <p>Quick reminder: Accurate and complete profiles get higher engagement and trust from financial institutions. So, its recommended to fill out any information you might have left</p>
-        <a href="btn">Proceed to Profile</a>
+    <div class="fintech-welcome-notice-holder">
+      <div class="fintech-welcome-notice">
+        <div class="fintech-welcome-info">
+          <h2>Well done! Everything is ready to go</h2>
+          <p>Quick reminder: Accurate and complete profiles get higher engagement and trust from financial institutions. So, its recommended to fill out any information you might have left</p>
+          <a href="btn">Proceed to Profile</a>
+        </div>
       </div>
     </div>
   </div>

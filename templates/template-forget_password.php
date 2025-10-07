@@ -4,9 +4,9 @@ if (!defined('ABSPATH')) {
 }
 
 // Check if user can edit financial profiles
-if (!current_user_can('edit_financial_profiles')) {
-  wp_die(__('You do not have permission to access this page.', 'fintech-profiler'));
-}
+// if (!current_user_can('edit_financial_profiles')) {
+//   wp_die(__('You do not have permission to access this page.', 'fintech-profiler'));
+// }
 
 get_header();
 
