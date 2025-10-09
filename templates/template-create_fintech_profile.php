@@ -33,12 +33,19 @@ get_header();
             <p>Complete your profile with accurate and up-to-date information to ensure maximum visibility and credibility.</p>
           </div>
           <div class="fp-col-6">
-            <p>
+            <p class="fp-logo-label">
               <label for="company_logo">Company Logo</label>
-              <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
-              <input type="file" name="company_logo" id="company_logo" accept="image/*">
-              <input type="hidden" name="action" value="upload_company_logo">
             </p>
+            <div class="fp-logo-upload">
+              <div class="fp-logo-preview">
+                <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" id="logo-preview" />
+              </div class="fp-logo-btn">
+              <div class="fp-logo-file-input">
+                <input type="file" name="company_logo" id="company_logo" accept="image/*">
+                <input type="hidden" name="action" value="upload_company_logo">
+                <span>Supports .jpg, .png and .svg and zip files</span>
+              </div>
+            </div>
             <p>
               <label for="company_name">Company Name</label>
               <input type="text" name="company_name" id="company_name" placeholder="Enter company name">
@@ -55,12 +62,9 @@ get_header();
               <label for="company_size">Company Size</label>
               <select name="company_size" id="company_size">
                 <option value="">Select Size</option>
-                <option value="1-10">1-10</option>
-                <option value="11-50">11-50</option>
-                <option value="51-200">51-200</option>
-                <option value="201-500">201-500</option>
-                <option value="501-1000">501-1000</option>
-                <option value="1001+">1001+</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
               </select>
             </p>
             <p>
@@ -74,7 +78,7 @@ get_header();
               <?php
               $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
 
-              $taxonomy = 'category';
+              $taxonomy = 'fintech-category';
 
               $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
 
@@ -178,8 +182,12 @@ get_header();
             <p>Mention the pricing models and plans your company offers</p>
           </div>
           <div class="fp-col-6">
+            <h5>Pricing Plan</h5>
             <div id="pricing-plans-wrapper">
               <div class="pricing-plan-item">
+                <p>
+                  <button type="button" class="remove-plan button">x</button>
+                </p>
                 <p>
                   <label>Plan Type</label>
                   <input type="text" name="plan_type[]" placeholder="Name the plan">
@@ -192,10 +200,9 @@ get_header();
                   <label>Cost</label>
                   <input type="text" name="plan_cost[]" placeholder="Price">
                 </p>
-                <button type="button" class="remove-plan button">Remove</button>
               </div>
             </div>
-            <button type="button" id="add-pricing-plan" class="button">+ Add Another Plan</button>
+            <button type="button" id="add-pricing-plan" class="button">+ Add A Plan</button>
           </div>
         </div>
       </div>
@@ -292,16 +299,13 @@ get_header();
         </div>
       </div>
     </form>
-    <div class="fintech-welcome-notice">
-      <div class="fintect-welcome-logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.6667 19L4 12M4 12L10.6667 5M4 12L20 12" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
-      <div class="fintech-welcome-info">
-        <h2>Well done! Everything is ready to go</h2>
-        <p>Quick reminder: Accurate and complete profiles get higher engagement and trust from financial institutions. So, its recommended to fill out any information you might have left</p>
-        <a href="btn">Proceed to Profile</a>
+    <div class="fintech-welcome-notice-holder">
+      <div class="fintech-welcome-notice">
+        <div class="fintech-welcome-info">
+          <h2>Well done! Everything is ready to go</h2>
+          <p>Quick reminder: Accurate and complete profiles get higher engagement and trust from financial institutions. So, its recommended to fill out any information you might have left</p>
+          <a href="btn">Proceed to Profile</a>
+        </div>
       </div>
     </div>
   </div>

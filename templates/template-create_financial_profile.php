@@ -28,10 +28,17 @@ get_header();
           <div class="fp-col-6">
             <p>
               <label for="company_logo">Company Logo</label>
-              <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
-              <input type="file" name="company_logo" id="company_logo" accept="image/*">
-              <input type="hidden" name="action" value="upload_company_logo">
+            <div class="fp-logo-preview">
+              <div class="fp-logo-image">
+                <img id="logo-preview" src="<?php echo FINTECH_PROFILER_BASE_URL . '/public/img/fallback-img.png'; ?>" />
+              </div>
+              <div class="fp-logo-file-input">
+                <input type="file" name="company_logo" id="company_logo" accept="image/*">
+                <span>Supports .jpg, .png and .svg</span>
+              </div>
+            </div>
             </p>
+
             <p>
               <label for="company_name">Company Name</label>
               <input type="text" name="user_name" id="company_name" placeholder="Enter company name">
@@ -53,16 +60,19 @@ get_header();
         </div>
       </div>
     </form>
-    <div class="fintech-welcome-notice">
-      <div class="fintect-welcome-logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.6667 19L4 12M4 12L10.6667 5M4 12L20 12" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
-      <div class="fintech-welcome-info">
-        <h2>Well done! Everything is ready to go</h2>
-        <p>Quick reminder: Accurate and complete profiles get higher engagement and trust from financial institutions. So, its recommended to fill out any information you might have left</p>
-        <a href="btn">Proceed to Profile</a>
+    <div class="fintech-welcome-notice-holder">
+      <div class="fintech-welcome-notice">
+        <div class="fintect-welcome-logo">
+          <svg width="147" height="147" viewBox="0 0 147 147" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128.25 73.5C128.25 103.738 103.738 128.25 73.5 128.25C43.2624 128.25 18.75 103.738 18.75 73.5C18.75 43.2624 43.2624 18.75 73.5 18.75C82.09 18.75 90.2179 20.7282 97.4531 24.254M117.984 39.2812L70.0781 87.1875L56.3906 73.5" stroke="#6BC229" stroke-width="12.1667" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+
+        </div>
+        <div class="fintech-welcome-info">
+          <h2>Well done! Everything is ready to go</h2>
+          <p>Quick reminder: Accurate and complete profiles get higher engagement and trust from financial institutions. So, its recommended to fill out any information you might have left</p>
+          <a href="btn">Proceed to Profile</a>
+        </div>
       </div>
     </div>
   </div>

@@ -122,9 +122,36 @@ get_header();
                         </div>
                         <div id="pricing-plans">
                             <?php
-                            $pricing_plans_content = get_post_meta(get_the_ID(), 'fintech_pricing_plans_content', true);
+                            $pricing_plans_content = get_post_meta(get_the_ID(), 'fintech_pricing_plans', true);
+
                             if ($pricing_plans_content) {
-                                echo apply_filters('the_content', $pricing_plans_content);
+                                echo wpautop('Provides different pricing plans for various levels of service required');
+                                echo '<table>';
+                                echo '<thead>';
+                                echo '<tr>';
+                                echo '<th>Plan Name</th>';
+                                echo '<th>Description</th>';
+                                echo '<th>Cost</th>';
+                                echo '</tr>';
+                                echo ' </thead>';
+                                echo '<tbody>';
+                                foreach ($pricing_plans_content as $plan) {
+
+                                    echo '<tr>';
+                                    echo '<td>' . esc_html($plan['name']) . '</td>';
+                                    echo '<td>' . esc_html($plan['description']) . '</td>';
+                                    echo '<td>' . esc_html($plan['cost']) . '</td>';
+                                    echo '</tr>';
+                                }
+                                echo '</tbody></table>';
+                                // echo apply_filters('the_content', $pricing_plans_content);
+
+                                echo wpautop('<strong>Note:</strong> Last updated 25th Nov 2024. Please note that the pricing plans might have changed from the last update');
+
+                                $demo_url = get_post_meta(get_the_ID(), 'fintech_demo_url', true);
+                                if ($demo_url && !empty($demo_url)) {
+                                    echo '<p><a href="' . esc_html($demo_url)  . '">View pricing in the website</a></p>';
+                                }
                             } else {
                                 echo '<p>' . esc_html__('No pricing plans available.', 'fintech-profiler') . '</p>';
                             }
@@ -132,9 +159,16 @@ get_header();
                         </div>
                         <div id="case-studies">
                             <?php
-                            $case_studies_content = get_post_meta(get_the_ID(), 'fintech_case_studies_content', true);
+                            $case_studies_content = get_post_meta(get_the_ID(), 'fintech_case_studies', true);
                             if ($case_studies_content) {
-                                echo apply_filters('the_content', $case_studies_content);
+                                echo "<ul>";
+                                foreach ($case_studies_content as $case) {
+                                    echo "<li>";
+                                    echo '<a href="' . esc_url($case['link']) . '">' . esc_html($case['title']) . '</a>';
+                                    echo "</li>";
+                                }
+                                echo "</ul>";
+                                // echo apply_filters('the_content', $case_studies_content);
                             } else {
                                 echo '<p>' . esc_html__('No case studies available.', 'fintech-profiler') . '</p>';
                             }

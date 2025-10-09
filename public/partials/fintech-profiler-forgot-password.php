@@ -15,7 +15,7 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="container">
-  <div class="login-form">
+  <div class="login-form verification-form">
     <h3>Verification</h3>
     <p>A 6 number verification code has been sent to you email address ending with ***********ny@gmail.com</p>
     <form id="company-login-form" method="post" enctype="multipart/form-data">
@@ -40,7 +40,7 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="container">
-  <div class="login-form">
+  <div class="login-form password-update-form">
     <h3>Please update your password</h3>
     <p>A 6 number verification code has been sent to you email address ending with ***********ny@gmail.com</p>
     <form id="company-login-form" method="post" enctype="multipart/form-data">

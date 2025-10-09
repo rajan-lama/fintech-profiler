@@ -32,6 +32,8 @@ class Fintech_Profiler_Template
     $templates['template-create_financial_profile.php'] = __('Create Financial Profile', 'fintech-profiler');
     $templates['template-edit_financial_profile.php'] = __('Edit Financial Profile', 'fintech-profiler');
     $templates['template-financial_profile_dashboard.php'] = __('Financial Dashboard', 'fintech-profiler');
+    $templates['template-fintech_login.php'] = __('Fintech Login', 'fintech-profiler');
+    $templates['template-fintech_register.php'] = __('Fintech Register', 'fintech-profiler');
 
     return $templates;
   }
@@ -45,6 +47,9 @@ class Fintech_Profiler_Template
 
       // List of plugin-supported templates
       $supported_templates = array(
+        'template-fintech_login.php',
+        'template-fintech_register.php',
+
         'template-create_fintech_profile.php',
         'template-edit_fintech_profile.php',
         'template-fintech_profile_dashboard.php',

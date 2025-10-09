@@ -862,3 +862,52 @@ function fintech_profiler_get_users()
 
     return $options;
 }
+
+
+add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_script('company-logo-upload', FINTECH_PROFILER_BASE_URL . '/public/js/company-logo-upload.js', ['jquery'], null, true);
+    wp_localize_script('company-logo-upload', 'wpVars', [
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'nonce'   => wp_create_nonce('upload_company_logo_nonce')
+    ]);
+});
+
+add_action('wp_ajax_upload_company_logo', 'handle_company_logo_upload');
+add_action('wp_ajax_nopriv_upload_company_logo', 'handle_company_logo_upload');
+
+function handle_company_logo_upload()
+{
+    check_ajax_referer('upload_company_logo_nonce');
+
+    if (!function_exists('wp_handle_upload')) {
+        require_once(ABSPATH . 'wp-admin/includes/file.php');
+    }
+
+    $uploadedfile = $_FILES['company_logo'];
+    $upload_overrides = ['test_form' => false];
+    $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
+
+    if ($movefile && !isset($movefile['error'])) {
+        // Insert into media library
+        $attachment_id = wp_insert_attachment([
+            'post_mime_type' => $movefile['type'],
+            'post_title'     => sanitize_file_name($uploadedfile['name']),
+            'post_content'   => '',
+            'post_status'    => 'inherit'
+        ], $movefile['file']);
+
+        require_once(ABSPATH . 'wp-admin/includes/image.php');
+        $attach_data = wp_generate_attachment_metadata($attachment_id, $movefile['file']);
+        wp_update_attachment_metadata($attachment_id, $attach_data);
+
+        // Get thumbnail size URL
+        $image_src = wp_get_attachment_image_src($attachment_id, 'thumbnail');
+
+        wp_send_json_success([
+            'id'  => $attachment_id,
+            'url' => $image_src[0], // <-- thumbnail URL
+        ]);
+    } else {
+        wp_send_json_error($movefile['error']);
+    }
+}

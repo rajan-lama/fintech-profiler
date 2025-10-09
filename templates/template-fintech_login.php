@@ -9,7 +9,13 @@ if (!defined('ABSPATH')) {
 // }
 
 get_header();
+?>
 
-include(FINTECH_PROFILER_BASE . 'public/partials/fintech-profiler-forgot-password.php');
+<div class="container">
+  <div class="row">
+    <?php echo do_shortcode('[fintech_login]'); ?>
+  </div>
+</div>
 
+<?php
 get_footer();

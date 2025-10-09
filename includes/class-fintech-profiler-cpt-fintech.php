@@ -453,6 +453,8 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
 
     public function fp_handle_fintech_profile_submission()
     {
+      if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
       if (
         isset($_POST['create_fintech_profile'])
         && isset($_POST['create_fintech_profile_nonce'])
@@ -486,6 +488,39 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         // $case_title     = sanitize_text_field($_POST['case_title']);
         // $case_link      = esc_url_raw($_POST['case_link']);
 
+        // $plan_type      = sanitize_text_field($_POST['pricing_plans']);
+
+
+        // Prepare array for CMB2 group field
+        $pricing_plans = [];
+        $plan_types = $_POST['plan_type'];
+        $plan_descriptions = $_POST['plan_description'];
+        $plan_costs = $_POST['plan_cost'];
+
+        foreach ($plan_types as $index => $type) {
+          // if (empty($type) && empty($plan_descriptions[$index]) && empty($plan_costs[$index])) {
+          //   continue; // Skip empty rows
+          // }
+
+          $pricing_plans[] = [
+            'name'        => sanitize_text_field($plan_types[$index]),
+            'description' => sanitize_text_field($plan_descriptions[$index]),
+            'cost'        => sanitize_text_field($plan_costs[$index]),
+          ];
+        }
+
+        // Prepare array for CMB2 group field
+        $cases = [];
+        $case_title = $_POST['case_title'];
+        $case_link = $_POST['case_link'];
+
+        foreach ($case_title as $index => $case) {
+          $cases[] = [
+            'title'        => sanitize_text_field($case_title[$index]),
+            'link' => sanitize_text_field($case_link[$index]),
+          ];
+        }
+
         // Create CPT post
         $post_id = wp_insert_post([
           'post_type'   => 'fintech_profiles',
@@ -516,17 +551,20 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
           update_post_meta($post_id, 'fintech_facebook_url', $facebook_url);
           update_post_meta($post_id, 'fintech_slogan', $slogan);
           update_post_meta($post_id, 'fintech_demo', $demo);
-          update_post_meta($post_id, 'fintech_demo_url', $demo);
+          update_post_meta($post_id, 'fintech_demo_url', $demo_link);
 
           // update_post_meta($post_id, 'case_title', $case_title);
           // update_post_meta($post_id, 'case_link', $case_link);
-          update_post_meta($post_id, 'services', $services);
+          //update_post_meta($post_id, 'services', $services);
           // update_post_meta($post_id, 'plan_type', $plan_type);
           // update_post_meta($post_id, 'plan_description', $plan_desc);
           // update_post_meta($post_id, 'plan_cost', $plan_cost);
 
-          update_post_meta($post_id, 'pricing_plan', $plan_cost);
-          update_post_meta($post_id, 'case', $plan_cost);
+
+          // Save to CMB2 meta (group field)
+          update_post_meta($post_id, 'fintech_pricing_plans', $pricing_plans);
+          update_post_meta($post_id, 'fintech_case_studies', $cases);
+
 
           if (!empty($_POST['plan_type'])) {
             $plans = [];
