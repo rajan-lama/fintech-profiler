@@ -16,7 +16,8 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="fintech-profiler-login-container">
   <div class="login-form">
-    <h3>Log in to your account</h3>
+    <img src="<?php echo FINTECH_PROFILER_BASE_URL . 'public/img/logo.png'; ?>" alt="Fintech Profiler Logo" class="fp-logo" />
+    <h2>Log in to your account</h2>
     <p> Create for a Fintech Company instead? <a href="#">Switch</a></p>
     <form id="company-login-form" method="post" enctype="multipart/form-data">
 
@@ -57,7 +58,7 @@
 
     <!--- shortcode for google login --->
 
-    <div>Already Have an Account? <a href="<?php echo home_url("/fintech-signup"); ?>">Sign Up</a></div>
+    <div class="fp-form-info">Already Have an Account? <a href="<?php echo home_url("/fintech-signup"); ?>">Sign Up</a></div>
 
   </div>
 </div>

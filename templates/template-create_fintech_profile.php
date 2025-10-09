@@ -33,12 +33,19 @@ get_header();
             <p>Complete your profile with accurate and up-to-date information to ensure maximum visibility and credibility.</p>
           </div>
           <div class="fp-col-6">
-            <p>
+            <p class="fp-logo-label">
               <label for="company_logo">Company Logo</label>
-              <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
-              <input type="file" name="company_logo" id="company_logo" accept="image/*">
-              <input type="hidden" name="action" value="upload_company_logo">
             </p>
+            <div class="fp-logo-upload">
+              <div class="fp-logo-preview">
+                <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" id="logo-preview" />
+              </div class="fp-logo-btn">
+              <div class="fp-logo-file-input">
+                <input type="file" name="company_logo" id="company_logo" accept="image/*">
+                <input type="hidden" name="action" value="upload_company_logo">
+                <span>Supports .jpg, .png and .svg and zip files</span>
+              </div>
+            </div>
             <p>
               <label for="company_name">Company Name</label>
               <input type="text" name="company_name" id="company_name" placeholder="Enter company name">
@@ -74,7 +81,7 @@ get_header();
               <?php
               $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
 
-              $taxonomy = 'category';
+              $taxonomy = 'fintech-category';
 
               $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
 
@@ -178,8 +185,12 @@ get_header();
             <p>Mention the pricing models and plans your company offers</p>
           </div>
           <div class="fp-col-6">
+            <h5>Pricing Plan</h5>
             <div id="pricing-plans-wrapper">
               <div class="pricing-plan-item">
+                <p>
+                  <button type="button" class="remove-plan button">x</button>
+                </p>
                 <p>
                   <label>Plan Type</label>
                   <input type="text" name="plan_type[]" placeholder="Name the plan">
@@ -192,10 +203,9 @@ get_header();
                   <label>Cost</label>
                   <input type="text" name="plan_cost[]" placeholder="Price">
                 </p>
-                <button type="button" class="remove-plan button">Remove</button>
               </div>
             </div>
-            <button type="button" id="add-pricing-plan" class="button">+ Add Another Plan</button>
+            <button type="button" id="add-pricing-plan" class="button">+ Add A Plan</button>
           </div>
         </div>
       </div>
