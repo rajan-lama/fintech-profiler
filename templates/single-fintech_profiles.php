@@ -122,9 +122,28 @@ get_header();
                         </div>
                         <div id="pricing-plans">
                             <?php
-                            $pricing_plans_content = get_post_meta(get_the_ID(), 'fintech_pricing_plans_content', true);
+                            $pricing_plans_content = get_post_meta(get_the_ID(), 'fintech_pricing_plans', true);
+
                             if ($pricing_plans_content) {
-                                echo apply_filters('the_content', $pricing_plans_content);
+                                echo '<table>';
+                                echo '<thead>';
+                                echo '<tr>';
+                                echo '<th>Plan Name</th>';
+                                echo '<th>Description</th>';
+                                echo '<th>Cost</th>';
+                                echo '</tr>';
+                                echo ' </thead>';
+                                echo '<tbody>';
+                                foreach ($pricing_plans_content as $plan) {
+
+                                    echo '<tr>';
+                                    echo '<td>' . esc_html($plan['name']) . '</td>';
+                                    echo '<td>' . esc_html($plan['description']) . '</td>';
+                                    echo '<td>' . esc_html($plan['cost']) . '</td>';
+                                    echo '</tr>';
+                                }
+                                echo '</tbody></table>';
+                                // echo apply_filters('the_content', $pricing_plans_content);
                             } else {
                                 echo '<p>' . esc_html__('No pricing plans available.', 'fintech-profiler') . '</p>';
                             }
@@ -132,9 +151,12 @@ get_header();
                         </div>
                         <div id="case-studies">
                             <?php
-                            $case_studies_content = get_post_meta(get_the_ID(), 'fintech_case_studies_content', true);
+                            $case_studies_content = get_post_meta(get_the_ID(), 'fintech_case_studies', true);
                             if ($case_studies_content) {
-                                echo apply_filters('the_content', $case_studies_content);
+                                foreach ($case_studies_content as $case) {
+                                    echo '<a href="' . esc_url($case['link']) . '">' . esc_html($case['title']) . '</a>';
+                                }
+                                // echo apply_filters('the_content', $case_studies_content);
                             } else {
                                 echo '<p>' . esc_html__('No case studies available.', 'fintech-profiler') . '</p>';
                             }

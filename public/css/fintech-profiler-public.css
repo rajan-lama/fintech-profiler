@@ -675,7 +675,7 @@ body.single-fintech_profiles,
   aside#sidebar {
     ul {
       font-size: 18px;
-      font-family: "Inter";
+      font-family: "Inter", sans-serif;
       line-height: 100%;
       letter-spacing: -0.02;
       list-style: none;
@@ -726,7 +726,7 @@ body.single-fintech_profiles,
     }
 
     h4.sidebar-title {
-      font-family: "Inter";
+      font-family: "Inter", sans-serif;
       font-weight: 600;
       font-size: 18px;
       line-height: 100%;
@@ -734,7 +734,7 @@ body.single-fintech_profiles,
     }
 
     h5.sidebar-title {
-      font-family: "Inter";
+      font-family: "Inter", sans-serif;
       font-weight: 600;
       font-size: 16px;
       line-height: 100%;
@@ -748,7 +748,7 @@ body.single-fintech_profiles,
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
-      font-family: "Inter";
+      font-family: "Inter", sans-serif;
       margin-bottom: 6px;
     }
 
@@ -1360,7 +1360,7 @@ a.fp_forgot-pw {
 
 .page-template-template-fintech_profile_dashboard h2 {
   color: rgba(0, 0, 0, 0.88);
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
@@ -1482,7 +1482,7 @@ a.fp_forgot-pw {
   overflow: hidden;
   color: rgba(0, 0, 0, 0.8);
   text-overflow: ellipsis;
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -1494,7 +1494,7 @@ a.fp_forgot-pw {
 .page-template-template-fintech_profile_dashboard a[href="#"] {
   display: inline-block;
   background: linear-gradient(90deg, #8943e2 0%, #7b2fef 100%);
-  color: #fff !important;
+  color: #fff;
   font-weight: 600;
   text-align: center;
   padding: 16px 24px;
@@ -1519,11 +1519,10 @@ a.fp_forgot-pw {
 
 .page-template-template-fintech_profile_dashboard div.dashboard-page-title {
   display: flex;
-  gap: 500px;
+  gap: 0;
   width: 100%;
   padding: 15px 104px 12px 104px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  align-items: center;
 }
 
 .page-template-template-fintech_profile_dashboard div.dashboard-button-holder {
@@ -1583,7 +1582,7 @@ a.fp_forgot-pw {
 /*Images & videos  */
 .page-template-template-fintech_profile_dashboard .dashboard-page-title h2 {
   color: rgba(0, 0, 0, 0.88);
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 24px;
   width: 400px;
   white-space: nowrap;
@@ -1618,7 +1617,7 @@ a.fp_forgot-pw {
   overflow: hidden;
   color: rgba(0, 0, 0, 0.68);
   text-overflow: ellipsis;
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -1630,10 +1629,10 @@ a.fp_forgot-pw {
   overflow: hidden;
   color: rgba(0, 0, 0, 0.68);
   text-overflow: ellipsis;
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
-  width: 400px;
+  /* width: 400px; */
   white-space: nowrap;
   font-weight: 400;
   line-height: 160%; /* 25.6px */
@@ -1675,7 +1674,7 @@ a.fp_forgot-pw {
 
 .page-template-template-fintech_profile_dashboard .dashboard-left label {
   color: rgba(0, 0, 0, 0.88);
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -1687,7 +1686,7 @@ a.fp_forgot-pw {
   overflow: hidden;
   color: rgba(0, 0, 0, 0.68);
   text-overflow: ellipsis;
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -1770,7 +1769,7 @@ a.fp_forgot-pw {
   p
   label {
   color: rgba(0, 0, 0, 0.8);
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -1842,7 +1841,7 @@ a.fp_forgot-pw {
   label {
   align-self: stretch;
   color: rgba(0, 0, 0, 0.88);
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -1863,7 +1862,7 @@ a.fp_forgot-pw {
   overflow: hidden;
   color: rgba(0, 0, 0, 0.68);
   text-overflow: ellipsis;
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -1999,7 +1998,7 @@ a.fp_forgot-pw {
 }
 
 .pricing-plan-item {
-  border: 1px solid #666;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -2032,4 +2031,349 @@ button.remove-plan.button {
 #wpadminbar,
 .page-template-template-fintech_login #site-header {
   display: none;
+/**Plan Page CSS */
+  .toggle-container {
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    gap: 8px;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 28px;
+    height: 15px;
+  }
+
+  /* Hide default checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* Slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 15px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    width: 11px;
+    height: 11px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: #4CAF50; /* Green when ON */
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(13px);
+  }
+
+  div#plan-pricing-cards {
+    display: flex;
+    gap: 14px;
+}
+
+.page-template-template-fintech_profile_dashboard #tabs-8 .dashboard-page-title {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    padding: 15px 0 12px 104px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+}
+
+#plans-type-selector {
+    flex-direction: row-reverse;
+    padding-right: 104px;
+    margin-bottom: 16px;
+}
+
+#plans-info {
+    padding-left: 10px;
+}
+
+#plan-page-title-desc {
+    padding-top: 40px;
+    margin-bottom: 32px;
+}
+
+.dashboard-page-title-logo__holder img {
+    width: 24px;
+    height: auto;
+    position: relative;
+    top: -3px;
+}
+
+.dashboard-page-title-logo__holder {
+  display: flex;
+  align-items: center; /* centers both vertically */
+  gap: 12px;
+}
+
+.basic-plan-heading__holder p.dashboard-plan-type__tag, .dashboard-page-popular-plan-tag__holder,
+.dashboard-premium-plan p.dashboard-plan-type__tag, .dashboard-page-popular-plan-tag__holder {
+    font-size: 12px !important;
+    line-height: 150% !important;
+    font-family: "Inter", sans-serif;
+    color: rgba(0, 0, 0, 68%) !important;
+    padding-bottom: 48px;
+}
+
+.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-professional-plan h2.dashboard-plan-type__pricing {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 100%;
+    font-family: "Inter", sans-serif;
+    padding-bottom: 16px;
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+p.dashboard-page-plan-status {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 6px;
+    color: rgba(0, 0, 0, 0.8) !important;
+    padding: 12px;
+    font-size: 14px !important;
+    font-family: "Inter", sans-serif;
+    font-weight: 600 !important;
+}
+
+.dashboard-basic-plan {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: fit-content;
+    border-radius: 16px;
+}
+
+.basic-plan-inner__holder {
+    padding: 8px;
+}
+
+.basic-plan-heading__holder {
+    background: rgba(244, 246, 245, 1);
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.basic-plan-content__holder {
+  padding:12px;
+}
+
+.dashboard-page-plan-includes ul,
+.dashboard-page-plan-excludes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-page-plan-includes li,
+.dashboard-page-plan-excludes li {
+  list-style: none;
+  margin-bottom: 6px;
+}
+
+.dashboard-basic-plan .basic-plan-content__holder h3 {
+  margin-bottom: 6px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.dashboard-page-plan-includes {
+  margin-bottom: 24px;
+}
+
+.dashboard-page-plan-includes h3,
+.dashboard-page-plan-excludes h3 {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 150%;
+  color: rgba(0, 0, 0, 0.8);
+  letter-spacing: -2%;
+  padding-bottom: 6px;
+}
+
+.dashboard-page-plan-includes li,
+.dashboard-page-plan-excludes li {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: rgba(0, 0, 0, 0.8);
+  letter-spacing: -2%;
+}
+
+.dashboard-page-plan-includes li::before,
+.dashboard-page-plan-excludes li::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dashboard-page-plan-includes li::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'><path d='M4.5 9L7.5 12L13.5 6' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+
+.dashboard-page-plan-excludes li::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'><path d='M5 5L13 13M13 5L5 13' stroke='black' stroke-width='2' stroke-linecap='round'/></svg>");
+}
+
+.dashboard-professional-plan {
+    box-shadow: 0px 11.95px 22.4px 5.97px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    background: rgba(31, 31, 31, 1);
+}
+
+.page-template-template-fintech_profile_dashboard .dashboard-professional-plan h2,
+.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-professional-plan .dashboard-popular-plan-type__tag,
+.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-professional-plan .dashboard-plan-type__tag,
+.dashboard-professional-plan .pricing-renewal-duration,
+.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-professional-plan dashboard-page-plan-includes h3{
+  color: rgba(255, 255, 255, 0.88) !important;
+  margin: 0;
+  font-size: 12px;
+}
+
+.dashboard-premium-plan .pricing-renewal-duration {
+  color: rgba(0, 0, 0, 0.68) !important;
+}
+
+.dashboard-page-popular-plan-tag__holder {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-professional-plan .plan-heading__holder {
+    background: rgba(53, 53, 53, 1);
+    margin: 8px;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+span.pricing-renewal-duration {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.dashboard-page-plan-price-duration__holder {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dashboard-professional-plan .dashboard-page-plan-status {
+    background: rgba(255, 255, 255, 1) !important;
+    box-shadow: 0px 3.73px 7.47px 0px rgba(255, 255, 255, 0.1);
+    color: rgba(0, 0, 0, 0.8) !important;
+    width: 100% !important;
+}
+
+.dashboard-professional-plan .dashboard-page-plan-includes h3, 
+.dashboard-professional-plan .dashboard-page-plan-excludes h3 {
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-professional-plan .dashboard-page-plan-includes li, 
+.dashboard-professional-plan .dashboard-page-plan-excludes li {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.dashboard-professional-plan .dashboard-page-plan-includes li::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'><path d='M4.5 9L7.5 12L13.5 6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+
+.dashboard-professional-plan .dashboard-page-plan-excludes li::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'><path d='M5 5L13 13M13 5L5 13' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>");
+}
+
+.plan-inner__holder {
+    margin: 8px;
+}
+
+.dashboard-professional-plan p.dashboard-popular-plan-type__tag {
+    font-weight: 600 !important;
+    border-radius: 16px;
+    font-size: 9px !important;
+    line-height: 150% !important;
+    padding: 3px 12px 2px 12px;
+    margin: 0;
+    background: rgba(137, 67, 226, 1);
+    height: fit-content;
+    box-shadow: 7.47px 14.93px 59.74px 0px rgba(122, 33, 237, 0.3);
+    box-shadow: -14.93px -14.93px 37.34px 0px rgba(42, 94, 142, 0.5);
+    box-shadow: 0px 14.93px 22.4px 0px rgba(64, 100, 228, 0.16);
+    box-shadow: 0px 0px 22.4px 0px rgba(255, 255, 255, 0.3) inset;
+}
+
+.dashboard-professional-plan {
+  transform: translateY(-4px);
+  z-index: 2;
+  position: relative;
+}
+
+.dashboard-premium-plan {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 3.73px 14.93px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+}
+
+.dashboard-premium-plan .plan-heading__holder {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f3f3fd, #fef6f0);
+    box-shadow: 0px 3.73px 14.93px 0px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+}
+
+.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-premium-plan h2.dashboard-plan-type__pricing {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 100%;
+    font-family: "Inter", sans-serif;
+    color: rgba(0, 0, 0, 0.88) !important;
+}
+
+.dashboard-premium-plan .dashboard-page-plan-status {
+    background: rgba(255, 255, 255, 1) !important;
+    box-shadow: 0px 3.73px 7.47px 0px rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.8) !important;
+    width: 100% !important;
+}
+
+.dashboard-premium-plan p.dashboard-plan-type__tag {
+    padding: 0;
+    margin-bottom: 48px;
+}
+
+.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-page-plan-premium-note p {
+  color: rgba(0, 0, 0, 0.88);
+  font-weight: 600 !important;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
 }

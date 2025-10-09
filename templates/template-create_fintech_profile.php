@@ -62,12 +62,9 @@ get_header();
               <label for="company_size">Company Size</label>
               <select name="company_size" id="company_size">
                 <option value="">Select Size</option>
-                <option value="1-10">1-10</option>
-                <option value="11-50">11-50</option>
-                <option value="51-200">51-200</option>
-                <option value="201-500">201-500</option>
-                <option value="501-1000">501-1000</option>
-                <option value="1001+">1001+</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
               </select>
             </p>
             <p>
