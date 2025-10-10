@@ -170,7 +170,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       $cmb_group->add_group_field($group_field_id, array(
         'name'       => esc_html__('Cost', 'fintech-profiler'),
         'id'         => 'cost',
-        'type'       => 'text_money',
+        'type'       => 'text',
       ));
     }
 

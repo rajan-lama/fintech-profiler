@@ -71,13 +71,11 @@ get_header();
               <label for="slogan"> Slogan <span>(opt.)</span></label>
               <input type="text" name="slogan" id="slogan" placeholder="Enter company slogan">
             </p>
-            <hr />
+            <hr class="horizontal-rule" />
             <p>
               <label for="services">What services do you offer?</label>
             <div class="sidebar-section category-filter">
               <?php
-              $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
-
               $taxonomy = 'fintech-category';
 
               $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
@@ -216,18 +214,27 @@ get_header();
           </div>
           <div class="fp-col-6">
             <h4 for="company_size">Contact Information</h4>
-            <p>
-              <label for="country">Country</label>
-              <select name="country" id="country">
-                <option value="">Select country</option>
-              </select>
-            </p>
-            <p>
-              <label for="state">State <span>(opt.)</span></label>
-              <select name="state" id="state">
-                <option value="">Select state</option>
-              </select>
-            </p>
+            <div class="fp-country-info">
+              <div class="fp-country">
+                <p>
+                  <label for="country">Country</label>
+                  <select name="country" id="country">
+                    <option value="">Select country</option>
+                  </select>
+
+                </p>
+              </div>
+              <div class="fp-state">
+                <p>
+                  <label for="state">State <span>(opt.)</span></label>
+
+                  <select name="state" id="state">
+                    <option value="">Select state</option>
+                  </select>
+                </p>
+              </div>
+
+            </div>
 
             <p>
               <label for="city">City <span>(opt.)</span></label>
@@ -240,61 +247,72 @@ get_header();
 
             <p>
               <label for="business_phone">Phone Number</label>
+            </p>
             <div class="phone-input">
               <input type="text" name="business_phone_code" id="business_phone_code" placeholder="+91">
               <input type="text" name="business_phone" id="business_phone" placeholder="Enter business Phone">
             </div>
-            </p>
-            <hr />
-            <h4>Social Links</h4>
+            <hr class="horizontal-rule" />
+            <h4 class="section-heading">Social Links</h4>
             <div class="fp-social-links">
               <p>
-                <label for="linkedin_url">Linkedin Url</label>
-                <input type="text" name="linkedin_url" id="linkedin_url">
+                <label for="linkedin_url">linkedin.com/ company/</label>
+                <input type="text" name="linkedin_url" id="linkedin_url" placeholder="Link">
               </p>
               <p>
-                <label for="x_url">x Url</label>
-                <input type="text" name="x_url" id="x_url">
+                <label for="x_url">x.com/</label>
+                <input type="text" name="x_url" id="x_url" placeholder="Link">
               </p>
               <p>
-                <label for="instagram_url">Instagram Url</label>
-                <input type="text" name="instagram_url" id="instagram_url">
+                <label for="instagram_url">instagram.com/</label>
+                <input type="text" name="instagram_url" id="instagram_url" placeholder="Link">
               </p>
               <p>
-                <label for="facebook_url">Facebook Url</label>
-                <input type="text" name="facebook_url" id="facebook_url">
+                <label for="facebook_url">facebook.com/</label>
+                <input type="text" name="facebook_url" id="facebook_url" placeholder="Link">
               </p>
             </div>
-            <p>
-              <label for="demo">Demo</label>
-            <p>Do you offer demo?</p>
-            <input type="radio" id="yes" name="demo" value="yes">
-            <label for="yes">Yes</label><br>
-            <input type="radio" id="no" name="demo" value="no">
-            <label for="no">No</label><br>
-            </p>
-
-            <p>
-              <label for="demo_link"> Demo Link</span></label>
-              <input type="text" name="demo_link" id="demo_link" placeholder="example.com">
-            </p>
-            <hr />
-
-            <h4>Case Study</h4>
-            <div id="case-studies-wrapper">
-              <div class="case-study-item">
-                <p>
-                  <label>Case Title</label>
-                  <input type="text" name="case_title[]" placeholder="Case title">
-                </p>
-                <p>
-                  <label>Case Link</label>
-                  <input type="text" name="case_link[]" placeholder="Case link">
-                </p>
-                <button type="button" class="remove-case button">x</button>
+            <div class="demo-section">
+              <div class="demo-label">
+                <h6>Demo</h6>
+                <p>Do you offer demo?</p>
               </div>
+
+              <div class="demo-options">
+                <div>
+                  <input type="radio" id="yes" name="demo" value="yes">
+                  <label for="yes">Yes</label>
+                </div>
+                <div>
+                  <input type="radio" id="no" name="demo" value="no">
+                  <label for="no">No</label>
+                </div>
+              </div>
+              <p>
+                <label for="demo_link"> Demo Link</span></label>
+                <input type="text" name="demo_link" id="demo_link" placeholder="myawesomecompany.com/demo">
+              </p>
             </div>
-            <button type="button" id="add-case-study" class="button">+ Add More</button>
+
+            <div class="case-study-section">
+              <h4>Case Study</h4>
+              <div id="case-studies-wrapper">
+                <div class="case-study-item">
+                  <p>
+                    <button type="button" class="remove-case button">x</button>
+                  </p>
+                  <p>
+                    <label>Case Title</label>
+                    <input type="text" name="case_title[]" placeholder="Case title">
+                  </p>
+                  <p>
+                    <label>Case Link</label>
+                    <input type="text" name="case_link[]" placeholder="Case link">
+                  </p>
+                </div>
+              </div>
+              <button type="button" id="add-case-study" class="button">+ Add More</button>
+            </div>
           </div>
         </div>
       </div>

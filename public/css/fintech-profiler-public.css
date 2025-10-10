@@ -1110,6 +1110,7 @@ a.fp_forgot-pw {
 .login-form {
   max-width: 414px;
   margin: 0 auto;
+  background: #f4f6f5;
 
   .fp-hidden-field {
     display: none;
@@ -1183,6 +1184,69 @@ a.fp_forgot-pw {
   ul {
     padding-left: 25px;
     margin-bottom: 16px;
+  }
+}
+
+.phone-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+
+  #business_phone_code {
+    flex: 70px 0 0;
+  }
+
+  /* #business_phone {
+    flex: 0 0 calc(100% - 40px);
+  } */
+}
+
+hr.horizontal-rule {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 24px 0;
+}
+
+.fp-country-info {
+  display: flex;
+  gap: 8px;
+}
+
+.fp-country,
+.fp-state {
+  width: 50%;
+}
+
+.fp-social-links {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px 12px;
+  border-radius: 6px;
+}
+
+.fp-social-links p {
+  display: flex;
+  gap: 16px;
+}
+
+.fp-social-links p label {
+  width: 40%;
+  align-items: center;
+  display: flex;
+}
+
+.demo-section {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 24px;
+
+  .demo-label p {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 12px;
+  }
+
+  .demo-options {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 10px;
   }
 }
 
@@ -1997,14 +2061,16 @@ a.fp_forgot-pw {
   display: none;
 }
 
-.pricing-plan-item {
+.pricing-plan-item,
+.case-study-item {
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 20px;
 }
 
-button.remove-plan.button {
+button.remove-plan.button,
+button.remove-case.button {
   float: right;
   padding: 0 5px;
   line-height: 100%;
@@ -2031,95 +2097,99 @@ button.remove-plan.button {
 #wpadminbar,
 .page-template-template-fintech_login #site-header {
   display: none;
-/**Plan Page CSS */
-  .toggle-container {
-    display: flex;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    gap: 8px;
-  }
-
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 28px;
-    height: 15px;
-  }
-
-  /* Hide default checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  /* Slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.3s;
-    border-radius: 15px;
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    width: 11px;
-    height: 11px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    transition: 0.3s;
-    border-radius: 50%;
-  }
-
-  input:checked + .slider {
-    background-color: #4CAF50; /* Green when ON */
-  }
-
-  input:checked + .slider:before {
-    transform: translateX(13px);
-  }
-
-  div#plan-pricing-cards {
-    display: flex;
-    gap: 14px;
 }
 
-.page-template-template-fintech_profile_dashboard #tabs-8 .dashboard-page-title {
-    display: flex;
-    gap: 0;
-    width: 100%;
-    padding: 15px 0 12px 104px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    flex-direction: column;
+/**Plan Page CSS */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  gap: 8px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 15px;
+}
+
+/* Hide default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 15px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  width: 11px;
+  height: 11px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4caf50; /* Green when ON */
+}
+
+input:checked + .slider:before {
+  transform: translateX(13px);
+}
+
+div#plan-pricing-cards {
+  display: flex;
+  gap: 14px;
+}
+
+.page-template-template-fintech_profile_dashboard
+  #tabs-8
+  .dashboard-page-title {
+  display: flex;
+  gap: 0;
+  width: 100%;
+  padding: 15px 0 12px 104px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  flex-direction: column;
 }
 
 #plans-type-selector {
-    flex-direction: row-reverse;
-    padding-right: 104px;
-    margin-bottom: 16px;
+  flex-direction: row-reverse;
+  padding-right: 104px;
+  margin-bottom: 16px;
 }
 
 #plans-info {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 #plan-page-title-desc {
-    padding-top: 40px;
-    margin-bottom: 32px;
+  padding-top: 40px;
+  margin-bottom: 32px;
 }
 
 .dashboard-page-title-logo__holder img {
-    width: 24px;
-    height: auto;
-    position: relative;
-    top: -3px;
+  width: 24px;
+  height: auto;
+  position: relative;
+  top: -3px;
 }
 
 .dashboard-page-title-logo__holder {
@@ -2128,54 +2198,59 @@ button.remove-plan.button {
   gap: 12px;
 }
 
-.basic-plan-heading__holder p.dashboard-plan-type__tag, .dashboard-page-popular-plan-tag__holder,
-.dashboard-premium-plan p.dashboard-plan-type__tag, .dashboard-page-popular-plan-tag__holder {
-    font-size: 12px !important;
-    line-height: 150% !important;
-    font-family: "Inter", sans-serif;
-    color: rgba(0, 0, 0, 68%) !important;
-    padding-bottom: 48px;
+.basic-plan-heading__holder p.dashboard-plan-type__tag,
+.dashboard-page-popular-plan-tag__holder,
+.dashboard-premium-plan p.dashboard-plan-type__tag,
+.dashboard-page-popular-plan-tag__holder {
+  font-size: 12px !important;
+  line-height: 150% !important;
+  font-family: "Inter", sans-serif;
+  color: rgba(0, 0, 0, 68%) !important;
+  padding-bottom: 48px;
 }
 
-.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-professional-plan h2.dashboard-plan-type__pricing {
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 100%;
-    font-family: "Inter", sans-serif;
-    padding-bottom: 16px;
-    color: rgba(255, 255, 255, 0.8) !important;
+.page-template-template-fintech_profile_dashboard
+  .dashboard-section
+  .dashboard-professional-plan
+  h2.dashboard-plan-type__pricing {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 100%;
+  font-family: "Inter", sans-serif;
+  padding-bottom: 16px;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 p.dashboard-page-plan-status {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 6px;
-    color: rgba(0, 0, 0, 0.8) !important;
-    padding: 12px;
-    font-size: 14px !important;
-    font-family: "Inter", sans-serif;
-    font-weight: 600 !important;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  color: rgba(0, 0, 0, 0.8) !important;
+  padding: 12px;
+  font-size: 14px !important;
+  font-family: "Inter", sans-serif;
+  font-weight: 600 !important;
 }
 
 .dashboard-basic-plan {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    width: fit-content;
-    border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: fit-content;
+  border-radius: 16px;
 }
 
 .basic-plan-inner__holder {
-    padding: 8px;
+  padding: 8px;
 }
 
 .basic-plan-heading__holder {
-    background: rgba(244, 246, 245, 1);
-    padding: 12px;
-    border-radius: 12px;
-    margin-bottom: 24px;
+  background: rgba(244, 246, 245, 1);
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 24px;
 }
 
 .basic-plan-content__holder {
-  padding:12px;
+  padding: 12px;
 }
 
 .dashboard-page-plan-includes ul,
@@ -2243,16 +2318,28 @@ p.dashboard-page-plan-status {
 }
 
 .dashboard-professional-plan {
-    box-shadow: 0px 11.95px 22.4px 5.97px rgba(0, 0, 0, 0.2);
-    border-radius: 16px;
-    background: rgba(31, 31, 31, 1);
+  box-shadow: 0px 11.95px 22.4px 5.97px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  background: rgba(31, 31, 31, 1);
 }
 
-.page-template-template-fintech_profile_dashboard .dashboard-professional-plan h2,
-.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-professional-plan .dashboard-popular-plan-type__tag,
-.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-professional-plan .dashboard-plan-type__tag,
+.page-template-template-fintech_profile_dashboard
+  .dashboard-professional-plan
+  h2,
+.page-template-template-fintech_profile_dashboard
+  .dashboard-section
+  .dashboard-professional-plan
+  .dashboard-popular-plan-type__tag,
+.page-template-template-fintech_profile_dashboard
+  .dashboard-section
+  .dashboard-professional-plan
+  .dashboard-plan-type__tag,
 .dashboard-professional-plan .pricing-renewal-duration,
-.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-professional-plan dashboard-page-plan-includes h3{
+.page-template-template-fintech_profile_dashboard
+  .dashboard-section
+  .dashboard-professional-plan
+  dashboard-page-plan-includes
+  h3 {
   color: rgba(255, 255, 255, 0.88) !important;
   margin: 0;
   font-size: 12px;
@@ -2263,15 +2350,15 @@ p.dashboard-page-plan-status {
 }
 
 .dashboard-page-popular-plan-tag__holder {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .dashboard-professional-plan .plan-heading__holder {
-    background: rgba(53, 53, 53, 1);
-    margin: 8px;
-    padding: 12px;
-    border-radius: 12px;
+  background: rgba(53, 53, 53, 1);
+  margin: 8px;
+  padding: 12px;
+  border-radius: 12px;
 }
 
 span.pricing-renewal-duration {
@@ -2279,26 +2366,26 @@ span.pricing-renewal-duration {
 }
 
 .dashboard-page-plan-price-duration__holder {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .dashboard-professional-plan .dashboard-page-plan-status {
-    background: rgba(255, 255, 255, 1) !important;
-    box-shadow: 0px 3.73px 7.47px 0px rgba(255, 255, 255, 0.1);
-    color: rgba(0, 0, 0, 0.8) !important;
-    width: 100% !important;
+  background: rgba(255, 255, 255, 1) !important;
+  box-shadow: 0px 3.73px 7.47px 0px rgba(255, 255, 255, 0.1);
+  color: rgba(0, 0, 0, 0.8) !important;
+  width: 100% !important;
 }
 
-.dashboard-professional-plan .dashboard-page-plan-includes h3, 
+.dashboard-professional-plan .dashboard-page-plan-includes h3,
 .dashboard-professional-plan .dashboard-page-plan-excludes h3 {
-    color: rgba(255, 255, 255, 0.88);
-    margin: 0;
-    padding: 0;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
+  padding: 0;
 }
 
-.dashboard-professional-plan .dashboard-page-plan-includes li, 
+.dashboard-professional-plan .dashboard-page-plan-includes li,
 .dashboard-professional-plan .dashboard-page-plan-excludes li {
   color: rgba(255, 255, 255, 0.88);
 }
@@ -2312,22 +2399,22 @@ span.pricing-renewal-duration {
 }
 
 .plan-inner__holder {
-    margin: 8px;
+  margin: 8px;
 }
 
 .dashboard-professional-plan p.dashboard-popular-plan-type__tag {
-    font-weight: 600 !important;
-    border-radius: 16px;
-    font-size: 9px !important;
-    line-height: 150% !important;
-    padding: 3px 12px 2px 12px;
-    margin: 0;
-    background: rgba(137, 67, 226, 1);
-    height: fit-content;
-    box-shadow: 7.47px 14.93px 59.74px 0px rgba(122, 33, 237, 0.3);
-    box-shadow: -14.93px -14.93px 37.34px 0px rgba(42, 94, 142, 0.5);
-    box-shadow: 0px 14.93px 22.4px 0px rgba(64, 100, 228, 0.16);
-    box-shadow: 0px 0px 22.4px 0px rgba(255, 255, 255, 0.3) inset;
+  font-weight: 600 !important;
+  border-radius: 16px;
+  font-size: 9px !important;
+  line-height: 150% !important;
+  padding: 3px 12px 2px 12px;
+  margin: 0;
+  background: rgba(137, 67, 226, 1);
+  height: fit-content;
+  box-shadow: 7.47px 14.93px 59.74px 0px rgba(122, 33, 237, 0.3);
+  box-shadow: -14.93px -14.93px 37.34px 0px rgba(42, 94, 142, 0.5);
+  box-shadow: 0px 14.93px 22.4px 0px rgba(64, 100, 228, 0.16);
+  box-shadow: 0px 0px 22.4px 0px rgba(255, 255, 255, 0.3) inset;
 }
 
 .dashboard-professional-plan {
@@ -2337,40 +2424,46 @@ span.pricing-renewal-duration {
 }
 
 .dashboard-premium-plan {
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0px 3.73px 14.93px 0px rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 3.73px 14.93px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
 }
 
 .dashboard-premium-plan .plan-heading__holder {
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(135deg, #f3f3fd, #fef6f0);
-    box-shadow: 0px 3.73px 14.93px 0px rgba(0, 0, 0, 0.1);
-    padding: 12px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f3f3fd, #fef6f0);
+  box-shadow: 0px 3.73px 14.93px 0px rgba(0, 0, 0, 0.1);
+  padding: 12px;
 }
 
-.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-premium-plan h2.dashboard-plan-type__pricing {
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 100%;
-    font-family: "Inter", sans-serif;
-    color: rgba(0, 0, 0, 0.88) !important;
+.page-template-template-fintech_profile_dashboard
+  .dashboard-section
+  .dashboard-premium-plan
+  h2.dashboard-plan-type__pricing {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 100%;
+  font-family: "Inter", sans-serif;
+  color: rgba(0, 0, 0, 0.88) !important;
 }
 
 .dashboard-premium-plan .dashboard-page-plan-status {
-    background: rgba(255, 255, 255, 1) !important;
-    box-shadow: 0px 3.73px 7.47px 0px rgba(0, 0, 0, 0.1);
-    color: rgba(0, 0, 0, 0.8) !important;
-    width: 100% !important;
+  background: rgba(255, 255, 255, 1) !important;
+  box-shadow: 0px 3.73px 7.47px 0px rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.8) !important;
+  width: 100% !important;
 }
 
 .dashboard-premium-plan p.dashboard-plan-type__tag {
-    padding: 0;
-    margin-bottom: 48px;
+  padding: 0;
+  margin-bottom: 48px;
 }
 
-.page-template-template-fintech_profile_dashboard .dashboard-section .dashboard-page-plan-premium-note p {
+.page-template-template-fintech_profile_dashboard
+  .dashboard-section
+  .dashboard-page-plan-premium-note
+  p {
   color: rgba(0, 0, 0, 0.88);
   font-weight: 600 !important;
   font-size: 13px;
