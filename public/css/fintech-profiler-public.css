@@ -1430,7 +1430,7 @@ hr.horizontal-rule {
 }
 
 #drop-area {
-  border: 2px dashed #0073aa;
+  border: 2px dashed rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 40px;
   text-align: center;
@@ -1474,6 +1474,8 @@ input#attach_media:before {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
   font-weight: 600;
   line-height: 100%;
+  pointer-events: visible;
+  cursor: pointer;
 }
 
 #drop-area p {
@@ -1525,6 +1527,11 @@ input#attach_media:before {
   top: 0;
 }
 
+.image-info-holder {
+  display: flex;
+  gap: 12px;
+}
+
 #preview-container {
   display: flex;
   flex-wrap: wrap;
@@ -1537,9 +1544,10 @@ input#attach_media:before {
 .image-preview {
   position: relative;
   display: inline-block;
-  width: 120px;
-  height: 120px;
-  border: 1px solid #ddd;
+  width: 100%;
+  padding: 8px;
+  height: 56px;
+  border: 2px dashed rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -1547,25 +1555,32 @@ input#attach_media:before {
 }
 
 .image-preview img {
-  width: 100%;
-  height: 100%;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
 }
 
 .remove-image {
   position: absolute;
-  top: -6px;
-  right: -6px;
-  background: #ff3333;
-  color: white;
+  top: 18px;
+  right: 0;
+  color: #1f1f1f;
   border: none;
   border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 14px;
+  font-size: 24px;
   line-height: 20px;
   cursor: pointer;
   z-index: 10;
+  padding: 0 10px;
+  border-radius: 0;
+}
+
+.image-title span {
+  display: block;
+}
+
+.image-title span.image-size {
+  font-size: 12px;
 }
 
 .progress-bar {

@@ -85,12 +85,21 @@ jQuery(document).ready(function ($) {
     Array.from(files).forEach((file) => {
       if (!file.type.startsWith("image/")) return;
       filesList.push(file);
+      const sizeKB = (file.size / 1024).toFixed(2);
 
       const reader = new FileReader();
       reader.onload = (e) => {
         const li = $(`
           <li class="image-preview" data-temp="true">
-            <img src="${e.target.result}" alt="${file.name}">
+            <div class="image-info-holder">
+              <div class="image-holder">
+                <img src="${e.target.result}" alt="${file.name}">
+              </div>
+              <div class="image-title">
+                <span class="title">${file.name}</span>
+                <span class="image-size">${sizeKB} KB</span>
+              </div>
+            </div>
             <div class="progress-bar"></div>
             <button class="remove-image">&times;</button>
           </li>
