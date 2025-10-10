@@ -140,7 +140,7 @@ jQuery(document).ready(function ($) {
           });
           return xhr;
         },
-        url: ajaxurl,
+        url: fp_media.ajaxurl,
         type: "POST",
         data: formData,
         contentType: false,
