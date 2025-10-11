@@ -47,8 +47,7 @@ $website_link = $current_user->user_url; // Fetch website link
                   </div>
                   <label for="company_logo">Company Logo</label>
                   <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
-                  <input type="file" name="company_logo" id="company_logo" accept="image/*" value="<?php // echo esc_url($company_logo); 
-                                                                                                    ?>">
+                  <input type="file" name="company_logo" id="company_logo" accept="image/*" value="<?php echo esc_url($company_logo); ?>">
                   <input type="hidden" name="action" value="upload_company_logo">
                   </p> -->
 
@@ -87,26 +86,26 @@ $website_link = $current_user->user_url; // Fetch website link
                 <form method="post" enctype="multipart/form-data" class="fp-form">
                   <div class="password-setting-header">
                     <label for="password_setting">Password Setting</label>
-                    <span>Choose a strong password to keep your profile secure</span>
+                    <p>Choose a strong password to keep your profile secure</p>
                   </div>
                   <div class="password-settings" id="password-settings-1">
-                    <p>
+                    <p class="current-password">
                       <label for="current_password">Current Password</label>
                       <input type="password" name="current_password" id="current_password" required>
                       <input type="hidden" name="action" value="upload_company_logo">
                     </p>
 
-                    <a href="<?php echo home_url('/forgot-password'); ?>">Change Password</a>
+                    <a href="#" id="link-changepw">Change Password</a>
                   </div>
-                  <div class="password-settings" id="password-settings-2">
-                    <p>
+                  <div class="password-settings" id="password-settings-2" style="display: none;">
+                    <p class="your-current-password">
                       <label for="your_current_password">Type Your Current Password</label>
                       <input type="password" name="your_current_password" id="your_current_password" required>
                     </p>
 
                     <a href="#">Forgot Password</a>
 
-                    <p>
+                    <p class="new-password">
                       <label for="new_password">New Password</label>
                       <input type="password" name="new_password" id="new_password" required>
                     </p>
@@ -117,13 +116,13 @@ $website_link = $current_user->user_url; // Fetch website link
                       <li>Atleast 1 upper and lower case</li>
                     </ul>
 
-                    <p>
+                    <p class="retype-password">
                       <label for="retype_password">Retype Password</label>
                       <input type="password" name="retype_password" id="retype_password" required>
                     </p>
 
                     <button type="button">Cancel</button>
-                    <button type="submit">Save Password</button>
+                    <button type="submit">Update Password</button>
                   </div>
                   <hr />
 
@@ -132,7 +131,36 @@ $website_link = $current_user->user_url; // Fetch website link
                     <span>Permanently deletes your companies account from FinExplore 360</span>
                   </div>
 
-                  <a href="#">Delete Account</a>
+                  <a href="#" id="btn-delete-account" class="btn btn-danger">Delete Account</a>
+                  <!-- Account Delete Modal -->
+                  <div class="account-holder" id="account-delete-modal" style="display: none;">
+                    <div class="account-delete-overlay"></div>
+                    <div class="account-delete-box">
+                      <a id="btn-cross" href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18 6L6 18M18 18L6 6" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                      </a>
+                      <div class="account-delete-box-item">
+
+                        <h5>Confirm Permanent Account Deletion?</h5>
+                        <p>
+                          You are about to delete this account permanently. This action is irreversible once the process is initiated; you won’t be able to retrieve any of the content or information you might have added to this profile.
+                        </p>
+                        <p class="account-delete-password">
+                          <label for="retype_password_modal">Password</label>
+                          <input type="password" name="retype_password" id="retype_password_modal" required>
+                        </p>
+                        <hr class="horizontal-rule">
+                        <div class="account-delete-buttons">
+                          <button type="button" id="cancel-delete">Cancel</button>
+                          <button type="submit" id="confirm-delete"><svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10 9.90003V5.41447M10 13.2248V13.2642M15.6699 17H4.33007C2.7811 17 1.47392 15.9763 1.06265 14.5757C0.887092 13.9778 1.10281 13.3551 1.43276 12.8249L7.10269 2.60102C8.4311 0.466323 11.5689 0.466326 12.8973 2.60103L18.5672 12.8249C18.8972 13.3551 19.1129 13.9778 18.9373 14.5757C18.5261 15.9763 17.2189 17 15.6699 17Z" stroke="#FDFDFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Confirm Deletion</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
