@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://rajanlama.com.np
- * @since             1.0.14
+ * @since             1.0.15
  * @package           Fintech_Profiler
  *
  * @wordpress-plugin
  * Plugin Name:       Fintech Profiler
  * Plugin URI:        https://rajanlama.com.np/wp/fintech-profiler
  * Description:       This is a simple plugin to handle Fintach Profiler.
- * Version:           1.0.14
+ * Version:           1.0.15
  * Author:            Rajan Lama
  * Author URI:        https://rajanlama.com.np/
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if (! defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('FINTECH_PROFILER_VERSION', '1.0.14');
+define('FINTECH_PROFILER_VERSION', '1.0.15');
 define('FINTECH_PROFILER_BASE', plugin_dir_path(__FILE__));
 define('FINTECH_PROFILER_BASE_URL', plugin_dir_url(__FILE__));
 
@@ -88,4 +88,9 @@ run_fintech_profiler();
 add_action('after_setup_theme', function () {
 	add_image_size('fintech_profiler_slider', 615, 400, true);
 	add_image_size('fintech-profiler-three-col', 350, 227, true);
+	// if (!current_user_can('administrator')) {
+	// 	show_admin_bar(false);
+	// }
 });
+
+add_filter('show_admin_bar', '__return_false');
