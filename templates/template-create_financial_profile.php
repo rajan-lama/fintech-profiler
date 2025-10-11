@@ -26,18 +26,19 @@ get_header();
             <p>Complete your profile with accurate and up-to-date information to ensure maximum visibility and credibility.</p>
           </div>
           <div class="fp-col-6">
-            <p>
+            <p class="fp-logo-label">
               <label for="company_logo">Company Logo</label>
-            <div class="fp-logo-preview">
-              <div class="fp-logo-image">
-                <img id="logo-preview" src="<?php echo FINTECH_PROFILER_BASE_URL . '/public/img/fallback-img.png'; ?>" />
-              </div>
+            </p>
+            <div class="fp-logo-upload">
+              <div class="fp-logo-preview">
+                <img src="<?php echo FINTECH_PROFILER_BASE_URL . '/public/img/fallback-img.png'; ?>" id="logo-preview" />
+              </div class="fp-logo-btn">
               <div class="fp-logo-file-input">
                 <input type="file" name="company_logo" id="company_logo" accept="image/*">
-                <span>Supports .jpg, .png and .svg</span>
+                <input type="hidden" name="action" value="upload_company_logo">
+                <span>Supports .jpg, .png and .svg and zip files</span>
               </div>
             </div>
-            </p>
 
             <p>
               <label for="company_name">Company Name</label>

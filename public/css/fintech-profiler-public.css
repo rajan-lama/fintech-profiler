@@ -23,11 +23,12 @@
   --secondary-border: var(--secondary-border);
 }
 
+body,
 body.single-fintech_profiles,
 .page-template-template-listing_fintech,
 .page-template-template-financial_profile_dashboard,
 .post-type-archive-fintech_profiles {
-  background-color: var(--background-light);
+  background-color: var(--background-light) !important;
 }
 
 .single-fintech_profiles {
@@ -966,8 +967,38 @@ body.single-fintech_profiles,
   text-align: left;
 }
 
-form#company-login-form {
-  margin: 32px auto 16px;
+#company-login-form {
+  margin: 40px auto 16px;
+}
+
+.verification-code-section {
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  margin-top: 6px;
+}
+
+.verification-code-section input[type="text"] {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+}
+
+.login-form.verification-form {
+  #company-login-form {
+    label {
+      justify-content: left;
+      display: flex;
+      max-width: 280px;
+      font-weight: 600;
+    }
+  }
+
+  .form-holder {
+    width: 280px;
+    margin: auto;
+  }
 }
 
 .fp-form-options {
@@ -1102,6 +1133,87 @@ a.fp_forgot-pw {
   text-decoration: underline;
 }
 
+/* Modal Overlay */
+.account-holder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.page-template-template-edit_financial_profile {
+  /* Modal Box */
+  .account-delete-box {
+    background: #fff;
+    padding: 24px;
+    max-width: 500px;
+    width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10000;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .account-delete-box h5 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .account-delete-box p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  .account-delete-password {
+    margin-top: 10px;
+  }
+
+  .account-delete-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .account-delete-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  #cancel-delete {
+    background: #ccc;
+  }
+
+  #confirm-delete {
+    background: #d9534f;
+    color: #fff;
+  }
+
+  #btn-cross {
+    float: right;
+  }
+
+  #btn-delete-account {
+    color: #d9534f;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  hr.horizontal-rule {
+    margin: 24px -24px;
+  }
+}
+
 /** CSS for shortcode [cfl_login_form] ***/
 .fp-form {
   margin-bottom: 32px;
@@ -1184,6 +1296,12 @@ a.fp_forgot-pw {
   ul {
     padding-left: 25px;
     margin-bottom: 16px;
+  }
+
+  button#confirm-delete {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 }
 
@@ -1353,6 +1471,7 @@ hr.horizontal-rule {
     font-weight: 600;
     letter-spacing: -0.48px;
     margin-bottom: 8px;
+    margin-top: 0px;
   }
 
   p {
@@ -1412,6 +1531,206 @@ hr.horizontal-rule {
   letter-spacing: -0.32px;
 }
 
+.page-template-template-claim_fintech_profile {
+  label {
+    margin-bottom: 12px;
+  }
+
+  p {
+    margin-bottom: 12px;
+  }
+}
+
+/** File Upload **/
+.fp-media-uploader {
+  font-family: Arial, sans-serif;
+  margin: 20px 0;
+}
+
+#drop-area {
+  border: 2px dashed rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: #f9f9f9;
+}
+
+#drop-area.dragover {
+  background-color: #e0f3ff;
+  border-color: #00a0d2;
+}
+
+#drop-area p {
+  margin: 0;
+  color: #555;
+}
+
+#attach_media {
+  /* visibility: hidden; */
+  width: 140px;
+  height: 36px;
+  position: relative;
+  padding: 0 5px;
+  margin-top: 12px;
+}
+
+input#attach_media:before {
+  content: "Browse files";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 14px;
+  pointer-events: none;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  background: #fdfdfd;
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+  line-height: 100%;
+  pointer-events: visible;
+  cursor: pointer;
+}
+
+#drop-area p {
+  position: relative;
+}
+
+#drop-area span {
+  display: block;
+  height: 25px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+#drop-area span.content {
+  position: relative;
+  z-index: 6;
+}
+
+#drop-area p.content-or {
+  width: 60%;
+  margin: auto;
+}
+
+#drop-area span.content-bg {
+  position: absolute;
+  height: 25px;
+  width: 100%;
+  top: -7px;
+}
+
+#drop-area span.content-bg:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #000;
+  position: absolute;
+  bottom: 11px;
+}
+
+#drop-area span.content-bg:after {
+  content: "";
+  display: block;
+  width: 30px;
+  left: calc(50% - 15px);
+  height: 100%;
+  background: #f9f9f9;
+  position: absolute;
+  top: 0;
+}
+
+.image-info-holder {
+  display: flex;
+  gap: 12px;
+}
+
+#preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.image-preview {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 8px;
+  height: 56px;
+  border: 2px dashed rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+.image-preview img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.remove-image {
+  position: absolute;
+  top: 18px;
+  right: 0;
+  color: #1f1f1f;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 20px;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0 10px;
+  border-radius: 0;
+}
+
+.image-title span {
+  display: block;
+}
+
+.image-title span.image-size {
+  font-size: 12px;
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background: #0073aa;
+  width: 0;
+  transition: width 0.3s;
+}
+
+#upload-btn {
+  margin-top: 15px;
+  background: #0073aa;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#upload-btn:hover {
+  background: #005f8d;
+}
+
+.image-preview.dragging {
+  opacity: 0.6;
+  border: 2px dashed #0073aa;
+}
+
 /*Fintech profile dashboard page */
 .page-template-template-fintech_profile_dashboard .ui-tabs {
   display: flex;
@@ -1430,6 +1749,59 @@ hr.horizontal-rule {
   font-weight: 600;
   line-height: 100%;
   letter-spacing: -0.48px;
+}
+
+.fp-col-3 {
+  width: 33.3333%;
+  display: inline-block;
+  padding-right: 16px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.fp-col-9 {
+  width: 66.6667%;
+  display: inline-block;
+  padding-left: 48px;
+}
+
+.edit-financial-profile-tabs ul.ui-tabs-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.edit-financial-profile-tabs ul.ui-tabs-nav li {
+  padding: 8px;
+
+  &.ui-tabs-active {
+    background: white;
+  }
+}
+
+.edit-financial-profile-tabs h2 {
+  margin-bottom: 32px;
+}
+
+.edit-financial-profile-tabs .fp-logo-upload {
+  margin-bottom: 40px;
+}
+
+.edit-financial-profile-tabs p.section-company-name {
+  margin-bottom: 24px;
+}
+
+.edit-financial-profile-tabs p.section-website-link {
+  margin-bottom: 32px;
+}
+
+/** Verification form **/
+
+.login-form.verification-form {
+  background: transparent;
+
+  h3 {
+    margin-bottom: 12px;
+  }
 }
 
 /*Nav tabs*/
@@ -2079,9 +2451,9 @@ button.remove-case.button {
 }
 
 /** Verification code **/
-.verification-code-section input[type="text"] {
+/* .verification-code-section input[type="text"] {
   width: 10px;
-}
+} */
 
 .login-form.password-update-form {
   display: none;
@@ -2091,11 +2463,14 @@ button.remove-case.button {
 }
 .login-form.verification-form {
   text-align: center;
+  margin: 10% auto;
 }
 
 .page-template-template-fintech_profile_dashboard #site-header,
 #wpadminbar,
-.page-template-template-fintech_login #site-header {
+.page-template-template-fintech_login #site-header,
+.page-template-template-claim_fintech_profile #site-header,
+.page-template-template-forget_password #site-header {
   display: none;
 }
 
@@ -2183,6 +2558,10 @@ div#plan-pricing-cards {
 #plan-page-title-desc {
   padding-top: 40px;
   margin-bottom: 32px;
+}
+
+.btn-submit-claim {
+  float: right;
 }
 
 .dashboard-page-title-logo__holder img {

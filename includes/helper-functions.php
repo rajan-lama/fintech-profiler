@@ -424,7 +424,7 @@ if (! function_exists('fintech_profiler_claim_business')) :
                     Take control of your company’s listing on FinExplore 360. Sign up to update your details and enhance your visibility to financial institutions.
                 </div>
             </div>
-            <div class="button-holder"><a href="#">Claim Business</a></div>
+            <div class="button-holder"><a href="<?php echo get_site_url(); ?>/claim-fintech-profile">Claim Business</a></div>
         </section>
         <?php
         // }  
@@ -863,21 +863,12 @@ function fintech_profiler_get_users()
     return $options;
 }
 
-
-add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_script('company-logo-upload', FINTECH_PROFILER_BASE_URL . '/public/js/company-logo-upload.js', ['jquery'], null, true);
-    wp_localize_script('company-logo-upload', 'wpVars', [
-        'ajaxurl' => admin_url('admin-ajax.php'),
-        'nonce'   => wp_create_nonce('upload_company_logo_nonce')
-    ]);
-});
-
 add_action('wp_ajax_upload_company_logo', 'handle_company_logo_upload');
 add_action('wp_ajax_nopriv_upload_company_logo', 'handle_company_logo_upload');
 
 function handle_company_logo_upload()
 {
-    check_ajax_referer('upload_company_logo_nonce');
+    check_ajax_referer('fp_media_uploader_nonce');
 
     if (!function_exists('wp_handle_upload')) {
         require_once(ABSPATH . 'wp-admin/includes/file.php');
@@ -910,4 +901,83 @@ function handle_company_logo_upload()
     } else {
         wp_send_json_error($movefile['error']);
     }
+}
+
+
+add_action('wp_ajax_upload_company_logo', 'fp_upload_company_logo');
+add_action('wp_ajax_nopriv_upload_company_logo', 'fp_upload_company_logo');
+
+function fp_upload_company_logo()
+{
+    if (!function_exists('wp_handle_upload')) {
+        require_once(ABSPATH . 'wp-admin/includes/file.php');
+    }
+
+    $uploaded_files = $_FILES['attach_media'];
+    $uploaded_urls = [];
+    $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+
+    foreach ($uploaded_files['name'] as $key => $value) {
+        if ($uploaded_files['name'][$key]) {
+            $file = [
+                'name' => $uploaded_files['name'][$key],
+                'type' => $uploaded_files['type'][$key],
+                'tmp_name' => $uploaded_files['tmp_name'][$key],
+                'error' => $uploaded_files['error'][$key],
+                'size' => $uploaded_files['size'][$key],
+            ];
+
+            $upload_overrides = ['test_form' => false];
+            $movefile = wp_handle_upload($file, $upload_overrides);
+
+            if ($movefile && !isset($movefile['error'])) {
+                $uploaded_urls[] = $movefile['url'];
+            }
+        }
+    }
+
+    if ($post_id && !empty($uploaded_urls)) {
+        $existing = get_post_meta($post_id, '_company_logo_gallery', true);
+        if (!is_array($existing)) $existing = [];
+        $merged = array_merge($existing, $uploaded_urls);
+        update_post_meta($post_id, '_company_logo_gallery', $merged);
+    }
+
+    wp_send_json_success(['files' => $uploaded_urls]);
+}
+
+add_action('wp_ajax_remove_uploaded_image', 'fp_remove_uploaded_image');
+add_action('wp_ajax_nopriv_remove_uploaded_image', 'fp_remove_uploaded_image');
+
+function fp_remove_uploaded_image()
+{
+    $post_id = intval($_POST['post_id']);
+    $image_url = esc_url_raw($_POST['image_url']);
+    if (!$post_id || !$image_url) wp_send_json_error();
+
+    $existing = get_post_meta($post_id, '_company_logo_gallery', true);
+    if (!is_array($existing)) $existing = [];
+
+    $updated = array_filter($existing, fn($url) => $url !== $image_url);
+    update_post_meta($post_id, '_company_logo_gallery', array_values($updated));
+
+    // Optional: Delete file
+    $upload_dir = wp_upload_dir();
+    $file_path = str_replace($upload_dir['baseurl'], $upload_dir['basedir'], $image_url);
+    if (file_exists($file_path)) unlink($file_path);
+
+    wp_send_json_success(['removed' => $image_url]);
+}
+
+add_action('wp_ajax_update_image_order', 'fp_update_image_order');
+add_action('wp_ajax_nopriv_update_image_order', 'fp_update_image_order');
+
+function fp_update_image_order()
+{
+    $post_id = intval($_POST['post_id']);
+    $order = isset($_POST['order']) ? array_map('esc_url_raw', $_POST['order']) : [];
+    if ($post_id && is_array($order)) {
+        update_post_meta($post_id, '_company_logo_gallery', $order);
+    }
+    wp_send_json_success(['order_saved' => true]);
 }

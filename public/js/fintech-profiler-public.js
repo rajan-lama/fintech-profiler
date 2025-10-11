@@ -428,17 +428,51 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  if ($('#toggle').is(':checked')) {
-    $('.pricing-renewal-duration').text('/ Yearly');
+  if ($("#toggle").is(":checked")) {
+    $(".pricing-renewal-duration").text("/ Yearly");
   } else {
-    $('.pricing-renewal-duration').text('/ Monthly');
+    $(".pricing-renewal-duration").text("/ Monthly");
   }
 
-  $('#toggle').change(function () {
-    if ($(this).is(':checked')) {
-      $('.pricing-renewal-duration').text('/ Yearly');
+  $("#toggle").change(function () {
+    if ($(this).is(":checked")) {
+      $(".pricing-renewal-duration").text("/ Yearly");
     } else {
-      $('.pricing-renewal-duration').text('/ Monthly');
+      $(".pricing-renewal-duration").text("/ Monthly");
+    }
+  });
+});
+
+jQuery(document).ready(function ($) {
+  $("#link-changepw").click(function (e) {
+    e.preventDefault();
+    console.log("clicked");
+
+    $("#password-settings-1").hide();
+    $("#password-settings-2").show();
+  });
+});
+
+jQuery(document).ready(function ($) {
+  // Open modal
+  $("#btn-delete-account").on("click", function (e) {
+    e.preventDefault();
+    $("#account-delete-modal").fadeIn(200);
+  });
+
+  // Close modal when cancel is clicked
+  $("#cancel-delete").on("click", function () {
+    $("#account-delete-modal").fadeOut(200);
+  });
+
+  $("#btn-cross").on("click", function () {
+    $("#account-delete-modal").fadeOut(200);
+  });
+
+  // Optional: Close modal if clicked outside the box
+  $("#account-delete-modal").on("click", function (e) {
+    if ($(e.target).is("#account-delete-modal, .account-delete-overlay")) {
+      $(this).fadeOut(200);
     }
   });
 });

@@ -292,7 +292,6 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       $cmb_group->add_field(
         array(
           'name'          => esc_html__('Website', 'fintech-profiler'),
-          // 'description'   => esc_html__( 'Select the type of content to display in the slider', 'fintech-profiler' ),
           'id'            => 'fintech_website',
           'type'          => 'text_url',
         ),
@@ -341,8 +340,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       $cmb_group->add_field(array(
         'name'          => esc_html__('State', 'fintech-profiler'),
         'id'            => 'fintech_state',
-        'type'          => 'select',
-        'options' => [],
+        'type'          => 'text',
       ));
 
       $cmb_group->add_field(array(
