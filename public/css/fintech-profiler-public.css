@@ -219,7 +219,7 @@ body.single-fintech_profiles,
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 15px;
   }
@@ -256,6 +256,10 @@ body.single-fintech_profiles,
     flex: 0 0 440px;
     padding: 0 15px;
     width: 450px;
+  }
+
+  h1.page-title {
+    margin: 0 -15px;
   }
 
   .fintech-tabs {
@@ -2918,11 +2922,24 @@ a.custom-logo-link {
         a {
           display: block;
           padding: 8px 12px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
         }
 
-        &.ui-tabs-active {
+        &.ui-tabs-active a {
           background: #f4f6f5;
         }
+      }
+
+      li:last-child {
+        margin-top: 12px;
+      }
+
+      li:nth-last-child(2) {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       }
     }
 
@@ -3356,4 +3373,17 @@ a.custom-logo-link {
 .fp-col-2 {
   display: flex;
   gap: 20px;
+}
+
+/** Responsive **/
+
+@media (min-width: 1200px) {
+  .page-header .entry-title,
+  .site-footer .footer-inner,
+  .site-footer:not(.dynamic-footer),
+  .site-header .header-inner,
+  .site-header:not(.dynamic-header),
+  body:not([class*="elementor-page-"]) .site-main {
+    max-width: 1280px;
+  }
 }
