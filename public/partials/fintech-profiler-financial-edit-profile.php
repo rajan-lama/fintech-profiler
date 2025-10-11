@@ -33,7 +33,7 @@
       <input type="url" id="company_website" name="company_website" required>
     </div>
 
-    <button type="submit">Edit Profile</button>
+    <button type="submit" class="btn btn-editprofile btn-primary">Edit Profile</button>
   </form>
 
 </div>

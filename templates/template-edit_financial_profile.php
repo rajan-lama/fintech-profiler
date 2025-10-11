@@ -36,22 +36,41 @@ $website_link = $current_user->user_url; // Fetch website link
                 <h2>Edit Profile</h2>
 
                 <form method="post" enctype="multipart/form-data" class="fp-form">
-                  <p>
+                  <!-- <p>
                   <div>
-                    <?php if ($company_logo) : ?>
-                      <img src="<?php echo esc_url($company_logo); ?>" alt="Company Logo" style="max-width: 150px;">
-                    <?php endif; ?>
+                    <?php // if ($company_logo) : 
+                    ?>
+                      <img src="<?php // echo esc_url($company_logo); 
+                                ?>" alt="Company Logo" style="max-width: 150px;">
+                    <?php // endif; 
+                    ?>
                   </div>
                   <label for="company_logo">Company Logo</label>
                   <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
-                  <input type="file" name="company_logo" id="company_logo" accept="image/*" value="<?php echo esc_url($company_logo); ?>">
+                  <input type="file" name="company_logo" id="company_logo" accept="image/*" value="<?php // echo esc_url($company_logo); 
+                                                                                                    ?>">
                   <input type="hidden" name="action" value="upload_company_logo">
+                  </p> -->
+
+                  <p class="fp-logo-label">
+                    <label for="company_logo">Company Logo</label>
                   </p>
-                  <p>
+                  <div class="fp-logo-upload">
+                    <div class="fp-logo-preview">
+                      <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" id="logo-preview" />
+                    </div class="fp-logo-btn">
+                    <div class="fp-logo-file-input">
+                      <input type="file" name="company_logo" id="company_logo" accept="image/*">
+                      <input type="hidden" name="action" value="upload_company_logo">
+                      <span>Supports .jpg, .png and .svg and zip files</span>
+                    </div>
+                  </div>
+
+                  <p class="section-company-name">
                     <label for="company_name">Company Name</label>
                     <input type="text" name="company_name" id="company_name" value="<?php echo esc_attr($company_name); ?>" placeholder="Enter company name">
                   </p>
-                  <p>
+                  <p class="section-website-link">
                     <label for="website_link">Website Link</label>
                     <input type="text" name="website_link" id="website_link" value="<?php echo esc_url($website_link); ?>" placeholder="Enter website link">
                   </p>
