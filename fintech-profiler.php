@@ -88,4 +88,9 @@ run_fintech_profiler();
 add_action('after_setup_theme', function () {
 	add_image_size('fintech_profiler_slider', 615, 400, true);
 	add_image_size('fintech-profiler-three-col', 350, 227, true);
+	// if (!current_user_can('administrator')) {
+	// 	show_admin_bar(false);
+	// }
 });
+
+add_filter('show_admin_bar', '__return_false');

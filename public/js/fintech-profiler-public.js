@@ -106,7 +106,7 @@
       header: "ui-icon-circle-arrow-e",
       activeHeader: "ui-icon-circle-arrow-s",
     };
-    $("#accordion").accordion({});
+    $("#accordion").accordion({ icons: icons });
   });
 })(jQuery);
 
@@ -473,6 +473,36 @@ jQuery(document).ready(function ($) {
   $("#account-delete-modal").on("click", function (e) {
     if ($(e.target).is("#account-delete-modal, .account-delete-overlay")) {
       $(this).fadeOut(200);
+    }
+  });
+});
+
+jQuery(document).ready(function ($) {
+  $(".truncate-text").each(function () {
+    const maxLength = 25;
+    const text = $(this).text().trim();
+    if (text.length > maxLength) {
+      $(this).text(text.substring(0, maxLength) + "...");
+    }
+  });
+});
+
+jQuery(document).ready(function ($) {
+  $(".progress-container").each(function () {
+    const label = $(this).find(".progress-label");
+    const bar = $(this).find(".progress-bar");
+    const match = label.text().match(/(\d+)\/(\d+)/);
+
+    if (match) {
+      const current = parseInt(match[1]);
+      const total = parseInt(match[2]);
+      const percent = (current / total) * 100;
+
+      // Animate bar fill
+      bar.animate({ width: percent + "%" }, 600);
+
+      // Optionally, update label to show percentage
+      // label.text(percent.toFixed(0) + '% Completed');
     }
   });
 });
