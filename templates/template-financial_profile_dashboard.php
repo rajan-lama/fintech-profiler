@@ -73,8 +73,6 @@ get_header();
             endif;
             ?>
           </div>
-          <?php  // bakery_shop_pro_pagination(); //Pagination 
-          ?>
         </div>
       </div><!-- #primary -->
     </div>

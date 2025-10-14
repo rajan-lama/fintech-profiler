@@ -123,6 +123,36 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       }
     }
 
+    function register_profile_picture_meta_box()
+    {
+
+      /**
+       * Repeatable Field Groups
+       */
+      $cmb = new_cmb2_box(array(
+        'id'           => 'user_profile_picture',
+        'title'        => 'Profile Picture',
+        'object_types' => array('user'), // Use 'user' to display this for user profiles
+        'context'      => 'side',
+        'priority'     => 'default',
+      ));
+
+      // Add the profile picture upload field
+      $cmb->add_field(array(
+        'name'    => 'Profile Picture',
+        'desc'    => 'Upload your profile picture.',
+        'id'      => '_profile_picture', // Meta field ID
+        'type'    => 'file', // File upload field
+        'options' => array(
+          'url' => true, // Allow storing the URL of the image
+        ),
+        'text' => array(
+          'add_upload_file_text' => 'Upload Profile Picture' // Custom text for the upload button
+        ),
+        'preview_size' => 'medium', // Optional: set image preview size
+      ));
+    }
+
     /**
      * Hook in and add a metabox to demonstrate repeatable grouped fields
      */

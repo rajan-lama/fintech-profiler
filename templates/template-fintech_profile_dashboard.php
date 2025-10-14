@@ -719,7 +719,7 @@ get_header();
                 </h2>
               </div>
             </div>
-            <div class="dashboard-page-body">
+            <div class="dashboard-page-body" id="pricing-page">
               <div class="dashboard-page-sections" id="plans-info">
                 <div class="dashboard-section" id="plan-page-title-desc">
                   <div class="dashboard-page-plan">
@@ -746,6 +746,7 @@ get_header();
                         <p class="dashboard-plan-type__tag">Basic Plan</p>
                         <h2 class="dashboard-plan-type__pricing">Free</h2>
                         <p class="dashboard-page-plan-status">You are on Basic Plan</p>
+                        <a href="<?php echo get_site_url(); ?>/fintech-dashboard/?add-to-cart=324" class="dashboard-page-plan-status">Upgrade</a>
                       </div>
                       <div class="basic-plan-content__holder">
                         <div class="dashboard-page-plan-includes">
@@ -779,7 +780,7 @@ get_header();
                         <div class="dashboard-page-plan-price-duration__holder">
                           <h2 class="dashboard-plan-type__pricing">$99</h2><span class="pricing-renewal-duration"> / Yearly</span>
                         </div>
-                        <a href="#" class="dashboard-page-plan-status">Upgrade</a>
+                        <a href="<?php echo get_site_url(); ?>/fintech-dashboard/?add-to-cart=325" class="dashboard-page-plan-status">Upgrade</a>
                       </div>
                       <div class="basic-plan-content__holder">
                         <div class="dashboard-page-plan-includes">
@@ -810,7 +811,7 @@ get_header();
                         <div class="dashboard-page-plan-price-duration__holder">
                           <h2 class="dashboard-plan-type__pricing">$149</h2><span class="pricing-renewal-duration"> / Yearly</span>
                         </div>
-                        <a href="#" class="dashboard-page-plan-status">Upgrade</a>
+                        <a href="<?php echo get_site_url(); ?>/fintech-dashboard/?add-to-cart=326" class="dashboard-page-plan-status">Upgrade</a>
                       </div>
                       <div class="basic-plan-content__holder">
                         <div class="dashboard-page-plan-includes">
@@ -830,6 +831,17 @@ get_header();
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-page-body" id="checkout-page">
+              <div class="dashboard-page-sections" id="plans-info">
+                <div class="dashboard-section" id="plan-page-title-desc">
+                  <div class="dashboard-page-plan">
+                    <?php // echo do_shortcode('[fintech_checkout]'); 
+                    ?>
                   </div>
                 </div>
               </div>

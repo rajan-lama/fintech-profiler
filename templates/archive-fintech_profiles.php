@@ -46,8 +46,6 @@ get_header();
 
                             <?php endwhile; ?>
                         </div>
-                        <?php  // bakery_shop_pro_pagination(); //Pagination 
-                        ?>
                     </div>
                 </div><!-- #primary -->
             <?php else :

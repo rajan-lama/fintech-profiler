@@ -94,3 +94,75 @@ add_action('after_setup_theme', function () {
 });
 
 add_filter('show_admin_bar', '__return_false');
+
+
+// add_action('init', function () {
+// 	if (class_exists('WooCommerce')) {
+// 		add_shortcode('fintech_checkout', function () {
+// 			// Load WooCommerce assets for checkout
+// 			// Initialize WooCommerce objects if not already done
+// 			// if (null === WC()->session) {
+// 			// 	$session_class = apply_filters('woocommerce_session_handler', 'WC_Session_Handler');
+// 			// 	WC()->session = new $session_class();
+// 			// 	WC()->session->init();
+// 			// }
+
+// 			// if (null === WC()->customer) {
+// 			// 	WC()->customer = new WC_Customer(get_current_user_id(), true);
+// 			// }
+
+// 			// if (null === WC()->cart) {
+// 			// 	WC()->cart = new WC_Cart();
+// 			// }
+
+// 			ob_start();
+// 			echo do_shortcode('[woocommerce_checkout]');
+// 			return ob_get_clean();
+// 			ob_start();
+// 		});
+// 	}
+// });
+
+
+// Treat your custom checkout page as WooCommerce's checkout page
+add_filter('woocommerce_is_checkout', function ($is_checkout) {
+	if (is_page('fintech-dashboard')) { // change to your page slug
+		return true;
+	}
+	return $is_checkout;
+});
+
+// Define the shortcode
+add_action('init', function () {
+	if (class_exists('WooCommerce')) {
+		add_shortcode('fintech_checkout', function () {
+
+			// wc()->frontend_includes();
+			// wc()->cart = new WC_Cart();
+			// wc()->session = new WC_Session_Handler();
+			// wc()->customer = new WC_Customer(get_current_user_id(), true);
+
+			if (null === WC()->session) {
+				// $session_class = apply_filters('woocommerce_session_handler', 'WC_Session_Handler');
+				// WC()->session = new $session_class();
+				// WC()->session->init();
+
+				// WC()->customer = new WC_Customer(get_current_user_id(), true);
+
+
+
+				// var_dump(WC()->session);
+			}
+
+			// var_dump('ID:', get_current_user_id());
+			// var_dump(WC()->customer);
+			// var_dump(WC());
+
+			// var_dump(WC()->payment_gateways->get_available_payment_gateways());
+
+			ob_start();
+			echo do_shortcode('[woocommerce_checkout]');
+			return ob_get_clean();
+		});
+	}
+});
