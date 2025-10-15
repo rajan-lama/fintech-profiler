@@ -438,7 +438,6 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         'object_types' => array('fintech_profiles',),
       ));
 
-
       // $group_field_id is the field id string, so in this case: 'fintech_profiler_group_demo'
       $group_field_id = $cmb_group->add_field(array(
         'id'          => 'fintech_profiler_slides',
@@ -457,26 +456,25 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         ],
       ));
 
-      /**
-       * Group fields works the same, except ids only need
-       * to be unique to the group. Prefix is not needed.
-       *
-       * The parent field's id needs to be passed as the first argument.
-       */
+      // $cmb_group->add_group_field($group_field_id, array(
+      //   'name' => esc_html__('Image', 'fintech-profiler'),
+      //   'id'   => 'image',
+      //   'type' => 'file',
+      // ));
 
-      $cmb_group->add_group_field($group_field_id, array(
-        'name' => esc_html__('Image', 'fintech-profiler'),
-        'id'   => 'image',
-        'type' => 'file',
-      ));
+      $cmb_group->add_group_field($group_field_id, [
+        'name' => 'Slide Image',
+        'id'   => 'slide_image',
+        'type' => 'text_url',
+      ]);
 
-      $cmb_group->add_group_field($group_field_id, array(
-        'name'       => esc_html__('URL', 'fintech-profiler'),
-        'id'         => 'url',
-        'description' => esc_html__('Enter the Link', 'fintech-profiler'),
-        'type'       => 'text_url',
-        // 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
-      ));
+      // $cmb_group->add_group_field($group_field_id, array(
+      //   'name'       => esc_html__('URL', 'fintech-profiler'),
+      //   'id'         => 'url',
+      //   'description' => esc_html__('Enter the Link', 'fintech-profiler'),
+      //   'type'       => 'text_url',
+      //   // 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
+      // ));
     }
 
     public function fp_handle_fintech_profile_submission()
@@ -525,10 +523,52 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         $plan_descriptions = $_POST['plan_description'];
         $plan_costs = $_POST['plan_cost'];
 
+
+        // Get current user ID
+        $user_id = get_current_user_id();
+
+        if ($user_id) {
+          // Sanitize form inputs
+          $user_name = sanitize_text_field($_POST['user_name']);
+          $user_profile_website = esc_url_raw($_POST['user_profile_website']);
+
+          // Update user meta for profile information
+          update_user_meta($user_id, 'user_profile_name', $user_name);
+          update_user_meta($user_id, 'user_profile_website', $user_profile_website);
+
+          // Handle file upload for company logo
+          if (isset($_FILES['company_logo']) && ! empty($_FILES['company_logo']['name'])) {
+            // If a new file is uploaded, handle the file
+            if (! function_exists('media_handle_upload')) {
+              require_once(ABSPATH . 'wp-admin/includes/image.php');
+              require_once(ABSPATH . 'wp-admin/includes/file.php');
+              require_once(ABSPATH . 'wp-admin/includes/media.php');
+            }
+
+            $upload_id = media_handle_upload('company_logo', 0);
+
+            if (! is_wp_error($upload)) {
+              // Save the attachment ID instead of URL
+              $image_url = wp_get_attachment_url($upload_id);
+
+              // Save URL instead of attachment ID
+              update_user_meta($user_id, '_profile_picture', $image_url);
+
+              // Optional: still save the ID if needed later
+              update_user_meta($user_id, '_profile_picture_id', $upload_id);
+            }
+          }
+
+          // Optionally, update WordPress user data (name, website)
+          wp_update_user([
+            'ID' => $user_id,
+            'display_name' => $user_name,
+            'user_nicename'  => $user_name, // Set the user's display name
+            'user_url' => $user_profile_website // Set the user's website URL
+          ]);
+        }
+
         foreach ($plan_types as $index => $type) {
-          // if (empty($type) && empty($plan_descriptions[$index]) && empty($plan_costs[$index])) {
-          //   continue; // Skip empty rows
-          // }
 
           $pricing_plans[] = [
             'name'        => sanitize_text_field($plan_types[$index]),
@@ -581,15 +621,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
           update_post_meta($post_id, 'fintech_demo', $demo);
           update_post_meta($post_id, 'fintech_demo_url', $demo_link);
 
-          // update_post_meta($post_id, 'case_title', $case_title);
-          // update_post_meta($post_id, 'case_link', $case_link);
-          //update_post_meta($post_id, 'services', $services);
-          // update_post_meta($post_id, 'plan_type', $plan_type);
-          // update_post_meta($post_id, 'plan_description', $plan_desc);
-          // update_post_meta($post_id, 'plan_cost', $plan_cost);
-
-
-          // Save to CMB2 meta (group field)
+          // for Repeater
           update_post_meta($post_id, 'fintech_pricing_plans', $pricing_plans);
           update_post_meta($post_id, 'fintech_case_studies', $cases);
 
@@ -620,19 +652,19 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
 
 
           // Handle file upload (company logo)
-          if (!empty($_FILES['company_logo']['name'])) {
+          // if (!empty($_FILES['company_logo']['name'])) {
 
-            if (!function_exists('media_handle_upload')) {
-              require_once(ABSPATH . 'wp-admin/includes/image.php');
-              require_once(ABSPATH . 'wp-admin/includes/file.php');
-              require_once(ABSPATH . 'wp-admin/includes/media.php');
-            }
+          //   if (!function_exists('media_handle_upload')) {
+          //     require_once(ABSPATH . 'wp-admin/includes/image.php');
+          //     require_once(ABSPATH . 'wp-admin/includes/file.php');
+          //     require_once(ABSPATH . 'wp-admin/includes/media.php');
+          //   }
 
-            $uploaded = media_handle_upload('company_logo', $post_id);
-            if (!is_wp_error($uploaded)) {
-              set_post_thumbnail($post_id, $uploaded);
-            }
-          }
+          //   $uploaded = media_handle_upload('company_logo', $post_id);
+          //   if (!is_wp_error($uploaded)) {
+          //     set_post_thumbnail($post_id, $uploaded);
+          //   }
+          // }
 
           // Redirect after submission
           wp_redirect(get_permalink($post_id));
@@ -645,15 +677,15 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
     {
       if (isset($_POST['submit_claim'])) {
 
-        if (!empty($_FILES['attach_media']['name'])) {
-          require_once(ABSPATH . 'wp-admin/includes/file.php');
-          $uploaded = media_handle_upload('attach_media', 0);
+        // if (!empty($_FILES['attach_media']['name'])) {
+        //   require_once(ABSPATH . 'wp-admin/includes/file.php');
+        //   $uploaded = media_handle_upload('attach_media', 0);
 
-          if (!is_wp_error($uploaded)) {
-            $file_url = wp_get_attachment_url($uploaded);
-            $message .= "\nUploaded File: $file_url";
-          }
-        }
+        //   if (!is_wp_error($uploaded)) {
+        //     $file_url = wp_get_attachment_url($uploaded);
+        //     $message .= "\nUploaded File: $file_url";
+        //   }
+        // }
 
         // Verify nonce
         if (
@@ -668,6 +700,9 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         $website_link     = sanitize_text_field($_POST['website_link'] ?? '');
         $email            = sanitize_email($_POST['email'] ?? '');
         $contact_number   = sanitize_text_field($_POST['contact_number'] ?? '');
+        // Get attached image URLs
+        $attached_images = isset($_POST['attached_images']) ? sanitize_text_field($_POST['attached_images']) : '';
+        $image_urls = explode(',', $attached_images);
 
         // Prepare email
         $to = get_option('admin_email'); // send to admin email
@@ -678,8 +713,15 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         $message .= "Email: " . $email . "\n";
         $message .= "Contact Number: " . $contact_number . "\n";
 
+        if (!empty($image_urls)) {
+          foreach ($image_urls as $url) {
+            $message .= '<p><a href="' . esc_url($url) . '">' . esc_html($url) . '</a></p>';
+            $message .= '<img src="' . esc_url($url) . '" alt="Image" width="150" style="margin:5px;">';
+          }
+        }
+
         // Send email
-        wp_mail($to, $subject, $message);
+        wp_mail($to, $subject, $message,  array('Content-Type: text/html; charset=UTF-8'));
 
         // Redirect or show success
         wp_redirect(add_query_arg('claim_submitted', '1', wp_get_referer()));

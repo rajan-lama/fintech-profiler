@@ -18,7 +18,7 @@ get_header();
             fintech_profiler_breadcrumbs();
         }
         ?>
-        <h1 class="entry-title"><?php the_title(); ?> Rajan</h1>
+        <h1 class="entry-title"><?php the_title(); ?></h1>
         <ul>
             <li>
                 <a href="#" class="btn btn-secondary btn-request-demo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

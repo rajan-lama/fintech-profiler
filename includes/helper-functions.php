@@ -904,10 +904,10 @@ function handle_company_logo_upload()
 }
 
 
-add_action('wp_ajax_upload_company_logo', 'fp_upload_company_logo');
-add_action('wp_ajax_nopriv_upload_company_logo', 'fp_upload_company_logo');
+add_action('wp_ajax_upload_documents', 'fp_upload_documents');
+add_action('wp_ajax_nopriv_upload_documents', 'fp_upload_documents');
 
-function fp_upload_company_logo()
+function fp_upload_documents()
 {
     if (!function_exists('wp_handle_upload')) {
         require_once(ABSPATH . 'wp-admin/includes/file.php');
@@ -981,3 +981,76 @@ function fp_update_image_order()
     }
     wp_send_json_success(['order_saved' => true]);
 }
+
+add_action('wp_ajax_fintech_upload_media', 'fintech_upload_media');
+add_action('wp_ajax_nopriv_fintech_upload_media', 'fintech_upload_media');
+
+function fintech_upload_media()
+{
+    if (empty($_FILES['file'])) {
+        wp_send_json_error(['message' => 'No file uploaded']);
+    }
+
+    if (!function_exists('wp_handle_upload')) {
+        require_once(ABSPATH . 'wp-admin/includes/file.php');
+    }
+
+    require_once ABSPATH . 'wp-admin/includes/file.php';
+    require_once ABSPATH . 'wp-admin/includes/media.php';
+    require_once ABSPATH . 'wp-admin/includes/image.php';
+
+    $file = $_FILES['file'];
+    $upload_id = media_handle_upload('file', 0);
+
+    if (is_wp_error($upload_id)) {
+        wp_send_json_error(['message' => $upload_id->get_error_message()]);
+    }
+
+    $url = wp_get_attachment_url($upload_id);
+
+    var_dump($url);
+    var_dump($file);
+
+    return $url;
+    wp_send_json_success(['url' => $url, 'id' => $upload_id]);
+}
+
+
+// function fintech_upload_media()
+// {
+//     if (!function_exists('wp_handle_upload')) {
+//         require_once(ABSPATH . 'wp-admin/includes/file.php');
+//     }
+
+//     $uploaded_files = $_FILES['attach_media'];
+//     $uploaded_urls = [];
+//     $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+
+//     foreach ($uploaded_files['name'] as $key => $value) {
+//         if ($uploaded_files['name'][$key]) {
+//             $file = [
+//                 'name' => $uploaded_files['name'][$key],
+//                 'type' => $uploaded_files['type'][$key],
+//                 'tmp_name' => $uploaded_files['tmp_name'][$key],
+//                 'error' => $uploaded_files['error'][$key],
+//                 'size' => $uploaded_files['size'][$key],
+//             ];
+
+//             $upload_overrides = ['test_form' => false];
+//             $movefile = wp_handle_upload($file, $upload_overrides);
+
+//             if ($movefile && !isset($movefile['error'])) {
+//                 $uploaded_urls[] = $movefile['url'];
+//             }
+//         }
+//     }
+
+//     if ($post_id && !empty($uploaded_urls)) {
+//         $existing = get_post_meta($post_id, '_company_logo_gallery', true);
+//         if (!is_array($existing)) $existing = [];
+//         $merged = array_merge($existing, $uploaded_urls);
+//         update_post_meta($post_id, '_company_logo_gallery', $merged);
+//     }
+
+//     wp_send_json_success(['files' => $uploaded_urls]);
+// }

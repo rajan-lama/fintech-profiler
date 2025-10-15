@@ -175,7 +175,7 @@ get_header();
               <div class="dashboard-page-sections">
                 <div class="dashboard-section" id="company-logo">
                   <div class="dashboard-left">
-                    <label for="attach_media">Company Profile Picture</label>
+                    <label for="profile-picture">Company Profile Picture</label>
                   </div>
                   <div class="dashboard-right">
                     <div class="fp-logo-upload">
@@ -187,16 +187,12 @@ get_header();
                         <input type="hidden" name="action" value="upload_company_logo">
                         <span>Supports .jpg, .png and .svg and zip files</span>
                       </div>
-                      <!-- </div>
-                    <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
-                    <input type="file" name="attach_media" id="attach_media" accept="image/*">
-                    <input type="hidden" name="action" value="upload_company_logo"> -->
                     </div>
                   </div>
                 </div>
                 <div class="dashboard-section" id="basic-info">
                   <div class="dashboard-left">
-                    <label for="attach_media">Basic Information</label>
+                    <label for="basic_info">Basic Information</label>
                   </div>
                   <div class="dashboard-right">
                     <p>
@@ -231,7 +227,7 @@ get_header();
 
                 <div class="dashboard-section" id="services-provided">
                   <div class="dashboard-left">
-                    <label for="attach_media">Services Provided</label>
+                    <label for="service_provided">Services Provided</label>
                   </div>
                   <div class="dashboard-right">
                     <p>
@@ -336,7 +332,7 @@ get_header();
               <div class="dashboard-page-sections">
                 <div class="dashboard-section" id="objective-and-description">
                   <div class="dashboard-left">
-                    <label for="attach_media">About</label>
+                    <label for="about">About</label>
                     <p>What is company does, services, advantages and key features you provide</p>
                   </div>
                   <div class="dashboard-right">
@@ -379,20 +375,54 @@ get_header();
                 <div class="dashboard-section" id="multimedia-upload">
                   <div class="dashboard-left">
                     <div class="top-section">
-                      <label for="attach_media">Upload Multimedia</label>
+                      <label for="upload_multimedia">Upload Multimedia</label>
                       <p>Add images and videos of your product giving glimpses of your service and stand out</p>
                     </div>
                     <div class="bottom-section">
                       <span>Limited to 1 video and 4 images</span>
-                      <button class="btn btn-primary btn-upload" id="btn-upload">Upload files</button>
+                      <button class="btn btn-primary btn-upload" id="btn-multiple-upload">Upload files</button>
                     </div>
                   </div>
                   <div class="dashboard-right">
                     <div class="image-holder">
                       <img src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/fallback-image.png" />
+                      <input type="hidden" name="fintech_profiler_slides[][slide_image]" value="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/fallback-image.png">
                     </div>
                   </div>
                 </div>
+
+                <!-- Upload Modal -->
+                <!-- <div id="upload-modal" style="display:none;" class="upload-modal">
+                  <div class="upload-box">
+                    <h3>Upload Multimedia</h3>
+                    <p>Drag & drop files or click below to browse.</p>
+
+                    <input type="file" id="file-input" multiple accept="image/*,video/mp4" style="display:none;">
+                    <button id="browse-files" class="btn btn-secondary">Browse Files</button>
+
+                    <div id="drop-zone" class="drop-zone">Drop files here</div>
+
+                    <div id="upload-preview" class="upload-preview"></div>
+                    <button id="close-modal" class="btn btn-secondary mt-3">Close</button>
+                  </div>
+                </div> -->
+
+                <!-- Upload Modal -->
+                <div id="upload-modal" style="display:none;" class="upload-modal">
+                  <div class="upload-box">
+                    <h3>Upload Multimedia</h3>
+                    <p>Drag & drop files or click below to browse.</p>
+
+                    <input type="file" id="file-input" multiple accept="image/*,video/mp4" style="display:none;">
+                    <button id="browse-files" class="btn btn-secondary">Browse Files</button>
+
+                    <div id="drop-zone" class="drop-zone">Drop files here</div>
+
+                    <div id="upload-preview" class="upload-preview"></div>
+                    <button id="close-modal" class="btn btn-secondary mt-3">Close</button>
+                  </div>
+                </div>
+
                 <div class="dashboard-section has-table" id="multimedia-table">
                   <h5>Upload Multimedia</h5>
                   <p>Uploaded files will be shown in order in the detail page </p>
@@ -465,7 +495,7 @@ get_header();
                 <div class="dashboard-section" id="pricing-plan-info">
                   <div class="dashboard-left">
                     <div>
-                      <label for="attach_media">Plans and Pricing Models</label>
+                      <label for="plans-and-pricings">Plans and Pricing Models</label>
                       <p>Mention the pricing models and plans your company offers</p>
                     </div>
                   </div>
@@ -568,7 +598,7 @@ get_header();
                 <div class="dashboard-section" id="case-study-and-demo">
                   <div class="dashboard-left">
                     <div class="dashboard-header-info">
-                      <label for="attach_media">Showcase your Product</label>
+                      <label for="showcase-your-product">Showcase your Product</label>
                       <p>Help your users to decide why they should choose you by showing your experiences</p>
                     </div>
                   </div>
@@ -578,18 +608,17 @@ get_header();
                 </div>
                 <div class="dashboard-section" id="demo-link">
                   <div class="dashboard-left">
-                    <label for="attach_media">Demo</label>
+                    <label for="demo">Demo</label>
                   </div>
                   <div class="dashboard-right">
                     <label for="demo_link"> Demo Link</label>
                     <input type="text" name="demo_link" id="demo_link" placeholder="myawesomecompany.com/demo">
-                    Repeater here
                   </div>
                 </div>
 
                 <div class="dashboard-section" id="case-study">
                   <div class="dashboard-left">
-                    <label for="attach_media">Case Study</label>
+                    <label for="case-study">Case Study</label>
                   </div>
                   <div class="dashboard-right">
                     <div id="case-studies-wrapper">
@@ -637,7 +666,7 @@ get_header();
                 </div>
                 <div class="dashboard-section" id="contact-information">
                   <div class="dashboard-left">
-                    <label for="attach_media">Contact Information</label>
+                    <label for="contact-info">Contact Information</label>
                   </div>
                   <div class="dashboard-right">
                     <div class="fp-country-info">
@@ -683,7 +712,7 @@ get_header();
 
                 <div class="dashboard-section" id="social-links">
                   <div class="dashboard-left">
-                    <label for="attach_media">Socials</label>
+                    <label for="socials">Socials</label>
                   </div>
                   <div class="dashboard-right">
                     <div class="fp-social-links">
