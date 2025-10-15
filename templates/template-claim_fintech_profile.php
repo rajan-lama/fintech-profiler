@@ -79,13 +79,6 @@ get_header();
             </ul>
             </p>
 
-            <!-- <p>
-              <label for="attach_media">Attach media</label>
-              <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
-              <input type="file" name="attach_media" id="attach_media" accept="image/*" required multiple>
-              <input type="hidden" name="action" value="upload_company_logo">
-            </p> -->
-
             <div class="fp-media-uploader">
               <p>
                 <label for="attach_media">Attach Media</label>
@@ -100,6 +93,7 @@ get_header();
                   <span class="content-bg"></span>
                 </p>
                 <input type="file" name="attach_media[]" id="attach_media" accept="image/*" multiple />
+                <input type="hidden" name="attached_images" id="attached_images" value="">
               </div>
 
               <ul id="preview-container"></ul>

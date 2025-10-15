@@ -120,7 +120,7 @@ jQuery(document).ready(function ($) {
     const postID = $("#current_post_id").val();
     filesList.forEach((file, index) => {
       const formData = new FormData();
-      formData.append("action", "upload_company_logo");
+      formData.append("action", "upload_documents");
       formData.append("post_id", postID);
       formData.append("attach_media[]", file);
 
@@ -152,6 +152,7 @@ jQuery(document).ready(function ($) {
             progressBar.css("width", "100%");
             setTimeout(() => progressBar.fadeOut(300), 400);
           }
+          console.log(response);
         },
       });
     });
@@ -173,7 +174,7 @@ jQuery(document).ready(function ($) {
     }
 
     $.ajax({
-      url: ajaxurl,
+      url: fp_media.ajaxurl,
       type: "POST",
       data: {
         action: "remove_uploaded_image",
@@ -201,7 +202,7 @@ jQuery(document).ready(function ($) {
     });
 
     $.ajax({
-      url: ajaxurl,
+      url: fp_media.ajaxurl,
       type: "POST",
       data: {
         action: "update_image_order",
@@ -209,5 +210,89 @@ jQuery(document).ready(function ($) {
         order: orderedURLs,
       },
     });
+  }
+});
+
+jQuery(document).ready(function ($) {
+  $(".btn-submit-claim").on("submit", function (e) {
+    // Collect all image URLs
+    let imageUrls = [];
+    $("#preview-container .image-preview").each(function () {
+      let url = $(this).data("url");
+      if (url) imageUrls.push(url);
+    });
+
+    // Store in hidden field as JSON or comma-separated list
+    $("#attached_images").val(imageUrls.join(","));
+  });
+});
+
+jQuery(document).ready(function ($) {
+  $("#btn-multiple-upload").on("click", function (e) {
+    e.preventDefault();
+    $("#upload-modal").fadeIn();
+  });
+
+  $("#browse-files").on("click", function () {
+    $("#file-input").trigger("click");
+  });
+
+  // File input change
+  $("#file-input").on("change", function (e) {
+    handleFiles(e.target.files);
+  });
+
+  // Drag & drop area
+  $("#drop-zone")
+    .on("dragover", function (e) {
+      e.preventDefault();
+      $(this).addClass("dragover");
+    })
+    .on("dragleave", function () {
+      $(this).removeClass("dragover");
+    })
+    .on("drop", function (e) {
+      e.preventDefault();
+      $(this).removeClass("dragover");
+      handleFiles(e.originalEvent.dataTransfer.files);
+    });
+
+  function handleFiles(files) {
+    $.each(files, function (i, file) {
+      uploadFile(file);
+    });
+  }
+
+  function uploadFile(file) {
+    let formData = new FormData();
+    formData.append("action", "fintech_upload_media");
+    formData.append("file", file);
+
+    // $.ajax({
+    //   url: fp_media.ajaxUrl,
+    //   type: "POST",
+    //   data: formData,
+    //   processData: false,
+    //   contentType: false,
+    //   success: function (response) {
+    //     // if (response.success) {
+    //     //   let url = response.data.url;
+    //     //   $("#upload-preview").append(
+    //     //     '<img src="' + url + '" style="width:100px;margin:5px;">'
+    //     //   );
+    //     //   // Optionally, append to CMB2 group via hidden field
+    //     //   $(
+    //     //     '<input type="hidden" name="fintech_profiler_slides[][slide_image]" value="' +
+    //     //       url +
+    //     //       '">'
+    //     //   ).appendTo("#upload-preview");
+    //     // } else {
+    //     //   alert("Upload failed: " + response.data.message);
+    //     // }
+    //   },
+    //   error: function () {
+    //     alert("Upload error");
+    //   },
+    // });
   }
 });

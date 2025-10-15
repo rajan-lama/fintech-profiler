@@ -32,6 +32,10 @@ body.single-fintech_profiles,
   background-color: var(--background-light) !important;
 }
 
+header.page-header {
+  margin: 0 -15px;
+}
+
 .page-template-template-fintech_profile_dashboard,
 .single-fintech_profiles {
   a {
@@ -219,7 +223,7 @@ body.single-fintech_profiles,
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 15px;
   }
@@ -256,6 +260,10 @@ body.single-fintech_profiles,
     flex: 0 0 440px;
     padding: 0 15px;
     width: 450px;
+  }
+
+  h1.page-title {
+    margin: 0 -15px;
   }
 
   .fintech-tabs {
@@ -487,7 +495,7 @@ body.single-fintech_profiles,
 }
 
 .page-template-template-listing_fintech,
-.page-template-template-financial_profile_dashboard,
+/* .page-template-template-financial_profile_dashboard, */
 .post-type-archive-fintech_profiles {
   .inner-contents {
     width: 100%;
@@ -654,8 +662,11 @@ body.single-fintech_profiles,
 
   span.ui-slider-handle.ui-corner-all.ui-state-default {
     border-radius: 50%;
+    padding: 7px;
     border: 5px solid var(--text-color-light);
-    background: var(--primary-border);
+    /* background: var(--primary-border); */
+    background: #8f8f8f;
+    position: absolute;
   }
 
   .ui-slider-horizontal {
@@ -715,6 +726,12 @@ body.single-fintech_profiles,
 
     #slider-range {
       margin: 24px 0px;
+      position: relative;
+      background: #8f8f8f;
+
+      .ui-slider-handle.ui-corner-all.ui-state-default.ui-state-focus {
+        outline: unset;
+      }
     }
 
     .filter-location {
@@ -829,7 +846,7 @@ body.single-fintech_profiles,
     }
 
     .children {
-      display: none;
+      /* display: none; */
       /* hide by default */
       margin-left: 5px;
       border-left: 1px solid rgba(0, 0, 0, 0.1);
@@ -2918,11 +2935,24 @@ a.custom-logo-link {
         a {
           display: block;
           padding: 8px 12px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
         }
 
-        &.ui-tabs-active {
+        &.ui-tabs-active a {
           background: #f4f6f5;
         }
+      }
+
+      li:last-child {
+        margin-top: 12px;
+      }
+
+      li:nth-last-child(2) {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       }
     }
 
@@ -2999,6 +3029,11 @@ a.custom-logo-link {
         gap: 12px;
       }
     }
+
+    /* .woocommerce-notices-wrapper,
+    .woocommerce-info {
+      display: none !important;
+    } */
 
     .dashboard-white-space {
       height: 39px;
@@ -3091,6 +3126,73 @@ a.custom-logo-link {
       }
     }
 
+    #tab-4 {
+      .upload-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      .upload-box {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        width: 600px;
+        max-width: 95%;
+        text-align: center;
+      }
+      .drop-zone {
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+        padding: 30px;
+        margin-top: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .drop-zone.dragover {
+        background: #f1f5f9;
+        border-color: #0073aa;
+      }
+      .upload-preview {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      .upload-preview .preview-item {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: grab;
+        background: #f9f9f9;
+      }
+      .preview-item img,
+      .preview-item video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .preview-item .remove {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+
     #tabs-4,
     #tabs-5,
     #tabs-6,
@@ -3105,7 +3207,7 @@ a.custom-logo-link {
         gap: 16px;
 
         label {
-          width: 84px;
+          width: 305px;
           margin-top: 16px;
         }
       }
@@ -3115,7 +3217,7 @@ a.custom-logo-link {
         justify-content: space-between;
 
         label {
-          width: 84px;
+          width: 305px;
           margin-top: 16px;
         }
       }
@@ -3214,9 +3316,9 @@ a.custom-logo-link {
               justify-content: end;
 
               label {
-                width: 84px;
+                width: 305px;
                 display: flex;
-                flex: 84px 0 0;
+                flex: 305px 0 0;
               }
             }
 
@@ -3356,4 +3458,17 @@ a.custom-logo-link {
 .fp-col-2 {
   display: flex;
   gap: 20px;
+}
+
+/** Responsive **/
+
+@media (min-width: 1200px) {
+  .page-header .entry-title,
+  .site-footer .footer-inner,
+  .site-footer:not(.dynamic-footer),
+  .site-header .header-inner,
+  .site-header:not(.dynamic-header),
+  body:not([class*="elementor-page-"]) .site-main {
+    max-width: 1280px;
+  }
 }

@@ -36,9 +36,10 @@ get_header();
             <p class="fp-logo-label">
               <label for="company_logo">Company Logo</label>
             </p>
+
             <div class="fp-logo-upload">
               <div class="fp-logo-preview">
-                <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" id="logo-preview" />
+                <img src="<?php echo FINTECH_PROFILER_BASE_URL . '/public/img/fallback-img.png'; ?>" id="logo-preview" />
               </div class="fp-logo-btn">
               <div class="fp-logo-file-input">
                 <input type="file" name="company_logo" id="company_logo" accept="image/*">

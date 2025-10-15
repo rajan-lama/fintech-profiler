@@ -20,14 +20,69 @@ get_header();
           ?>
           <div class="menu-holder">
             <ul>
-              <li><a href="#tabs-1">Get Started</a></li>
-              <li><a href="#tabs-2">General Info</a></li>
-              <li><a href="#tabs-3">Overview</a></li>
-              <li><a href="#tabs-4">Images & videos</a></li>
-              <li><a href="#tabs-5">Pricing Plans</a></li>
-              <li><a href="#tabs-6">Case Studies & Demo</a></li>
-              <li><a href="#tabs-7">Contact Info</a></li>
-              <li><a href="#tabs-8">Plans & Payment</a></li>
+
+              <li>
+                <a href="#tabs-1">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.89102 2.17056C10.272 1.14106 11.7281 1.14106 12.109 2.17056L14.0051 7.2947C14.1249 7.61837 14.3801 7.87356 14.7038 7.99333L19.8279 9.88944C20.8574 10.2704 20.8574 11.7265 19.8279 12.1074L14.7038 14.0035C14.3801 14.1233 14.1249 14.3785 14.0051 14.7022L12.109 19.8263C11.7281 20.8558 10.272 20.8558 9.89102 19.8263L7.99492 14.7022C7.87515 14.3785 7.61996 14.1233 7.29629 14.0035L2.17215 12.1074C1.14265 11.7265 1.14265 10.2704 2.17215 9.88944L7.29629 7.99333C7.61996 7.87356 7.87515 7.61837 7.99492 7.2947L9.89102 2.17056Z" stroke="#8943E2" stroke-opacity="0.8" stroke-width="2" stroke-linejoin="round" />
+                  </svg>
+                  Get Started</a>
+              </li>
+              <li>
+                <a href="#tabs-0">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.89102 2.17056C10.272 1.14106 11.7281 1.14106 12.109 2.17056L14.0051 7.2947C14.1249 7.61837 14.3801 7.87356 14.7038 7.99333L19.8279 9.88944C20.8574 10.2704 20.8574 11.7265 19.8279 12.1074L14.7038 14.0035C14.3801 14.1233 14.1249 14.3785 14.0051 14.7022L12.109 19.8263C11.7281 20.8558 10.272 20.8558 9.89102 19.8263L7.99492 14.7022C7.87515 14.3785 7.61996 14.1233 7.29629 14.0035L2.17215 12.1074C1.14265 11.7265 1.14265 10.2704 2.17215 9.88944L7.29629 7.99333C7.61996 7.87356 7.87515 7.61837 7.99492 7.2947L9.89102 2.17056Z" stroke="#8943E2" stroke-opacity="0.8" stroke-width="2" stroke-linejoin="round" />
+                  </svg>
+                  Dashboard</a>
+              </li>
+              <li>
+                <a href="#tabs-2">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 10L10 14.5M10 6.66455V6.625M1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  General Info</a>
+              </li>
+              <li>
+                <a href="#tabs-3">
+                  <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.4002 6.19844H12.6002M5.4002 9.79844H12.6002M5.4002 13.3984H9.0002M3.59992 1.39844H14.4001C15.7256 1.39844 16.8002 2.47298 16.8001 3.79848L16.7999 18.1985C16.7998 19.524 15.7253 20.5984 14.3999 20.5984L3.59982 20.5984C2.27433 20.5984 1.19982 19.5239 1.19983 18.1984L1.19992 3.79842C1.19993 2.47295 2.27444 1.39844 3.59992 1.39844Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Overview</a>
+              </li>
+              <li>
+                <a href="#tabs-4">
+                  <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.40002 16.1205V3.88047H0.400024V16.1205H2.40002ZM3.80002 2.48047H18.2V0.480469H3.80002V2.48047ZM19.6 3.88047V16.1205H21.6V3.88047H19.6ZM19.6 16.1205C19.6 16.8937 18.9732 17.5205 18.2 17.5205V19.5205C20.0778 19.5205 21.6 17.9982 21.6 16.1205H19.6ZM18.2 2.48047C18.9732 2.48047 19.6 3.10727 19.6 3.88047H21.6C21.6 2.0027 20.0778 0.480469 18.2 0.480469V2.48047ZM2.40002 3.88047C2.40002 3.10727 3.02682 2.48047 3.80002 2.48047V0.480469C1.92226 0.480469 0.400024 2.0027 0.400024 3.88047H2.40002ZM3.80002 17.5205C3.02683 17.5205 2.40002 16.8937 2.40002 16.1205H0.400024C0.400024 17.9982 1.92226 19.5205 3.80002 19.5205V17.5205ZM13.6 10.0006C13.6 11.4365 12.436 12.6006 11 12.6006V14.6006C13.5405 14.6006 15.6 12.5411 15.6 10.0006H13.6ZM11 12.6006C9.56408 12.6006 8.40002 11.4365 8.40002 10.0006H6.40002C6.40002 12.5411 8.45951 14.6006 11 14.6006V12.6006ZM8.40002 10.0006C8.40002 8.56465 9.56408 7.40059 11 7.40059V5.40059C8.45951 5.40059 6.40002 7.46008 6.40002 10.0006H8.40002ZM11 7.40059C12.436 7.40059 13.6 8.56465 13.6 10.0006H15.6C15.6 7.46008 13.5405 5.40059 11 5.40059V7.40059ZM18.2 17.5205H3.80002V19.5205H18.2V17.5205Z" fill="black" fill-opacity="0.8" />
+                  </svg>
+                  Images & videos</a>
+              </li>
+              <li>
+                <a href="#tabs-5">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.354 6.65092L15.3476 6.65089M18.5226 1.84983L12.7222 1.40365C12.2079 1.36409 11.7021 1.55122 11.3374 1.91593L1.91751 11.3358C1.22753 12.0258 1.22753 13.1444 1.9175 13.8344L8.16405 20.081C8.85402 20.7709 9.97269 20.7709 10.6627 20.081L20.0825 10.6611C20.4472 10.2964 20.6344 9.79052 20.5948 9.27627L20.1486 3.47591C20.0818 2.60704 19.3914 1.91667 18.5226 1.84983Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Pricing Plans</a>
+              </li>
+              <li>
+                <a href="#tabs-6">
+                  <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.7257 18.2267V3.41525M10.7257 18.2267L9.26826 16.7692C8.44525 15.9462 7.32949 15.4838 6.16557 15.4838H2.49621C1.89028 15.4838 1.40002 14.9926 1.40002 14.3867V2.86667C1.40002 2.26074 1.89123 1.76953 2.49717 1.76953H6.71365C7.87757 1.76953 8.99382 2.2319 9.81683 3.05491L10.7257 3.96382L11.6346 3.05491C12.4577 2.2319 13.5739 1.76953 14.7378 1.76953H19.5029C20.1088 1.76953 20.6 2.26074 20.6 2.86667V14.3867C20.6 14.9926 20.1088 15.4838 19.5029 15.4838H15.2864C14.1225 15.4838 13.0062 15.9462 12.1832 16.7692L10.7257 18.2267Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Case Studies & Demo</a>
+              </li>
+              <li>
+                <a href="#tabs-7">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.0704 1.92802L9.40647 12.592M2.27112 7.2337L18.877 1.47247C19.8996 1.11768 20.8808 2.09881 20.526 3.12144L14.7648 19.7273C14.3701 20.865 12.7726 20.8961 12.3338 19.7748L9.69691 13.0361C9.56521 12.6995 9.29894 12.4333 8.96238 12.3016L2.22366 9.66466C1.10232 9.22587 1.13351 7.62839 2.27112 7.2337Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  Contact Info</a>
+              </li>
+              <li>
+                <a href="#tabs-8">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.354 6.65092L15.3476 6.65089M18.5226 1.84983L12.7222 1.40365C12.2079 1.36409 11.7021 1.55122 11.3374 1.91593L1.91751 11.3358C1.22753 12.0258 1.22753 13.1444 1.9175 13.8344L8.16405 20.081C8.85402 20.7709 9.97269 20.7709 10.6627 20.081L20.0825 10.6611C20.4472 10.2964 20.6344 9.79052 20.5948 9.27627L20.1486 3.47591C20.0818 2.60704 19.3914 1.91667 18.5226 1.84983Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>Plans & Payment</a>
+              </li>
             </ul>
             <div class="footer-profile-info">
               <div class="footer-thumbnail"><img src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/company-logo.png" /></div>
@@ -120,7 +175,7 @@ get_header();
               <div class="dashboard-page-sections">
                 <div class="dashboard-section" id="company-logo">
                   <div class="dashboard-left">
-                    <label for="attach_media">Company Profile Picture</label>
+                    <label for="profile-picture">Company Profile Picture</label>
                   </div>
                   <div class="dashboard-right">
                     <div class="fp-logo-upload">
@@ -132,16 +187,12 @@ get_header();
                         <input type="hidden" name="action" value="upload_company_logo">
                         <span>Supports .jpg, .png and .svg and zip files</span>
                       </div>
-                      <!-- </div>
-                    <img src="http://jamesw705.sg-host.com/wp-content/uploads/2025/09/Frame-1707480130.png" />
-                    <input type="file" name="attach_media" id="attach_media" accept="image/*">
-                    <input type="hidden" name="action" value="upload_company_logo"> -->
                     </div>
                   </div>
                 </div>
                 <div class="dashboard-section" id="basic-info">
                   <div class="dashboard-left">
-                    <label for="attach_media">Basic Information</label>
+                    <label for="basic_info">Basic Information</label>
                   </div>
                   <div class="dashboard-right">
                     <p>
@@ -176,7 +227,7 @@ get_header();
 
                 <div class="dashboard-section" id="services-provided">
                   <div class="dashboard-left">
-                    <label for="attach_media">Services Provided</label>
+                    <label for="service_provided">Services Provided</label>
                   </div>
                   <div class="dashboard-right">
                     <p>
@@ -281,7 +332,7 @@ get_header();
               <div class="dashboard-page-sections">
                 <div class="dashboard-section" id="objective-and-description">
                   <div class="dashboard-left">
-                    <label for="attach_media">About</label>
+                    <label for="about">About</label>
                     <p>What is company does, services, advantages and key features you provide</p>
                   </div>
                   <div class="dashboard-right">
@@ -324,20 +375,54 @@ get_header();
                 <div class="dashboard-section" id="multimedia-upload">
                   <div class="dashboard-left">
                     <div class="top-section">
-                      <label for="attach_media">Upload Multimedia</label>
+                      <label for="upload_multimedia">Upload Multimedia</label>
                       <p>Add images and videos of your product giving glimpses of your service and stand out</p>
                     </div>
                     <div class="bottom-section">
                       <span>Limited to 1 video and 4 images</span>
-                      <button class="btn btn-primary btn-upload" id="btn-upload">Upload files</button>
+                      <button class="btn btn-primary btn-upload" id="btn-multiple-upload">Upload files</button>
                     </div>
                   </div>
                   <div class="dashboard-right">
                     <div class="image-holder">
                       <img src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/fallback-image.png" />
+                      <input type="hidden" name="fintech_profiler_slides[][slide_image]" value="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/fallback-image.png">
                     </div>
                   </div>
                 </div>
+
+                <!-- Upload Modal -->
+                <!-- <div id="upload-modal" style="display:none;" class="upload-modal">
+                  <div class="upload-box">
+                    <h3>Upload Multimedia</h3>
+                    <p>Drag & drop files or click below to browse.</p>
+
+                    <input type="file" id="file-input" multiple accept="image/*,video/mp4" style="display:none;">
+                    <button id="browse-files" class="btn btn-secondary">Browse Files</button>
+
+                    <div id="drop-zone" class="drop-zone">Drop files here</div>
+
+                    <div id="upload-preview" class="upload-preview"></div>
+                    <button id="close-modal" class="btn btn-secondary mt-3">Close</button>
+                  </div>
+                </div> -->
+
+                <!-- Upload Modal -->
+                <div id="upload-modal" style="display:none;" class="upload-modal">
+                  <div class="upload-box">
+                    <h3>Upload Multimedia</h3>
+                    <p>Drag & drop files or click below to browse.</p>
+
+                    <input type="file" id="file-input" multiple accept="image/*,video/mp4" style="display:none;">
+                    <button id="browse-files" class="btn btn-secondary">Browse Files</button>
+
+                    <div id="drop-zone" class="drop-zone">Drop files here</div>
+
+                    <div id="upload-preview" class="upload-preview"></div>
+                    <button id="close-modal" class="btn btn-secondary mt-3">Close</button>
+                  </div>
+                </div>
+
                 <div class="dashboard-section has-table" id="multimedia-table">
                   <h5>Upload Multimedia</h5>
                   <p>Uploaded files will be shown in order in the detail page </p>
@@ -410,7 +495,7 @@ get_header();
                 <div class="dashboard-section" id="pricing-plan-info">
                   <div class="dashboard-left">
                     <div>
-                      <label for="attach_media">Plans and Pricing Models</label>
+                      <label for="plans-and-pricings">Plans and Pricing Models</label>
                       <p>Mention the pricing models and plans your company offers</p>
                     </div>
                   </div>
@@ -513,7 +598,7 @@ get_header();
                 <div class="dashboard-section" id="case-study-and-demo">
                   <div class="dashboard-left">
                     <div class="dashboard-header-info">
-                      <label for="attach_media">Showcase your Product</label>
+                      <label for="showcase-your-product">Showcase your Product</label>
                       <p>Help your users to decide why they should choose you by showing your experiences</p>
                     </div>
                   </div>
@@ -523,18 +608,17 @@ get_header();
                 </div>
                 <div class="dashboard-section" id="demo-link">
                   <div class="dashboard-left">
-                    <label for="attach_media">Demo</label>
+                    <label for="demo">Demo</label>
                   </div>
                   <div class="dashboard-right">
                     <label for="demo_link"> Demo Link</label>
                     <input type="text" name="demo_link" id="demo_link" placeholder="myawesomecompany.com/demo">
-                    Repeater here
                   </div>
                 </div>
 
                 <div class="dashboard-section" id="case-study">
                   <div class="dashboard-left">
-                    <label for="attach_media">Case Study</label>
+                    <label for="case-study">Case Study</label>
                   </div>
                   <div class="dashboard-right">
                     <div id="case-studies-wrapper">
@@ -582,7 +666,7 @@ get_header();
                 </div>
                 <div class="dashboard-section" id="contact-information">
                   <div class="dashboard-left">
-                    <label for="attach_media">Contact Information</label>
+                    <label for="contact-info">Contact Information</label>
                   </div>
                   <div class="dashboard-right">
                     <div class="fp-country-info">
@@ -628,7 +712,7 @@ get_header();
 
                 <div class="dashboard-section" id="social-links">
                   <div class="dashboard-left">
-                    <label for="attach_media">Socials</label>
+                    <label for="socials">Socials</label>
                   </div>
                   <div class="dashboard-right">
                     <div class="fp-social-links">
@@ -664,7 +748,7 @@ get_header();
                 </h2>
               </div>
             </div>
-            <div class="dashboard-page-body">
+            <div class="dashboard-page-body" id="pricing-page">
               <div class="dashboard-page-sections" id="plans-info">
                 <div class="dashboard-section" id="plan-page-title-desc">
                   <div class="dashboard-page-plan">
@@ -691,6 +775,7 @@ get_header();
                         <p class="dashboard-plan-type__tag">Basic Plan</p>
                         <h2 class="dashboard-plan-type__pricing">Free</h2>
                         <p class="dashboard-page-plan-status">You are on Basic Plan</p>
+                        <a href="<?php echo get_site_url(); ?>/fintech-dashboard/?add-to-cart=324" class="dashboard-page-plan-status">Upgrade</a>
                       </div>
                       <div class="basic-plan-content__holder">
                         <div class="dashboard-page-plan-includes">
@@ -724,7 +809,7 @@ get_header();
                         <div class="dashboard-page-plan-price-duration__holder">
                           <h2 class="dashboard-plan-type__pricing">$99</h2><span class="pricing-renewal-duration"> / Yearly</span>
                         </div>
-                        <a href="#" class="dashboard-page-plan-status">Upgrade</a>
+                        <a href="<?php echo get_site_url(); ?>/fintech-dashboard/?add-to-cart=325" class="dashboard-page-plan-status">Upgrade</a>
                       </div>
                       <div class="basic-plan-content__holder">
                         <div class="dashboard-page-plan-includes">
@@ -755,7 +840,7 @@ get_header();
                         <div class="dashboard-page-plan-price-duration__holder">
                           <h2 class="dashboard-plan-type__pricing">$149</h2><span class="pricing-renewal-duration"> / Yearly</span>
                         </div>
-                        <a href="#" class="dashboard-page-plan-status">Upgrade</a>
+                        <a href="<?php echo get_site_url(); ?>/fintech-dashboard/?add-to-cart=326" class="dashboard-page-plan-status">Upgrade</a>
                       </div>
                       <div class="basic-plan-content__holder">
                         <div class="dashboard-page-plan-includes">
@@ -775,6 +860,17 @@ get_header();
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-page-body" id="checkout-page">
+              <div class="dashboard-page-sections" id="plans-info">
+                <div class="dashboard-section" id="plan-page-title-desc">
+                  <div class="dashboard-page-plan">
+                    <?php // echo do_shortcode('[fintech_checkout]'); 
+                    ?>
                   </div>
                 </div>
               </div>
