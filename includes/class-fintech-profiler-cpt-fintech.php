@@ -4,6 +4,8 @@
   * @version 1.0.0 
 */
 
+use function Safe\error_log;
+
 if (! defined('ABSPATH')) {
   exit; // Prevent direct access
 }
@@ -22,11 +24,13 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       add_action('cmb2_admin_init', array($this, 'fintech_register_more_info_metabox'));
       add_action('cmb2_admin_init', array($this, 'fintech_register_slider_metabox'));
 
-      add_action('init', array($this, 'fp_handle_fintech_profile_submission'));
-      add_action('init', array($this, 'fp_handle_claim_fintech_profile'));
+      // add_action('init', array($this, 'fp_handle_fintech_profile_submission'));
+      // add_action('init', array($this, 'fp_handle_claim_fintech_profile'));
 
       // add_action('init', array($this, 'register_cpt'));
       // register_activation_hook(__FILE__, array($this, 'add_custom_roles_caps'));
+
+      add_filter('map_meta_cap', array($this, 'fintech_cap_controller'), 10, 4);
     }
 
     /**
@@ -56,13 +60,11 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         'read_post' => 'read_fintech_profile',
         'delete_post' => 'delete_fintech_profile',
         'edit_posts' => 'edit_fintech_profiles',
-        'edit_others_posts' => 'edit_others_fintech_profiles',
         'publish_posts' => 'publish_fintech_profiles',
         'read_private_posts' => 'read_private_fintech_profiles',
         'delete_posts' => 'delete_fintech_profiles',
         'delete_private_posts' => 'delete_private_fintech_profiles',
         'delete_published_posts' => 'delete_published_fintech_profiles',
-        'delete_others_posts' => 'delete_others_fintech_profiles',
         'edit_private_posts' => 'edit_private_fintechs_profile',
         'edit_published_posts' => 'edit_published_fintech_profiles',
         'create_posts' => 'edit_fintech_profiles',
@@ -105,14 +107,14 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         'read_fintech_profile',
       );
 
-      // Add caps to fintech_manager
-      $fintech_role = get_role('fintech_manager');
-      if ($fintech_role) {
-        foreach ($caps as $cap) {
-          $fintech_role->add_cap($cap, true);
-        }
-        $fintech_role->add_cap('upload_files', true);
-      }
+      // // Add caps to fintech_manager
+      // $fintech_role = get_role('fintech_manager');
+      // if ($fintech_role) {
+      //   foreach ($fin_caps as $cap) {
+      //     $fintech_role->add_cap($cap, true);
+      //   }
+      //   $fintech_role->add_cap('upload_files', true);
+      // }
 
       // 🔑 Add caps to administrator
       $admin_role = get_role('administrator');
@@ -203,7 +205,6 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         'type'       => 'text',
       ));
     }
-
 
     /**
      * Hook in and add a metabox to demonstrate repeatable grouped fields
@@ -477,256 +478,43 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
       // ));
     }
 
-    public function fp_handle_fintech_profile_submission()
+    function fintech_cap_controller($caps, $cap, $user_id, $args)
     {
-      if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+      // Target relevant capabilities
+      if (in_array($cap, ['edit_post', 'delete_post', 'read_post'])) {
+        $post_id = isset($args[0]) ? $args[0] : 0;
+        $post = get_post($post_id);
 
-      if (
-        isset($_POST['create_fintech_profile'])
-        && isset($_POST['create_fintech_profile_nonce'])
-        && wp_verify_nonce($_POST['create_fintech_profile_nonce'], 'create_fintech_profile')
-      ) {
+        if ($post && $post->post_type === 'fintech') {
+          $post_author = (int) $post->post_author;
+          $user_id = (int) $user_id;
 
-        // Sanitize inputs
-        $company_name   = sanitize_text_field($_POST['company_name']);
-        $website_link   = esc_url_raw($_POST['website_link']);
-        $founded_in     = intval($_POST['founded_in']);
-        $company_size   = sanitize_text_field($_POST['company_size']);
-        $slogan         = sanitize_text_field($_POST['slogan']);
-        $services       = sanitize_text_field($_POST['services']);
-        $description    = sanitize_textarea_field($_POST['objective_and_description']);
-        // $plan_type      = sanitize_text_field($_POST['plan_type']);
-        // $plan_desc      = sanitize_text_field($_POST['description']);
-        // $plan_cost      = sanitize_text_field($_POST['cost']);
-        $country        = sanitize_text_field($_POST['country']);
-        $state          = sanitize_text_field($_POST['state']);
-        $city           = sanitize_text_field($_POST['city']);
-        $business_email = sanitize_email($_POST['business_email']);
-        $business_phone    = sanitize_text_field($_POST['business_phone']);
-        $business_phone_code    = sanitize_text_field($_POST['business_phone_code']);
+          // Admins can do anything
+          if (user_can($user_id, 'manage_options')) {
+            return ['edit_others_posts'];
+          }
 
-        $linkedin_url   = esc_url_raw($_POST['linkedin_url']);
-        $x_url          = esc_url_raw($_POST['x_url']);
-        $instagram_url  = esc_url_raw($_POST['instagram_url']);
-        $facebook_url   = esc_url_raw($_POST['facebook_url']);
-        $demo           = sanitize_text_field($_POST['demo']);
-        $demo_link      = esc_url_raw($_POST['demo_link']);
-        // $case_title     = sanitize_text_field($_POST['case_title']);
-        // $case_link      = esc_url_raw($_POST['case_link']);
-
-        // $plan_type      = sanitize_text_field($_POST['pricing_plans']);
-
-
-        // Prepare array for CMB2 group field
-        $pricing_plans = [];
-        $plan_types = $_POST['plan_type'];
-        $plan_descriptions = $_POST['plan_description'];
-        $plan_costs = $_POST['plan_cost'];
-
-
-        // Get current user ID
-        $user_id = get_current_user_id();
-
-        if ($user_id) {
-          // Sanitize form inputs
-          $user_name = sanitize_text_field($_POST['user_name']);
-          $user_profile_website = esc_url_raw($_POST['user_profile_website']);
-
-          // Update user meta for profile information
-          update_user_meta($user_id, 'user_profile_name', $user_name);
-          update_user_meta($user_id, 'user_profile_website', $user_profile_website);
-
-          // Handle file upload for company logo
-          if (isset($_FILES['company_logo']) && ! empty($_FILES['company_logo']['name'])) {
-            // If a new file is uploaded, handle the file
-            if (! function_exists('media_handle_upload')) {
-              require_once(ABSPATH . 'wp-admin/includes/image.php');
-              require_once(ABSPATH . 'wp-admin/includes/file.php');
-              require_once(ABSPATH . 'wp-admin/includes/media.php');
-            }
-
-            $upload_id = media_handle_upload('company_logo', 0);
-
-            if (! is_wp_error($upload)) {
-              // Save the attachment ID instead of URL
-              $image_url = wp_get_attachment_url($upload_id);
-
-              // Save URL instead of attachment ID
-              update_user_meta($user_id, '_profile_picture', $image_url);
-
-              // Optional: still save the ID if needed later
-              update_user_meta($user_id, '_profile_picture_id', $upload_id);
+          // Restrict fintech_manager to own posts
+          if (in_array($cap, ['edit_post', 'delete_post'])) {
+            if ($user_id === $post_author) {
+              return ['edit_posts'];
+            } else {
+              return ['do_not_allow'];
             }
           }
 
-          // Optionally, update WordPress user data (name, website)
-          wp_update_user([
-            'ID' => $user_id,
-            'display_name' => $user_name,
-            'user_nicename'  => $user_name, // Set the user's display name
-            'user_url' => $user_profile_website // Set the user's website URL
-          ]);
-        }
-
-        foreach ($plan_types as $index => $type) {
-
-          $pricing_plans[] = [
-            'name'        => sanitize_text_field($plan_types[$index]),
-            'description' => sanitize_text_field($plan_descriptions[$index]),
-            'cost'        => sanitize_text_field($plan_costs[$index]),
-          ];
-        }
-
-        // Prepare array for CMB2 group field
-        $cases = [];
-        $case_title = $_POST['case_title'];
-        $case_link = $_POST['case_link'];
-
-        foreach ($case_title as $index => $case) {
-          $cases[] = [
-            'title'        => sanitize_text_field($case_title[$index]),
-            'link' => sanitize_text_field($case_link[$index]),
-          ];
-        }
-
-        // Create CPT post
-        $post_id = wp_insert_post([
-          'post_type'   => 'fintech_profiles',
-          'post_status' => 'publish',
-          'post_title'  => $company_name,
-          'post_content' => $description,
-        ]);
-
-        if ($post_id) {
-          // Save extra fields as post meta
-          if ($demo === 'yes') {
-            $demo = 1;
-          } else {
-            $demo = 0;
-          }
-
-          update_post_meta($post_id, 'fintech_website', $website_link);
-          update_post_meta($post_id, 'fintech_founded', $founded_in);
-          update_post_meta($post_id, 'fintech_company_size', $company_size);
-          update_post_meta($post_id, 'fintech_country', $country);
-          update_post_meta($post_id, 'fintech_state', $state);
-          update_post_meta($post_id, 'fintech_city', $city);
-          update_post_meta($post_id, 'fintech_email', $business_email);
-          update_post_meta($post_id, 'fintech_phone', $business_phone_code . ' ' . $business_phone);
-          update_post_meta($post_id, 'fintech_linkedin_url', $linkedin_url);
-          update_post_meta($post_id, 'fintech_x_url', $x_url);
-          update_post_meta($post_id, 'fintech_instagram_url', $instagram_url);
-          update_post_meta($post_id, 'fintech_facebook_url', $facebook_url);
-          update_post_meta($post_id, 'fintech_slogan', $slogan);
-          update_post_meta($post_id, 'fintech_demo', $demo);
-          update_post_meta($post_id, 'fintech_demo_url', $demo_link);
-
-          // for Repeater
-          update_post_meta($post_id, 'fintech_pricing_plans', $pricing_plans);
-          update_post_meta($post_id, 'fintech_case_studies', $cases);
-
-
-          if (!empty($_POST['plan_type'])) {
-            $plans = [];
-            foreach ($_POST['plan_type'] as $i => $type) {
-              $plans[] = [
-                'type'        => sanitize_text_field($type),
-                'description' => sanitize_text_field($_POST['plan_description'][$i] ?? ''),
-                'cost'        => sanitize_text_field($_POST['plan_cost'][$i] ?? ''),
-              ];
+          // Allow reading if public or owner
+          if ($cap === 'read_post') {
+            if ($post->post_status !== 'private' || $user_id === $post_author) {
+              return ['read'];
+            } else {
+              return ['do_not_allow'];
             }
-            update_post_meta($post_id, 'pricing_plans', $plans);
           }
-
-          // Save Case Studies
-          if (!empty($_POST['case_title'])) {
-            $cases = [];
-            foreach ($_POST['case_title'] as $i => $title) {
-              $cases[] = [
-                'title' => sanitize_text_field($title),
-                'link'  => esc_url_raw($_POST['case_link'][$i] ?? ''),
-              ];
-            }
-            update_post_meta($post_id, 'case_studies', $cases);
-          }
-
-
-          // Handle file upload (company logo)
-          // if (!empty($_FILES['company_logo']['name'])) {
-
-          //   if (!function_exists('media_handle_upload')) {
-          //     require_once(ABSPATH . 'wp-admin/includes/image.php');
-          //     require_once(ABSPATH . 'wp-admin/includes/file.php');
-          //     require_once(ABSPATH . 'wp-admin/includes/media.php');
-          //   }
-
-          //   $uploaded = media_handle_upload('company_logo', $post_id);
-          //   if (!is_wp_error($uploaded)) {
-          //     set_post_thumbnail($post_id, $uploaded);
-          //   }
-          // }
-
-          // Redirect after submission
-          wp_redirect(get_permalink($post_id));
-          exit;
         }
       }
-    }
 
-    public function fp_handle_claim_fintech_profile()
-    {
-      if (isset($_POST['submit_claim'])) {
-
-        // if (!empty($_FILES['attach_media']['name'])) {
-        //   require_once(ABSPATH . 'wp-admin/includes/file.php');
-        //   $uploaded = media_handle_upload('attach_media', 0);
-
-        //   if (!is_wp_error($uploaded)) {
-        //     $file_url = wp_get_attachment_url($uploaded);
-        //     $message .= "\nUploaded File: $file_url";
-        //   }
-        // }
-
-        // Verify nonce
-        if (
-          !isset($_POST['claim_fintech_profile_nonce']) ||
-          !wp_verify_nonce($_POST['claim_fintech_profile_nonce'], 'claim_fintech_profile')
-        ) {
-          wp_die('Security check failed.');
-        }
-
-        // Sanitize inputs
-        $existing_profile = sanitize_text_field($_POST['existing_profile'] ?? '');
-        $website_link     = sanitize_text_field($_POST['website_link'] ?? '');
-        $email            = sanitize_email($_POST['email'] ?? '');
-        $contact_number   = sanitize_text_field($_POST['contact_number'] ?? '');
-        // Get attached image URLs
-        $attached_images = isset($_POST['attached_images']) ? sanitize_text_field($_POST['attached_images']) : '';
-        $image_urls = explode(',', $attached_images);
-
-        // Prepare email
-        $to = get_option('admin_email'); // send to admin email
-        $subject = "New Claim Request from $email";
-        $message  = "A new claim form was submitted:\n\n";
-        $message .= "Existing Profile: " . $existing_profile . "\n";
-        $message .= "Website Link: " . $website_link . "\n";
-        $message .= "Email: " . $email . "\n";
-        $message .= "Contact Number: " . $contact_number . "\n";
-
-        if (!empty($image_urls)) {
-          foreach ($image_urls as $url) {
-            $message .= '<p><a href="' . esc_url($url) . '">' . esc_html($url) . '</a></p>';
-            $message .= '<img src="' . esc_url($url) . '" alt="Image" width="150" style="margin:5px;">';
-          }
-        }
-
-        // Send email
-        wp_mail($to, $subject, $message,  array('Content-Type: text/html; charset=UTF-8'));
-
-        // Redirect or show success
-        wp_redirect(add_query_arg('claim_submitted', '1', wp_get_referer()));
-        exit;
-      }
+      return $caps;
     }
   }
 

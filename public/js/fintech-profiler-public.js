@@ -29,6 +29,12 @@
    * practising this, we should strive to set a better example in our own work.
    */
 
+  // document.querySelector("form").addEventListener("keydown", function (e) {
+  //   if (e.key === "Enter") {
+  //     e.preventDefault();
+  //   }
+  // });
+
   document.addEventListener("DOMContentLoaded", function () {
     const btn = document.querySelector(".toggle-more");
     const after = document.querySelector(".content-after");
@@ -76,6 +82,8 @@
 
       // Update Select2
       $("#services").val(mergedValues).trigger("change.select2");
+
+      $("#selected_category").val(mergedValues);
 
       console.log("mergedValues:", mergedValues);
     }
