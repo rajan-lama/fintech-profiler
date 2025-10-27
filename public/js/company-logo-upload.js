@@ -81,31 +81,134 @@ jQuery(document).ready(function ($) {
   });
 
   // Show previews and add to files list
+  // function handleFiles(files) {
+  //   Array.from(files).forEach((file, index) => {
+  //     if (!file.type.startsWith("image/")) return;
+  //     filesList.push(file);
+
+  //     // Calculate size in KB
+  //     const sizeKB = (file.size / 1024).toFixed(2);
+
+  //     // Generate formatted current date (e.g., 26 Oct 2025)
+  //     const now = new Date();
+  //     const formattedDate = now.toLocaleDateString("en-GB", {
+  //       day: "2-digit",
+  //       month: "short",
+  //       year: "numeric",
+  //     });
+
+  //     console.log(formattedDate);
+
+  //     // Calculate the row index (based on already added files)
+  //     const currentIndex = $(".sortable-table-body tr").length + 1;
+
+  //     const reader = new FileReader();
+  //     reader.onload = (e) => {
+  //       // Preview list
+  //       const li = $(`
+  //       <li class="image-preview" data-temp="true">
+  //         <div class="image-info-holder">
+  //           <div class="image-holder">
+  //             <img src="${e.target.result}" alt="${file.name}">
+  //           </div>
+  //           <div class="image-title">
+  //             <span class="title">${file.name}</span>
+  //             <span class="image-size">${sizeKB} KB</span>
+  //           </div>
+  //         </div>
+  //         <div class="progress-bar"></div>
+  //         <button class="remove-image">&times;</button>
+  //       </li>
+  //     `);
+
+  //       // Table row
+  //       const tablelist = $(`
+  //       <tr id="row-${currentIndex}">
+  //         <td class="handle-cell">
+  //           <img class="drag-handle" draggable="false" src="${fintech_ajax.site_url}/public/img/double-elipse.png" alt="drag" />
+  //         </td>
+  //         <td>${currentIndex}</td>
+  //         <td>${file.name}</td>
+  //         <td>${formattedDate}</td>
+  //         <td>${sizeKB} KB</td>
+  //         <td>
+  //           <a href="#"><img src="${fintech_ajax.site_url}/public/img/download-01.png" alt="download"></a>
+  //           <span style="padding:10px;"></span>
+  //           <a href="delete"><img src="${fintech_ajax.site_url}/public/img/trash-04.png" alt="delete"></a>
+  //         </td>
+  //       </tr>
+  //     `);
+
+  //       previewContainer.append(li);
+  //       $(".sortable-table-body").append(tablelist);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   });
+  // }
+
   function handleFiles(files) {
-    Array.from(files).forEach((file) => {
+    // capture current number of rows before we start adding this batch
+    const startIndex = $(".sortable-table-body tr").length;
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+
+    Array.from(files).forEach((file, batchIndex) => {
       if (!file.type.startsWith("image/")) return;
+
+      // Push into filesList (if you rely on filesList for uploads)
       filesList.push(file);
+
+      // Calculate size in KB
       const sizeKB = (file.size / 1024).toFixed(2);
+
+      // Compute a stable index for this file in the current batch
+      // startIndex is how many rows existed before this batch;
+      // batchIndex (0-based) gives the offset inside this batch.
+      const currentIndex = startIndex + batchIndex + 1;
 
       const reader = new FileReader();
       reader.onload = (e) => {
         const li = $(`
-          <li class="image-preview" data-temp="true">
-            <div class="image-info-holder">
-              <div class="image-holder">
-                <img src="${e.target.result}" alt="${file.name}">
-              </div>
-              <div class="image-title">
-                <span class="title">${file.name}</span>
-                <span class="image-size">${sizeKB} KB</span>
-              </div>
+        <li class="image-preview" data-temp="true">
+          <div class="image-info-holder">
+            <div class="image-holder">
+              <img src="${e.target.result}" alt="${file.name}">
             </div>
-            <div class="progress-bar"></div>
-            <button class="remove-image">&times;</button>
-          </li>
-        `);
+            <div class="image-title">
+              <span class="title">${file.name}</span>
+              <span class="image-size">${sizeKB} KB</span>
+            </div>
+          </div>
+          <div class="progress-bar"></div>
+          <button class="remove-image">&times;</button>
+        </li>
+      `);
+
+        const tablelist = $(`
+        <tr id="row-${currentIndex}">
+          <td class="handle-cell">
+            <img class="drag-handle" draggable="false" src="${fintech_ajax.site_url}/public/img/double-elipse.png" alt="drag" />
+          </td>
+          <td>${currentIndex}</td>
+          <td>${file.name}</td>
+          <td>${formattedDate}</td>
+          <td>${sizeKB} KB</td>
+          <td>
+            <a href="#"><img src="${fintech_ajax.site_url}/public/img/download-01.png" alt="download"></a>
+            <span style="padding:10px;"></span>
+            <a href="delete"><img src="${fintech_ajax.site_url}/public/img/trash-04.png" alt="delete"></a>
+          </td>
+        </tr>
+      `);
+
         previewContainer.append(li);
+        $(".sortable-table-body").append(tablelist);
       };
+
       reader.readAsDataURL(file);
     });
   }
@@ -225,6 +328,20 @@ jQuery(document).ready(function ($) {
     // Store in hidden field as JSON or comma-separated list
     $("#attached_images").val(imageUrls.join(","));
   });
+
+  $(".btn-save").on("submit", function (e) {
+    // Collect all image URLs
+    let imageUrls = [];
+    $("#preview-container .image-preview").each(function () {
+      let url = $(this).data("url");
+      if (url) imageUrls.push(url);
+    });
+
+    console.log(url);
+
+    // Store in hidden field as JSON or comma-separated list
+    $("#attached_images").val(imageUrls.join(","));
+  });
 });
 
 jQuery(document).ready(function ($) {
@@ -295,4 +412,56 @@ jQuery(document).ready(function ($) {
     //   },
     // });
   }
+});
+
+jQuery(document).ready(function ($) {
+  var $uploader = $("#upload-section"); // original element
+
+  $("#btn-close").on("click", function () {
+    $(".fp-modal").hide();
+  });
+
+  $("#btn-multiple-upload").on("click", function () {
+    $(".fp-modal").show();
+  });
+
+  $(document).on("click", ".fp-modal", function (e) {
+    // If clicked directly on the modal (not its children)
+    if ($(e.target).closest(".fp-modal-content").length === 0) {
+      $(".fp-modal").hide();
+    }
+  });
+});
+
+jQuery(document).ready(function ($) {
+  // Make tbody sortable, only via .drag-handle
+  $("#sortable-body")
+    .sortable({
+      items: "> tr", // only rows
+      handle: ".drag-handle", // drag only by this selector
+      placeholder: "ui-sortable-placeholder",
+      helper: function (e, tr) {
+        // clone helper and keep column widths
+        var $originals = tr.children();
+        var $helper = tr.clone();
+        $helper.addClass("ui-sortable-helper");
+        $helper.children().each(function (index) {
+          // set helper td widths same as original to prevent column jump
+          $(this).width($originals.eq(index).width());
+        });
+        return $helper;
+      },
+      start: function (e, ui) {
+        // optional: ensure placeholder has same height as current row
+        ui.placeholder.height(ui.item.outerHeight());
+      },
+      update: function (e, ui) {
+        // new order by row ids
+        var order = $(this).sortable("toArray");
+        console.log("New order:", order);
+        // Example: send AJAX to save order on server
+        // $.post(ajaxurl, { action: 'save_order', order: order }, function(resp){ console.log(resp); });
+      },
+    })
+    .disableSelection();
 });

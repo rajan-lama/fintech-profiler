@@ -457,11 +457,11 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         ],
       ));
 
-      // $cmb_group->add_group_field($group_field_id, array(
-      //   'name' => esc_html__('Image', 'fintech-profiler'),
-      //   'id'   => 'image',
-      //   'type' => 'file',
-      // ));
+      $cmb_group->add_group_field($group_field_id, array(
+        'name' => esc_html__('Image', 'fintech-profiler'),
+        'id'   => 'image',
+        'type' => 'file',
+      ));
 
       $cmb_group->add_group_field($group_field_id, [
         'name' => 'Slide Image',
