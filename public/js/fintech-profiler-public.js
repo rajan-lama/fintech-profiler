@@ -29,6 +29,12 @@
    * practising this, we should strive to set a better example in our own work.
    */
 
+  // document.querySelector("form").addEventListener("keydown", function (e) {
+  //   if (e.key === "Enter") {
+  //     e.preventDefault();
+  //   }
+  // });
+
   document.addEventListener("DOMContentLoaded", function () {
     const btn = document.querySelector(".toggle-more");
     const after = document.querySelector(".content-after");
@@ -76,6 +82,8 @@
 
       // Update Select2
       $("#services").val(mergedValues).trigger("change.select2");
+
+      $("#selected_category").val(mergedValues);
 
       console.log("mergedValues:", mergedValues);
     }
@@ -252,22 +260,23 @@ jQuery(document).ready(function ($) {
   jQuery(document).ready(function ($) {
     var countries = [];
 
-    // Load JSON file
     $.getJSON(
       fintech_ajax.site_url + "public/img/countries.json",
       function (data) {
         countries = data;
 
-        // Populate country dropdown
         $.each(countries, function (index, country) {
           $("#country").append(
             $("<option>", { value: country.code, text: country.name })
           );
         });
+
+        // ✅ Select the saved/default country
+        $("#country").val(fintech_ajax.country).trigger("change");
+        $("#state").val(fintech_ajax.state).trigger("change");
       }
     );
 
-    // On country change → populate states
     $("#country").on("change", function () {
       var selectedCode = $(this).val();
       var country = countries.find((c) => c.code === selectedCode);
@@ -281,6 +290,35 @@ jQuery(document).ready(function ($) {
         });
       }
     });
+    // Load JSON file
+    // $.getJSON(
+    //   fintech_ajax.site_url + "public/img/countries.json",
+    //   function (data) {
+    //     countries = data;
+
+    //     // Populate country dropdown
+    //     $.each(countries, function (index, country) {
+    //       $("#country").append(
+    //         $("<option>", { value: country.code, text: country.name })
+    //       );
+    //     });
+    //   }
+    // );
+
+    // // On country change → populate states
+    // $("#country").on("change", function () {
+    //   var selectedCode = $(this).val();
+    //   var country = countries.find((c) => c.code === selectedCode);
+
+    //   $("#state").empty().append('<option value="">Select State</option>');
+    //   if (country && country.states) {
+    //     $.each(country.states, function (i, state) {
+    //       $("#state").append(
+    //         $("<option>", { value: state.name, text: state.name })
+    //       );
+    //     });
+    //   }
+    // });
     // Example: countries.json data
     // var countries = [
     //   {

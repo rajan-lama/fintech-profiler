@@ -81,7 +81,7 @@ get_header();
 
               $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
 
-              echo '<select class="multi-select" multiple="multiple" style="width:100%;" name="services" id="services" >';
+              echo '<select class="multi-select" multiple="multiple" style="width:100%;" name="services[]" id="services" >';
               $terms = get_terms([
                 'taxonomy'   => $taxonomy,
                 'hide_empty' => false,
@@ -90,11 +90,11 @@ get_header();
 
               if (!empty($terms) && !is_wp_error($terms)) {
                 foreach ($terms as $term) {
-                  $checked = in_array($term->slug, $selected_cats) ? 'checked' : '';
-                  echo '<option value="' . esc_attr($term->slug) . '">' . esc_html($term->name) . '</option>';
+                  $checked = in_array($term->term_id, $selected_cats) ? 'checked' : '';
+                  echo '<option value="' . esc_attr($term->term_id) . '">' . esc_html($term->name) . '</option>';
                 }
               }
-              echo '</select>';
+              echo '</select><input type="hidden" name="selected_category" id="selected_category" value="">';
               ?>
 
               <div class="sidebar-section category-filter">
@@ -118,12 +118,12 @@ get_header();
                       'parent'     => $term->term_id
                     ]);
 
-                    $checked = in_array($term->slug, $selected_cats) ? 'checked' : '';
+                    $checked = in_array($term->term_id, $selected_cats) ? 'checked' : '';
 
                     // Add class if has children
                     $li_class = !empty($children) ? 'has-children' : '';
 
-                    echo '<li class="parent-list category-' . esc_html($term->slug) . ' ' . esc_attr($li_class) . '">';
+                    echo '<li class="parent-list category-' . esc_html($term->term_id) . ' ' . esc_attr($li_class) . '">';
                     echo '<label class="parent-label">' . esc_html($term->name) . '</label>';
                     // Recursively render children
                     if (!empty($children)) {

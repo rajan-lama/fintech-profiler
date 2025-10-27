@@ -77,7 +77,7 @@ class Fintech_Profiler_Public
 		 * class.
 		 */
 		// wp_enqueue_style('jquery-ui-slider');
-		if (is_post_type_archive('fintech') || is_page_template('templates/create_fintech_profile.php')) {
+		if (is_post_type_archive('fintech') || is_page_template('templates/create_fintech_profile.php') || is_page_template('templates/fintech_profile_dashboard.php')) {
 			wp_enqueue_style('jquery-ui', 'https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css', array(), '2.3.4', 'all');
 		}
 
@@ -128,10 +128,14 @@ class Fintech_Profiler_Public
 
 		wp_enqueue_script($this->plugin_name, FINTECH_PROFILER_BASE_URL . 'public/js/fintech-profiler-public.js', array('jquery', 'jquery-ui-tabs', 'jquery-ui-slider', 'jquery-ui-accordion'), $this->version, false);
 
+		$fintech_id	= (!empty($_GET["fintech"])) ? $_GET["fintech"] : get_the_ID();
+
 		wp_localize_script($this->plugin_name, 'fintech_ajax', array(
 			'ajax_url' => admin_url('admin-ajax.php'),
 			'nonce'    => wp_create_nonce('fintech_filter_nonce'),
 			'site_url' => FINTECH_PROFILER_BASE_URL,
+			'country' => get_post_meta($fintech_id, 'fintech_country', true),
+			'state' => get_post_meta($fintech_id, 'fintech_state', true),
 		));
 
 		// wp_enqueue_script('fp-media-uploader', get_stylesheet_directory_uri() . '/js/compan.js', ['jquery', 'jquery-ui-sortable'], null, true);
