@@ -3558,6 +3558,72 @@ a.custom-logo-link {
   gap: 20px;
 }
 
+.dashboard-page-header-welcome {
+  display: flex;
+  gap: 80px;
+  padding-bottom: 32px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  .dashboard-section-left {
+    flex: 35% 0;
+  }
+
+  .dashboard-section-right {
+    flex: 0 65%;
+  }
+
+  .dashboard-header-stats {
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 24px;
+
+    .stat-item {
+      width: 100%;
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px 9px;
+    }
+
+    .stat-section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 28px;
+    }
+
+    .left,
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .left h4,
+    .right h4 {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.dashboard-card {
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+
+  span.dashboard-pill {
+    line-height: 20px;
+    float: right;
+    background: #f4f6f5;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Inter";
+    letter-spacing: -0.42px;
+  }
+}
+
 /** Responsive **/
 
 @media (min-width: 1200px) {
