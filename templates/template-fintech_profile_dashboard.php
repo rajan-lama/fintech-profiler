@@ -168,6 +168,86 @@ get_header();
         <div class="main-sidebar">
           <form method="post" enctype="multipart/form-data" class="fp-form">
             <?php wp_nonce_field('edit_fintech_dashboard', 'edit_fintech_dashboard_nonce'); ?>
+            <div id="tabs-0">
+              <div class="dashboard-page-title">
+                <h2>
+                  Dashboard
+                </h2>
+              </div>
+              <div class="dashboard-page-body">
+                <div class="dashboard-page-header">
+                  <div class="dashboard-page-header-welcome">
+                    <div class="dashboard-section-left">
+                      <h5>Welcome</h5>
+                      <h3>Thought Machine</h3>
+                      <p>Monitor current trends, and useful insights to help you manage your company profile</p>
+                    </div>
+                    <div class="dashboard-section-right">
+                      <div class="dashboard-header-stats">
+                        <div class="stat-item">
+                          <p>Demo Request</p>
+                          <div class="stat-section">
+                            <div class="left">
+                              <h4>24</h4>
+                              <span>This Week</span>
+                            </div>
+                            <div class="right">
+                              <img src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/arrow-up-sm.png" alt="arrow up" />
+                              <span>20%</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="stat-item">
+                          <p>Redirect to website</p>
+                          <div class="stat-section">
+                            <div class="left">
+                              <h4>20</h4>
+                              <span>This Week</span>
+                            </div>
+                            <div class="right">
+                              <img src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/arrow-up-sm.png" alt="arrow up" />
+                              <span>20%</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dashboard-page-sections">
+                    <div class="dashboard-section" id="company-logo">
+                      <div class="dashboard-left">
+                        <label for="profile-picture">Engagement Categories</label>
+                        <p>Categories that bring the most views for your profile</p>
+
+                        <ul class="engagement-categories">
+                          <li>Online Banking Platform</li>
+                          <li>Digital OnBoarding Solution</li>
+                          <li>Bill pay Solution</li>
+                          <li>Online pay Solution</li>
+                        </ul>
+                      </div>
+                      <div class="dashboard-right">
+                        <div class="dashboard-card">
+                          <span class="dashboard-pill">Starting $12 /month</span>
+                          <div class="fp-dashboard-icon">
+                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M16.891 9.17056C17.272 8.14106 18.7281 8.14106 19.109 9.17056L21.0051 14.2947C21.1249 14.6184 21.3801 14.8736 21.7038 14.9933L26.8279 16.8894C27.8574 17.2704 27.8574 18.7265 26.8279 19.1074L21.7038 21.0035C21.3801 21.1233 21.1249 21.3785 21.0051 21.7022L19.109 26.8263C18.7281 27.8558 17.272 27.8558 16.891 26.8263L14.9949 21.7022C14.8752 21.3785 14.62 21.1233 14.2963 21.0035L9.17215 19.1074C8.14265 18.7265 8.14265 17.2704 9.17215 16.8894L14.2963 14.9933C14.62 14.8736 14.8752 14.6184 14.9949 14.2947L16.891 9.17056Z" fill="white"></path>
+                            </svg>
+                          </div>
+                          <h2>Get Premium Membership</h2>
+                          <p>Get your chance up by upto 64% to been seen and get contacted</p>
+
+                          <button class="btn btn-primary">Get Membership</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dashboard-section" id="basic-info">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div id="tabs-1">
               <div class="dashboard-white-space"></div>
               <div class="dashboard-page-body">
