@@ -293,7 +293,6 @@ jQuery(document).ready(function ($) {
               <td class="handle-cell">
                 <img class="drag-handle" draggable="false" src="${fintech_ajax.site_url}/public/img/double-elipse.png" alt="drag" />
               </td>
-              <td>${result.name}</td>
               <td><div data-image-id="${result.id}" data-image-url="${result.url}" >${result.image.file}</div></td>
               <td>${formattedDate}</td>
               <td>${sizeKB} KB</td>

@@ -992,7 +992,7 @@
         </div>
         <div class="filter-content">
           <label>Country</label>
-          <select id="country">
+          <select name="country" id="country">
             <option value="">Select Country</option>
             <option value="USA">USA</option>
             <option value="UK">UK</option>
@@ -1001,7 +1001,7 @@
             <option value="Germany">Germany</option>
           </select>
           <label>State</label>
-          <select id="state">
+          <select name="state" id="state">
             <option value="">Select State</option>
             <option value="Alabama">Alabama</option>
             <option value="California">California</option>
@@ -1010,7 +1010,7 @@
             <option value="New York">New York</option>
           </select>
           <label>City</label>
-          <input type="text" id="city" placeholder="City name">
+          <input type="text" id="city" name="city" placeholder="City name">
         </div>
       </div>
     </form>

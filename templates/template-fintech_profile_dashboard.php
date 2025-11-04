@@ -53,8 +53,6 @@ if (!empty($_GET['fintech'])) {
 
   $attached_images = get_post_meta($fintech_id, 'fintech_attached_images', true);
 
-  var_dump($attached_images);
-
   if (is_array($attached_images)  && !empty($attached_images)) {
     $images = implode(',', $attached_images);
   } else {
@@ -632,7 +630,7 @@ get_header();
                                 <img class="drag-handle" draggable="false" src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/double-elipse.png" alt="drag" />
                               </td>
                               <!-- <td>1</td> -->
-                              <td><?php echo $image_name; ?></td>
+                              <td><?php echo $image_data['file']; ?></td>
                               <td><?php echo $upload_date; ?></td>
                               <td><?php echo $image_size; ?></td>
                               <td><a href="#"><img src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/download-01.png" /></a><span style="padding:10px;"></span><a href="delete"><img src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/trash-04.png" /></a></td>
