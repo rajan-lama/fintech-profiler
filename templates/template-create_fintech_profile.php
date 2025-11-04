@@ -128,7 +128,7 @@ get_header();
                     // Recursively render children
                     if (!empty($children)) {
                       echo '<ul class="children">';
-                      render_taxonomy_tree($taxonomy, $term->term_id, $selected_cats);
+                      render_taxonomy_tree_old($taxonomy, $term->term_id, $selected_cats);
                       echo '</ul>';
                     }
 

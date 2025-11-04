@@ -5,7 +5,7 @@
             if (has_post_thumbnail()) {
               the_post_thumbnail('fintech-profiler-three-col');
             } else {
-              echo '<img src="' . esc_url(get_template_directory_uri() . '/images/fallback/default-thumb-3col.jpg') . '"  alt="' . esc_attr(get_the_title()) . '" />';
+              echo '<img src="' . esc_url(FINTECH_PROFILER_BASE_URL . '/public/img/fallback-image.png') . '"  alt="' . esc_attr(get_the_title()) . '" />';
             }
             ?>
          </a>
