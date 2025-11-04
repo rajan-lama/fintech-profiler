@@ -418,7 +418,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
 
       $cmb_group->add_field(array(
         'name'       => esc_html__('Financial Manager (Owner)', 'fintech-profiler'),
-        'id'         => 'owner',
+        'id'         => 'fintech_owner',
         'type'       => 'select',
         'options_cb' => 'fintech_profiler_get_users',
       ));

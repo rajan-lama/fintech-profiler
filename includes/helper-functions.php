@@ -128,7 +128,7 @@ function fintech_filter_callback()
                         if (has_post_thumbnail()) {
                             the_post_thumbnail('fintech-profiler-three-col');
                         } else {
-                            echo '<img src="' . esc_url(get_template_directory_uri() . '/images/fallback/default-thumb-3col.jpg') . '"  alt="' . esc_attr(get_the_title()) . '" />';
+                            echo '<img src="' . esc_url(FINTECH_PROFILER_BASE_URL . '/public/img/fallback-image.png') . '"  alt="' . esc_attr(get_the_title()) . '" />';
                         }
                         ?>
                     </a>
@@ -484,7 +484,7 @@ if (! function_exists('fintech_profiler_related_post')) :
                                                 if (has_post_thumbnail()) {
                                                     the_post_thumbnail('fintech-profiler-three-col');
                                                 } else {
-                                                    echo '<img src="' . esc_url(get_template_directory_uri() . '/images/fallback/default-thumb-3col.jpg') . '"  alt="' . esc_attr(get_the_title()) . '" />';
+                                                    echo '<img src="' . esc_url(FINTECH_PROFILER_BASE_URL . '/public/img/fallback-image.png') . '"  alt="' . esc_attr(get_the_title()) . '" />';
                                                 }
                                                 ?>
                                             </a>
@@ -539,7 +539,7 @@ if (! function_exists('fintech_profiler_related_post')) :
                                                 if (has_post_thumbnail()) {
                                                     the_post_thumbnail('fintech-profiler-three-col');
                                                 } else {
-                                                    echo '<img src="' . esc_url(get_template_directory_uri() . '/images/fallback/default-thumb-3col.jpg') . '"  alt="' . esc_attr(get_the_title()) . '" />';
+                                                    echo '<img src="' . esc_url(FINTECH_PROFILER_BASE_URL . '/public/img/fallback-image.png') . '"  alt="' . esc_attr(get_the_title()) . '" />';
                                                 }
                                                 ?>
                                             </a>
@@ -713,6 +713,43 @@ function render_taxonomy_tree($taxonomy, $parent_id = 0, $selected = [])
     ]);
 
     if (!empty($terms) && !is_wp_error($terms)) {
+        foreach ($terms as $term) {
+            $children = get_terms([
+                'taxonomy'   => $taxonomy,
+                'hide_empty' => false,
+                'parent'     => $term->term_id
+            ]);
+
+            if (is_array($selected) && isset($selected[0]) && $selected[0] instanceof WP_Term) {
+                $selected = wp_list_pluck($selected, 'term_id');
+            }
+
+            $checked = in_array($term->term_id, $selected) ? 'checked' : '';
+
+            // Recursively render children
+            if (!empty($children)) {
+                echo '<div class="nested-group">';
+                echo '<div class="filter-header">' . esc_html($term->name) . '<i class="fa-solid fa-chevron-right"></i></div>';
+                echo '<div class="filter-content">';
+                render_taxonomy_tree($taxonomy, $term->term_id, $selected);
+                echo '</div>';
+                echo '</div>';
+            } else {
+                echo '<label><input type="checkbox" name="' . $taxonomy . '[]" value="' . esc_attr($term->term_id) . '" ' . $checked . '> ' . esc_html($term->name) . '</label>';
+            }
+        }
+    }
+}
+
+function render_taxonomy_tree_old($taxonomy, $parent_id = 0, $selected = [])
+{
+    $terms = get_terms([
+        'taxonomy'   => $taxonomy,
+        'hide_empty' => false,
+        'parent'     => $parent_id
+    ]);
+
+    if (!empty($terms) && !is_wp_error($terms)) {
         // echo '<ul>';
         foreach ($terms as $term) {
             $children = get_terms([
@@ -745,7 +782,7 @@ function render_taxonomy_tree($taxonomy, $parent_id = 0, $selected = [])
             // Recursively render children
             if (!empty($children)) {
                 echo '<ul class="children">';
-                render_taxonomy_tree($taxonomy, $term->term_id, $selected);
+                render_taxonomy_tree_old($taxonomy, $term->term_id, $selected);
                 echo '</ul>';
             }
 
@@ -754,6 +791,7 @@ function render_taxonomy_tree($taxonomy, $parent_id = 0, $selected = [])
         // echo '</ul>';
     }
 }
+
 
 function fintech_get_countries_list()
 {
@@ -935,7 +973,7 @@ function fp_upload_documents()
             $movefile = wp_handle_upload($file, $upload_overrides);
 
             if ($movefile && !isset($movefile['error'])) {
-                $uploaded_urls[] = $movefile['url'];
+                // $uploaded_urls[] = $movefile['url'];
 
                 // Insert into media library
                 $attachment_id = wp_insert_attachment([
@@ -952,24 +990,47 @@ function fp_upload_documents()
                 // Get thumbnail size URL
                 $image_src = wp_get_attachment_image_src($attachment_id, 'thumbnail');
 
+
                 // wp_send_json_success([
                 //     'id'  => $attachment_id,
                 //     'url' => $image_src[0], // <-- thumbnail URL
                 // ]);
+
+                // $uploaded_urls[] = [
+                //     'post_id' => $post_id,
+                //     'id'  => $attachment_id,
+                //     'url' => $image_src[0], // <-- thumbnail URL
+                // ];
+
+                if (preg_match('/[^\/]+\.[a-zA-Z0-9]+$/', $url, $matches)) {
+                    $name = $matches[0]; // Output: Screenshot-37.png
+                }
+
+                $uploaded_ids[] = [
+                    'url'  => $movefile['url'],
+                    'image'  => $attach_data,
+                    'id' => $attachment_id,
+                    'name' => $name
+                ];
             } else {
                 wp_send_json_error($movefile['error']);
             }
         }
     }
 
-    if ($post_id && !empty($uploaded_urls)) {
-        $existing = get_post_meta($post_id, '_company_logo_gallery', true);
-        if (!is_array($existing)) $existing = [];
-        $merged = array_merge($existing, $uploaded_urls);
-        update_post_meta($post_id, '_company_logo_gallery', $merged);
-    }
+    // if ($post_id && !empty($uploaded_urls)) {
+    //     $existing = get_post_meta($post_id, '_company_logo_gallery', true);
+    //     if (!is_array($existing)) $existing = [];
+    //     $merged = array_merge($existing, $uploaded_urls);
+    //     update_post_meta($post_id, '_company_logo_gallery', $merged);
+    // }
 
-    wp_send_json_success(['files' => $uploaded_urls]);
+    // wp_send_json_success([
+    //     'id'  => $attachment_id,
+    //     'url' => $image_src[0], // <-- thumbnail URL
+    // ]);
+
+    wp_send_json_success(['files' => $uploaded_ids]);
 }
 
 add_action('wp_ajax_remove_uploaded_image', 'fp_remove_uploaded_image');
@@ -1098,7 +1159,6 @@ function fp_handle_fintech_profile_submission()
         $selected_category  = $_POST['selected_category'];
         $description    = sanitize_textarea_field($_POST['objective_and_description']);
 
-
         // $plan_type      = sanitize_text_field($_POST['plan_type']);
         // $plan_desc      = sanitize_text_field($_POST['description']);
         // $plan_cost      = sanitize_text_field($_POST['cost']);
@@ -1214,16 +1274,6 @@ function fp_handle_fintech_profile_submission()
             $selected_category_Arr = explode(",", $selected_category);
 
             wp_set_object_terms((int)$post_id, array_map('intval', $selected_category_Arr), 'fintech-category');
-
-            // add_action('init', 'test');
-
-            // function test()
-            // {
-
-            //   $id = 389;
-            //   $relation = array(6, 5, 15);
-            //   wp_set_object_terms((int)$id, array_map('intval', $relation), 'fintech-category');
-            // }
 
             update_post_meta($post_id, 'fintech_website', $website_link);
             update_post_meta($post_id, 'fintech_founded', $founded_in);
@@ -1397,6 +1447,10 @@ function fp_handle_fintech_dashboard_profile_submission()
         $demo           = ! empty($_POST['demo'])  ? sanitize_text_field($_POST['demo']) : '';
         $demo_link      = ! empty($_POST['demo_link']) ? esc_url_raw($_POST['demo_link']) : '';
 
+        // Get attached image URLs
+        $attached_images = isset($_POST['attached_images']) ? sanitize_text_field($_POST['attached_images']) : '';
+        $image_urls = explode(',', $attached_images);
+
         $pricing_plan_link      = ! empty($_POST['pricing_plan_link']) ? esc_url_raw($_POST['pricing_plan_link']) : '';
         $pricing_model      = ! empty($_POST['pricing_model']) ? $_POST['pricing_model'] : '';
         $pricing_plan_description      = ! empty($_POST['pricing_plan_description']) ? wp_kses_post($_POST['pricing_plan_description']) : '';
@@ -1412,8 +1466,6 @@ function fp_handle_fintech_dashboard_profile_submission()
         $user_id = get_current_user_id();
 
         if ($user_id) {
-            // Sanitize form inputs
-            // Sanitize form inputs
             $name = get_userdata($user_id)->display_name;
             $website = get_userdata($user_id)->user_url;
             $user_name = (! empty($_POST['user_name'])) ? sanitize_text_field($_POST['user_name']) : $name;
@@ -1510,18 +1562,6 @@ function fp_handle_fintech_dashboard_profile_submission()
                 }
             }
 
-            // wp_set_object_terms((int)$post_id, array_map('intval', $selected_category_Arr), 'fintech-category');
-
-            // add_action('init', 'test');
-
-            // function test()
-            // {
-
-            //   $id = 389;
-            //   $relation = array(6, 5, 15);
-            //   wp_set_object_terms((int)$id, array_map('intval', $relation), 'fintech-category');
-            // }
-
             update_post_meta($post_id, 'fintech_website', $website_link);
             update_post_meta($post_id, 'fintech_founded', $founded_in);
             update_post_meta($post_id, 'fintech_company_size', $company_size);
@@ -1544,6 +1584,10 @@ function fp_handle_fintech_dashboard_profile_submission()
             // for Repeater
             update_post_meta($post_id, 'fintech_pricing_plans', $pricing_plans);
             update_post_meta($post_id, 'fintech_case_studies', $cases);
+            update_post_meta($post_id, 'fintech_attached_images', $image_urls);
+            update_post_meta($post_id, 'fintech_owner', $user_id);
+
+
 
 
             if (!empty($_POST['plan_type'])) {

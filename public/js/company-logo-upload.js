@@ -58,6 +58,7 @@ jQuery(document).ready(function ($) {
   });
 
   fileInput.on("change", function (e) {
+    console.log("Rajan:", e.target.files);
     handleFiles(e.target.files);
   });
 
@@ -188,29 +189,45 @@ jQuery(document).ready(function ($) {
         </li>
       `);
 
-        const tablelist = $(`
-        <tr id="row-${currentIndex}">
-          <td class="handle-cell">
-            <img class="drag-handle" draggable="false" src="${fintech_ajax.site_url}/public/img/double-elipse.png" alt="drag" />
-          </td>
-          <td>${currentIndex}</td>
-          <td>${file.name}</td>
-          <td>${formattedDate}</td>
-          <td>${sizeKB} KB</td>
-          <td>
-            <a href="#"><img src="${fintech_ajax.site_url}/public/img/download-01.png" alt="download"></a>
-            <span style="padding:10px;"></span>
-            <a href="delete"><img src="${fintech_ajax.site_url}/public/img/trash-04.png" alt="delete"></a>
-          </td>
-        </tr>
-      `);
+        //   const tablelist = $(`
+        //   <tr id="row-${currentIndex}">
+        //     <td class="handle-cell">
+        //       <img class="drag-handle" draggable="false" src="${fintech_ajax.site_url}/public/img/double-elipse.png" alt="drag" />
+        //     </td>
+        //     <td>${currentIndex}</td>
+        //     <td><div data-image-id="${file.id}" data-image-url="${file.url}" >${file.name}</div></td>
+        //     <td>${formattedDate}</td>
+        //     <td>${sizeKB} KB</td>
+        //     <td>
+        //       <a href="#"><img src="${fintech_ajax.site_url}/public/img/download-01.png" alt="download"></a>
+        //       <span style="padding:10px;"></span>
+        //       <a href="delete"><img src="${fintech_ajax.site_url}/public/img/trash-04.png" alt="delete"></a>
+        //     </td>
+        //   </tr>
+        // `);
 
         previewContainer.append(li);
-        $(".sortable-table-body").append(tablelist);
+        // $(".sortable-table-body").append(tablelist);
       };
 
       reader.readAsDataURL(file);
     });
+  }
+
+  function updateAttachedImages(newId) {
+    const input = $("#attached_images");
+    const existing = input.val().trim();
+
+    // Convert to array (if empty, start fresh)
+    let ids = existing ? existing.split(",").map((id) => id.trim()) : [];
+
+    // Check if newId already exists
+    if (!ids.includes(String(newId))) {
+      ids.push(String(newId));
+    }
+
+    // Update the input field
+    input.val(ids.join(","));
   }
 
   // Upload files
@@ -249,13 +266,47 @@ jQuery(document).ready(function ($) {
         contentType: false,
         processData: false,
         success: function (response) {
-          if (response.success) {
-            const url = response.data.files[0];
-            previewItem.attr("data-url", url).attr("data-temp", "false");
-            progressBar.css("width", "100%");
-            setTimeout(() => progressBar.fadeOut(300), 400);
-          }
-          console.log(response);
+          console.log("response", response);
+          // if (response.success) {
+          const result = response.data.files[0];
+          const url = result.url;
+          const id = result.id;
+
+          previewItem.attr("data-url", url).attr("data-temp", "false");
+          progressBar.css("width", "100%");
+          setTimeout(() => progressBar.fadeOut(300), 400);
+
+          updateAttachedImages(id);
+
+          const sizeKB = (result.image.filesize / 1024).toFixed(2);
+
+          const now = new Date();
+          const formattedDate = now.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          });
+          const currentIndex = $(".sortable-table-body tr").length + 1;
+
+          const tablelist = $(`
+            <tr id="row-${result.id}">
+              <td class="handle-cell">
+                <img class="drag-handle" draggable="false" src="${fintech_ajax.site_url}/public/img/double-elipse.png" alt="drag" />
+              </td>
+              <td>${result.name}</td>
+              <td><div data-image-id="${result.id}" data-image-url="${result.url}" >${result.image.file}</div></td>
+              <td>${formattedDate}</td>
+              <td>${sizeKB} KB</td>
+              <td>
+                <a href="${result.url}" download target="_blank" ><img src="${fintech_ajax.site_url}/public/img/download-01.png" alt="download"></a>
+                <span style="padding:10px;"></span>
+                <a href="delete"><img src="${fintech_ajax.site_url}/public/img/trash-04.png" alt="delete"></a>
+              </td>
+            </tr>
+          `);
+
+          $(".sortable-table-body").append(tablelist);
+          // }
         },
       });
     });
