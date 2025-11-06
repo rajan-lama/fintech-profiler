@@ -514,4 +514,27 @@ jQuery(document).ready(function ($) {
       },
     })
     .disableSelection();
+
+  $("#fintech-filter-form").on("change", "input", function () {
+    // Serialize all form data
+    const formData = $("#fintech-filter-form").serialize();
+
+    // Optional: Add action parameter for WP AJAX
+    const data = formData + "&action=fintech_filter";
+
+    $.ajax({
+      url: fp_media.ajaxurl, // WordPress AJAX handler
+      type: "POST",
+      data: data,
+      beforeSend: function () {
+        $("#filter-results").html("<p>Loading...</p>");
+      },
+      success: function (response) {
+        $(".results").html(response.data.html);
+      },
+      error: function (xhr, status, error) {
+        console.log("AJAX Error:", error);
+      },
+    });
+  });
 });

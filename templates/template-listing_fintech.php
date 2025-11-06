@@ -1010,7 +1010,7 @@
             <option value="New York">New York</option>
           </select>
           <label>City</label>
-          <input type="text" id="city" name="city" placeholder="City name">
+          <input type="text" id="city" name="" placeholder="City name">
         </div>
       </div>
     </form>

@@ -36,7 +36,7 @@ function filter_fintech_by_price($query)
 
 function fintech_filter_callback()
 {
-    // check_ajax_referer('fintech_filter_nonce', 'security');
+    check_ajax_referer('fintech_filter_nonce', 'security');
 
     parse_str($_POST['form'], $form_data);
 
@@ -52,7 +52,7 @@ function fintech_filter_callback()
     if (!empty($form_data['category'])) {
         $args['tax_query'][] = array(
             'taxonomy' => 'fintech-category',
-            'field'    => 'term_id',
+            'field'    => 'slug',
             'terms'    => $form_data['category'],
         );
     }
@@ -61,7 +61,7 @@ function fintech_filter_callback()
     if (!empty($form_data['pricing'])) {
         $args['tax_query'][] = array(
             'taxonomy' => 'fintech-pricing',
-            'field'    => 'term_id',
+            'field'    => 'slug',
             'terms'    => $form_data['pricing'],
         );
     }
@@ -70,7 +70,7 @@ function fintech_filter_callback()
     if (!empty($form_data['size'])) {
         $args['tax_query'][] = array(
             'taxonomy' => 'fintech-size',
-            'field'    => 'term_id',
+            'field'    => 'slug',
             'terms'    => $form_data['size'],
         );
     }
@@ -120,16 +120,48 @@ function fintech_filter_callback()
 
     ob_start();
     if ($query->have_posts()) {
-        while ($query->have_posts()) : $query->the_post();
+        while ($query->have_posts()) : $query->the_post(); ?>
+            <div class="col-4">
+                <article class="post">
+                    <a href="<?php the_permalink(); ?>" class="post-thumbnail">
+                        <?php
+                        if (has_post_thumbnail()) {
+                            the_post_thumbnail('fintech-profiler-three-col');
+                        } else {
+                            echo '<img src="' . esc_url(FINTECH_PROFILER_BASE_URL . '/public/img/fallback-image.png') . '"  alt="' . esc_attr(get_the_title()) . '" />';
+                        }
+                        ?>
+                    </a>
+                    <header class="entry-header">
+                        <div class="icon-holder">
+                            <div class="cat-icon">
+                                <img src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/img8.png">
+                            </div>
+                            <div>
+                                <a href="<?php the_permalink(); ?>"><img src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/arrow-right.png"></a>
+                            </div>
+                        </div>
+                        <h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                    </header>
+                    <div class="similar-content">
+                        <?php echo get_excerpt_or_trimmed_content($query->ID, 80); ?>
+                    </div>
+                    <div class="similar-tags">
+                        <?php
+                        $terms = get_the_terms($query->ID, 'fintech-category');
 
-            $post = $query->post;
-            // global $post;
-
-            do_action('fintech_profiler_archive_content');
-
-        endwhile;
+                        if (! empty($terms) && ! is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                echo '<a href="' . get_term_link((int) $term->term_id,  'fintech-category') . '" class="list-category">' . esc_html($term->name) . '</a>';
+                            }
+                        }
+                        ?>
+                    </div>
+                </article>
+            </div>
+        <?php endwhile;
     } else {
-        echo '<p>No fintech found.</p>';
+        echo '<p>No fintechs found.</p>';
     }
     wp_reset_postdata();
 
@@ -359,7 +391,7 @@ if (! function_exists('fintech_profiler_post_author')) :
     function fintech_profiler_post_author()
     {
         if (get_theme_mod('fintech_profiler_ed_bio', '1') && get_the_author_meta('description') && ('post' === get_post_type())) {
-?>
+        ?>
             <section class="author-section">
                 <h2 class="title"><?php esc_html_e('About Author', 'bakery-shop-pro'); ?></h2>
                 <div class="holder">
@@ -958,6 +990,18 @@ function fp_upload_documents()
                 // Get thumbnail size URL
                 $image_src = wp_get_attachment_image_src($attachment_id, 'thumbnail');
 
+
+                // wp_send_json_success([
+                //     'id'  => $attachment_id,
+                //     'url' => $image_src[0], // <-- thumbnail URL
+                // ]);
+
+                // $uploaded_urls[] = [
+                //     'post_id' => $post_id,
+                //     'id'  => $attachment_id,
+                //     'url' => $image_src[0], // <-- thumbnail URL
+                // ];
+
                 if (preg_match('/[^\/]+\.[a-zA-Z0-9]+$/', $url, $matches)) {
                     $name = $matches[0]; // Output: Screenshot-37.png
                 }
@@ -973,6 +1017,18 @@ function fp_upload_documents()
             }
         }
     }
+
+    // if ($post_id && !empty($uploaded_urls)) {
+    //     $existing = get_post_meta($post_id, '_company_logo_gallery', true);
+    //     if (!is_array($existing)) $existing = [];
+    //     $merged = array_merge($existing, $uploaded_urls);
+    //     update_post_meta($post_id, '_company_logo_gallery', $merged);
+    // }
+
+    // wp_send_json_success([
+    //     'id'  => $attachment_id,
+    //     'url' => $image_src[0], // <-- thumbnail URL
+    // ]);
 
     wp_send_json_success(['files' => $uploaded_ids]);
 }
@@ -1043,6 +1099,45 @@ function fintech_upload_media()
     wp_send_json_success(['url' => $url, 'id' => $upload_id]);
 }
 
+
+// function fintech_upload_media()
+// {
+//     if (!function_exists('wp_handle_upload')) {
+//         require_once(ABSPATH . 'wp-admin/includes/file.php');
+//     }
+
+//     $uploaded_files = $_FILES['attach_media'];
+//     $uploaded_urls = [];
+//     $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+
+//     foreach ($uploaded_files['name'] as $key => $value) {
+//         if ($uploaded_files['name'][$key]) {
+//             $file = [
+//                 'name' => $uploaded_files['name'][$key],
+//                 'type' => $uploaded_files['type'][$key],
+//                 'tmp_name' => $uploaded_files['tmp_name'][$key],
+//                 'error' => $uploaded_files['error'][$key],
+//                 'size' => $uploaded_files['size'][$key],
+//             ];
+
+//             $upload_overrides = ['test_form' => false];
+//             $movefile = wp_handle_upload($file, $upload_overrides);
+
+//             if ($movefile && !isset($movefile['error'])) {
+//                 $uploaded_urls[] = $movefile['url'];
+//             }
+//         }
+//     }
+
+//     if ($post_id && !empty($uploaded_urls)) {
+//         $existing = get_post_meta($post_id, '_company_logo_gallery', true);
+//         if (!is_array($existing)) $existing = [];
+//         $merged = array_merge($existing, $uploaded_urls);
+//         update_post_meta($post_id, '_company_logo_gallery', $merged);
+//     }
+
+//     wp_send_json_success(['files' => $uploaded_urls]);
+// }
 
 add_action('init', 'fp_handle_fintech_profile_submission');
 function fp_handle_fintech_profile_submission()
