@@ -76,6 +76,778 @@ if (!empty($_GET['fintech'])) {
 }
 get_header();
 ?>
+
+<div class="finx-wrapper dashboard-container full-width">
+  <!-- SIDEBAR -->
+  <aside class="finx-sidebar">
+    <div class="first-sec">
+      <div class="finx-logo">
+        <?php
+        the_custom_logo();
+        ?>
+        <!-- <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/Layer-1.png" alt="FinExplore360 Logo" class="img-fluid finx-logo-img"> -->
+      </div>
+      <div class="finx-nav-links">
+        <ul>
+          <li data-tab="dashboard">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.89102 2.17056C10.272 1.14106 11.7281 1.14106 12.109 2.17056L14.0051 7.2947C14.1249 7.61837 14.3801 7.87356 14.7038 7.99333L19.8279 9.88944C20.8574 10.2704 20.8574 11.7265 19.8279 12.1074L14.7038 14.0035C14.3801 14.1233 14.1249 14.3785 14.0051 14.7022L12.109 19.8263C11.7281 20.8558 10.272 20.8558 9.89102 19.8263L7.99492 14.7022C7.87515 14.3785 7.61996 14.1233 7.29629 14.0035L2.17215 12.1074C1.14265 11.7265 1.14265 10.2704 2.17215 9.88944L7.29629 7.99333C7.61996 7.87356 7.87515 7.61837 7.99492 7.2947L9.89102 2.17056Z" stroke="#000" stroke-opacity="0.8" stroke-width="2" stroke-linejoin="round" />
+            </svg>
+            Dashboard
+          </li>
+          <li data-tab="get-started">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.89102 2.17056C10.272 1.14106 11.7281 1.14106 12.109 2.17056L14.0051 7.2947C14.1249 7.61837 14.3801 7.87356 14.7038 7.99333L19.8279 9.88944C20.8574 10.2704 20.8574 11.7265 19.8279 12.1074L14.7038 14.0035C14.3801 14.1233 14.1249 14.3785 14.0051 14.7022L12.109 19.8263C11.7281 20.8558 10.272 20.8558 9.89102 19.8263L7.99492 14.7022C7.87515 14.3785 7.61996 14.1233 7.29629 14.0035L2.17215 12.1074C1.14265 11.7265 1.14265 10.2704 2.17215 9.88944L7.29629 7.99333C7.61996 7.87356 7.87515 7.61837 7.99492 7.2947L9.89102 2.17056Z" stroke="#000" stroke-opacity="0.8" stroke-width="2" stroke-linejoin="round" />
+            </svg>
+            Get Started
+          </li>
+          <li data-tab="general-info">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 10L10 14.5M10 6.66455V6.625M1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            General Info
+          </li>
+          <li data-tab="overview">
+            <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.4002 6.19844H12.6002M5.4002 9.79844H12.6002M5.4002 13.3984H9.0002M3.59992 1.39844H14.4001C15.7256 1.39844 16.8002 2.47298 16.8001 3.79848L16.7999 18.1985C16.7998 19.524 15.7253 20.5984 14.3999 20.5984L3.59982 20.5984C2.27433 20.5984 1.19982 19.5239 1.19983 18.1984L1.19992 3.79842C1.19993 2.47295 2.27444 1.39844 3.59992 1.39844Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Overview
+          </li>
+          <li data-tab="images-videos">
+            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.40002 16.1205V3.88047H0.400024V16.1205H2.40002ZM3.80002 2.48047H18.2V0.480469H3.
+                    
+                    80002V2.48047ZM19.6 3.88047V16.1205H21.6V3.88047H19.6ZM19.6 16.1205C19.6 16.8937 18.9732 17.5205 18.2 17.5205V19.5205C20.0778 19.5205 21.6 17.9982 21.6 16.1205H19.6ZM18.2 2.48047C18.9732 2.48047 19.6 3.10727 19.6 3.88047H21.6C21.6 2.0027 20.0778 0.480469 18.2 0.480469V2.48047ZM2.40002 3.88047C2.40002 3.10727 3.02682 2.48047 3.80002 2.48047V0.480469C1.92226 0.480469 0.400024 2.0027 0.400024 3.88047H2.40002ZM3.80002 17.5205C3.02683 17.5205 2.40002 16.8937 2.40002 16.1205H0.400024C0.400024 17.9982 1.92226 19.5205 3.80002 19.5205V17.5205ZM13.6 10.0006C13.6 11.4365 12.436 12.6006 11 12.6006V14.6006C13.5405 14.6006 15.6 12.5411 15.6 10.0006H13.6ZM11 12.6006C9.56408 12.6006 8.40002 11.4365 8.40002 10.0006H6.40002C6.40002 12.5411 8.45951 14.6006 11 14.6006V12.6006ZM8.40002 10.0006C8.40002 8.56465 9.56408 7.40059 11 7.40059V5.40059C8.45951 5.40059 6.40002 7.46008 6.40002 10.0006H8.40002ZM11 7.40059C12.436 7.40059 13.6 8.56465 13.6 10.0006H15.6C15.6 7.46008 13.5405 5.40059 11 5.40059V7.40059ZM18.2 17.5205H3.80002V19.5205H18.2V17.5205Z" fill="black" fill-opacity="0.8" />
+            </svg>
+            Images & Videos
+          </li>
+          <li data-tab="pricing-plans">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.354 6.65092L15.3476 6.65089M18.5226 1.84983L12.7222 1.40365C12.2079 1.36409 11.7021 1.55122 11.3374 1.91593L1.91751 11.3358C1.22753 12.0258 1.22753 13.1444 1.9175 13.8344L8.16405 20.081C8.85402 20.7709 9.97269 20.7709 10.6627 20.081L20.0825 10.6611C20.4472 10.2964 20.6344 9.79052 20.5948 9.27627L20.1486 3.47591C20.0818 2.60704 19.3914 1.91667 18.5226 1.84983Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Pricing Plans
+          </li>
+          <li data-tab="case-studies">
+            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.7257 18.2267V3.41525M10.7257 18.2267L9.26826 16.7692C8.44525 15.9462 7.32949 15.4838 6.16557 15.4838H2.49621C1.89028 15.4838 1.40002 14.9926 1.40002 14.3867V2.86667C1.40002 2.26074 1.89123 1.76953 2.49717 1.76953H6.71365C7.87757 1.76953 8.99382 2.2319 9.81683 3.05491L10.7257 3.96382L11.6346 3.05491C12.4577 2.2319 13.5739 1.76953 14.7378 1.76953H19.5029C20.1088 1.76953 20.6 2.26074 20.6 2.86667V14.3867C20.6 14.9926 20.1088 15.4838 19.5029 15.4838H15.2864C14.1225 15.4838 13.0062 15.9462 12.1832 16.7692L10.7257 18.2267Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Case Studies & Demo
+          </li>
+          <li data-tab="contact-info">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.0704 1.92802L9.40647 12.592M2.27112 7.2337L18.877 1.47247C19.8996 1.11768 20.8808 2.09881 20.526 3.12144L14.7648 19.7273C14.3701 20.865 12.7726 20.8961 12.3338 19.7748L9.69691 13.0361C9.56521 12.6995 9.29894 12.4333 8.96238 12.3016L2.22366 9.66466C1.10232 9.22587 1.13351 7.62839 2.27112 7.2337Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            Contact Info
+          </li>
+          <li data-tab="plans-payment" class="active">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.354 6.65092L15.3476 6.65089M18.5226 1.84983L12.7222 1.40365C12.2079 1.36409 11.7021 1.55122 11.3374 1.91593L1.91751 11.3358C1.22753 12.0258 1.22753 13.1444 1.9175 13.8344L8.16405 20.081C8.85402 20.7709 9.97269 20.7709 10.6627 20.081L20.0825 10.6611C20.4472 10.2964 20.6344 9.79052 20.5948 9.27627L20.1486 3.47591C20.0818 2.60704 19.3914 1.91667 18.5226 1.84983Z" stroke="black" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Plans & Payment
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- COMPLETE YOUR PROFILE SECTION -->
+    <div class="finx-profile-complete-box">
+      <h4>Complete Your Profile</h4>
+      <p>A complete profile attracts <strong>72%</strong> more fintech companies</p>
+      <ul class="finx-progress-list">
+        <li class="completed">
+          <div class="progress-item">
+            <span class="status-icon"><i class="fa-solid fa-check"></i></span>
+            <span class="progress-line"></span>
+          </div>
+          <span class="progress-text">Overview and Description</span>
+        </li>
+        <li>
+          <div class="progress-item">
+            <span class="status-icon"></span>
+            <span class="progress-line"></span>
+          </div>
+          <span class="progress-text">Plans and Pricing Models</span>
+        </li>
+        <li>
+          <div class="progress-item">
+            <span class="status-icon"></span>
+            <span class="progress-line"></span>
+          </div>
+          <span class="progress-text">Demos and Case Studies</span>
+        </li>
+        <li>
+          <div class="progress-item">
+            <span class="status-icon"></span>
+          </div>
+          <span class="progress-text">Contact Information and Socials</span>
+        </li>
+      </ul>
+    </div>
+    <div class="finx-user-box">
+      <img src="<?php echo FINTECH_PROFILER_BASE_URL; ?>/public/img/company-logo.png" alt="Company Logo" class="finx-user-logo" />
+      <div>
+        <div>My Awesome Company</div>
+        <div class="finx-user-email">myawesomecompany@gm..</div>
+      </div>
+    </div>
+  </aside>
+  <!-- MAIN CONTENT -->
+  <main class="finx-main">
+    <!-- Breadcrumb - will be updated dynamically -->
+    <div class="finx-breadcrumb" id="dynamic-breadcrumb">
+      <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-2.png" alt="Icon" class="breadcrumb-icon">
+      <span class="breadcrumb-plan">Plans</span>
+      <span class="breadcrumb-separator"> / </span>
+      <span class="breadcrumb-payment">Payment</span>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="fp-form">
+      <?php wp_nonce_field('edit_fintech_dashboard', 'edit_fintech_dashboard_nonce'); ?>
+
+      <!-- Dashboard Tab Content -->
+      <div class="finx-tab-content" id="dashboard-tab">
+        <div class="finx-full-content container py-4">
+          <!-- Welcome and Stats -->
+          <div class="d-flex flex-wrap justify-content-between align-items-start mb-4"
+            style="border-bottom: 1px solid #0000000A; padding-bottom: 20px; margin-bottom: 12px;">
+            <!-- Welcome Text -->
+            <div class="finx-welcome-text mb-3">
+              <h5 class="text-secondary mb-1">Welcome,</h5>
+              <h3 class="fw-bold">ThoughtMachine</h3>
+              <p class="text-muted small mb-0" style="max-width: 400px;">
+                Monitor current trends, and useful insights to help you manage your company profile.
+              </p>
+            </div>
+            <!-- Stats -->
+            <div class="d-flex flex-wrap gap-3">
+              <!-- Demo Request -->
+              <div class="card shadow-sm border-0" style="width: 230px; background-color: #fff; border-radius: 8px;">
+                <div class="card-body" style="text-align: left;">
+                  <p class="text-muted small mb-2">Demo Request</p>
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <h3 class="fw-bold mb-0">25</h3>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;">
+                      <div style="width: 25px; height: 25px; background-color: #22c55e; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 3px;">
+                        <i class="fa-solid fa-arrow-up" style="color: #fff; font-size: 15px;"></i>
+                      </div>
+                      <span class="text-muted small mt-2" style="font-size: 16px;">20%</span>
+                    </div>
+                  </div>
+                  <p class="text-muted small mb-0">This week</p>
+                </div>
+              </div>
+              <!-- Redirect to Website -->
+              <div class="card shadow-sm border-0" style="width: 230px; background-color: #fff; border-radius: 8px;">
+                <div class="card-body" style="text-align: left;">
+                  <p class="text-muted small mb-2">Redirect to Website</p>
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <h3 class="fw-bold mb-0">20</h3>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;">
+                      <div style="width: 25px; height: 25px; background-color: #E50303; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 3px;">
+                        <i class="fa-solid fa-arrow-down" style="color: #fff; font-size: 15px;"></i>
+                      </div>
+                      <span class="text-muted small mt-2" style="font-size: 16px;">10%</span>
+                    </div>
+                  </div>
+                  <p class="text-muted small mb-0">This week</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Engagement + Premium Section -->
+          <div class="row g-4 mb-4">
+            <!-- Engagement Categories -->
+            <div class="col-lg-6">
+              <div class="card shadow-none border-0 finx-engagement-card" style="background-color: transparent;">
+                <div class="card-body">
+                  <div class="mb-3">
+                    <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/lightning-01.png" alt="Logo" style="width:40px; height:40px; display:block; margin-bottom:8px;">
+                    <h5 class="fw-semibold mb-0">Engagement Categories</h5>
+                  </div>
+                  <p class="text-muted small mb-4">
+                    Categories that bring the most views for your profile
+                  </p>
+                  <ul class="list-unstyled small mb-0 mt-20" style="margin-top: 50px;">
+                    <li class="d-flex justify-content-between mb-2">
+                      <span>Online Banking Platforms</span> <span class="fw-semibold">71%</span>
+                    </li>
+                    <li class="d-flex justify-content-between mb-2">
+                      <span>Digital Onboarding Solutions</span> <span class="fw-semibold">20%</span>
+                    </li>
+                    <li class="d-flex justify-content-between mb-2">
+                      <span>Bill Pay Solutions</span> <span class="fw-semibold">9%</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <span>Online Banking Platforms</span> <span class="fw-semibold">&lt;1%</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Premium Membership -->
+            <div class="col-lg-6">
+              <div class="card shadow-sm border-0 text-center finx-premium-card">
+                <div class="card-body p-4" style="text-align: left;">
+                  <div class="d-flex align-items-center mb-3">
+                    <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Frame-1707480232.png" alt="Premium Logo" width="60" height="60">
+                    <p class="text-muted small mb-0"
+                      style="margin-left: 195px; background-color: #0000000D; padding: 6px;
+                              border-radius: 5px ">
+                      Starting $12/month
+                    </p>
+                  </div>
+                  <h4 class="fw-bold mb-2">Get Premium </br> Membership</h4>
+                  <p class="text-muted small mb-3">
+                    Get your chance up by up to <strong>64%</strong> to be seen </br>and get contacted
+                  </p>
+                  <a href="#" class="btn px-4" style="background-color: #ff6b35; color: white; width: 100%;">Get Membership</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Profile Views -->
+          <div class="card shadow-sm border-0 finx-profile-card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-semibold mb-0">Profile Views</h5>
+                <div class="btn-group btn-group-sm" role="group">
+                  <button type="button" class="btn btn-outline-secondary active">Weekly</button>
+                  <button type="button" class="btn btn-outline-secondary">Monthly</button>
+                </div>
+              </div>
+              <p class="text-success small mb-3">+20% vs last week (Feb 16–22)</p>
+              <!-- Graph Image -->
+              <div class="border rounded p-3 text-center bg-light finx-graph-wrapper">
+                <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Frame-42990.png" alt="Profile Views Graph" class="img-fluid rounded">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Info Tab Content -->
+      <div class="finx-tab-content" id="get-started-tab">
+        <div class="finx-full-content">
+          <h2>Get Started Information</h2>
+        </div>
+      </div>
+
+      <!-- General Info Tab Content -->
+      <div class="finx-tab-content" id="general-info-tab">
+        <div class="finx-full-content">
+          <h2>Company Information</h2>
+        </div>
+        <div class="dashboard-page-body">
+          <div class="dashboard-page-header">
+            <h5>Basic Information</h5>
+            <p>The most basic required information needed to qualify for listing</p>
+          </div>
+          <div class="dashboard-page-sections">
+            <div class="dashboard-section" id="company-logo">
+              <div class="dashboard-left">
+                <label for="profile-picture">Company Profile Picture</label>
+              </div>
+              <div class="dashboard-right">
+                <div class="fp-logo-upload">
+                  <div class="fp-logo-preview">
+                    <?php
+                    $custom_avatar = get_user_meta($current_user->ID, '_profile_picture', true);
+                    if ($custom_avatar) {
+                      echo '<img src="' . esc_url($custom_avatar) . '" alt="' . esc_attr($user_name) . '" width="100" height="100" />';
+                    } else {
+                      echo '<img src="' . FINTECH_PROFILER_BASE_URL . '/public/img/fallback-img.png" id="logo-preview" />';
+                      // echo get_avatar($current_user->ID, 96);
+                    }
+                    ?>
+                  </div class="fp-logo-btn">
+                  <div class="fp-logo-file-input">
+                    <input type="file" name="company_logo" id="company_logo" accept="image/*" value="<?php echo esc_url($custom_avatar); ?>">
+                    <input type="hidden" name="action" name="upload_company_logo" value="<?php echo esc_url($custom_avatar); ?>">
+                    <span>Supports .jpg, .png and .svg and zip files</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-section" id="basic-info">
+              <div class="dashboard-left">
+                <label for="basic_info">Basic Information</label>
+              </div>
+              <div class="dashboard-right">
+                <p>
+                  <label for="company_name">Company Name</label>
+                  <input type="text" name="company_name" id="company_name" placeholder="Enter company name" value="<?php echo get_the_title($fintech_id); ?>">
+                </p>
+                <p>
+                  <label for="website_link">Website Link</label>
+                  <input type="text" name="website_link" id="website_link" placeholder="Enter website link" value="<?php echo esc_url($fintech_website); ?>">
+                </p>
+                <div class="fp-col-2">
+                  <p class="fp-container">
+                    <label for="founded_in">Founded in</label>
+                    <input type="number" name="founded_in" id="founded_in" value="<?php echo esc_html($fintech_founded); ?>">
+                  </p>
+                  <p class="fp-container">
+                    <label for="company_size">Company Size</label>
+                    <select name="company_size" id="company_size">
+                      <option value="">Select Size</option>
+                      <option value="small">Small</option>
+                      <option value="medium">Medium</option>
+                      <option value="large">Large</option>
+                    </select>
+                  </p>
+                </div>
+                <p>
+                  <label for="slogan"> Slogan <span>(opt.)</span></label>
+                  <input type="text" name="slogan" id="slogan" placeholder="Enter company slogan" value="<?php echo esc_html($fintech_slogan); ?>">
+                </p>
+              </div>
+            </div>
+
+            <div class="dashboard-section" id="services-provided">
+              <div class="dashboard-left">
+                <label for="service_provided">Services Provided</label>
+              </div>
+              <div class="dashboard-right">
+                <p>
+                  <label for="services">What services do you offer?</label>
+                </p>
+                <div class="sidebar-section category-filter">
+
+                  <?php
+                  $taxonomy = 'fintech-category';
+
+                  $temp_terms = get_the_terms($fintech_id, $taxonomy);
+
+                  $selected_cats = [];
+
+                  foreach ($temp_terms as $term) {
+                    $selected_cats[] = $term->term_id;
+                  }
+
+                  echo '<select class="multi-select" multiple="multiple" style="width:100%;" name="services" id="services" >';
+                  $terms = get_terms([
+                    'taxonomy'   => $taxonomy,
+                    'hide_empty' => false,
+                    'parent'     => 0
+                  ]);
+
+                  if (!empty($terms) && !is_wp_error($terms)) {
+                    foreach ($terms as $term) {
+                      $checked = in_array($term->term_id, $selected_cats) ? 'checked' : '';
+                      echo '<option value="' . esc_attr($term->term_id) . '" ' . selected(in_array($term->term_id, $selected_cats)) . '>' . esc_html($term->name) . '</option>';
+                    }
+                  }
+                  echo '</select>';
+
+                  $selected_cats_string = implode(',', $selected_cats)
+                  ?>
+
+                  <input type="hidden" name="selected_category" id="selected_category" value="<?php echo esc_attr($selected_cats_string); ?>">
+                  <div class="sidebar-section category-filter">
+                    <?php
+                    $categories = get_terms(['taxonomy' => $taxonomy, 'hide_empty' => false]);
+
+                    $terms = get_terms([
+                      'taxonomy'   => $taxonomy,
+                      'hide_empty' => false,
+                      'parent'     => 0
+                    ]);
+
+                    if (!empty($terms) && !is_wp_error($terms)) {
+                      echo '<ul>';
+                      foreach ($terms as $term) {
+                        $children = get_terms([
+                          'taxonomy'   => $taxonomy,
+                          'hide_empty' => false,
+                          'parent'     => $term->term_id
+                        ]);
+
+                        $checked = in_array($term->term_id, $selected_cats) ? 'checked' : '';
+
+                        // Add class if has children
+                        $li_class = !empty($children) ? 'has-children' : '';
+
+                        echo '<li class="parent-list category-' . esc_html($term->term_id) . ' ' . esc_attr($li_class) . '">';
+                        echo '<label class="parent-label">' . esc_html($term->name) . '</label>';
+                        // Recursively render children
+                        if (!empty($children)) {
+                          echo '<ul class="children">';
+                          render_taxonomy_tree_old($taxonomy, $term->term_id, $selected_cats);
+                          echo '</ul>';
+                        }
+
+                        echo '</li>';
+                      }
+                      echo '</ul>';
+                    }
+                    ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Overview Tab Content -->
+      <div class="finx-tab-content" id="overview-tab">
+        <div class="finx-full-content">
+
+          <div class="container mt-4 p-4">
+            <h5 class="fw-semibold mb-2">Showcase your Product</h5>
+            <p class="text-muted mb-4">
+              Help your users to decide why they should choose you by showing your experiences
+            </p>
+
+            <!-- Demo Section -->
+            <div class="row mb-4 align-items-start">
+              <div class="col-md-6">
+                <h6 class="fw-semibold mb-2">Demo</h6>
+              </div>
+              <div class="col-md-6">
+                <div id="demoFields">
+                  <label class="form-label small text-muted">Demo link</label>
+                  <input type="text" class="form-control mb-2" placeholder="myawesomecompany.com/demo">
+                </div>
+                <button class="btn btn-outline-secondary btn-sm" id="addDemo">
+                  <i class="bi bi-plus"></i> Add more
+                </button>
+              </div>
+            </div>
+
+            <hr>
+
+            <!-- Case Study Section -->
+            <div class="row align-items-start">
+              <div class="col-md-6">
+                <h6 class="fw-semibold mb-2">Case Study</h6>
+              </div>
+              <div class="col-md-6">
+                <div id="caseFields">
+                  <div class="row g-2 mb-2">
+                    <div class="col-12">
+                      <label class="form-label small text-muted">Title</label>
+                      <input type="text" class="form-control" placeholder="Name the plan">
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label small text-muted">Link</label>
+                      <input type="text" class="form-control" placeholder="Plan benefits">
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-outline-secondary btn-sm" id="addCase">
+                  <i class="bi bi-plus"></i> Add more
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <!-- Images & Videos Tab Content -->
+      <div class="finx-tab-content" id="images-videos-tab">
+        <div class="finx-full-content">
+          <h2>Images & Videos</h2>
+        </div>
+      </div>
+      <!-- Pricing Plans Tab Content -->
+      <div class="finx-tab-content" id="pricing-plans-tab">
+        <div class="finx-full-content">
+          <div class="container">
+            <div class="pricing-header">
+              <div>
+                <h3 class="fw-bold mb-1">Checkout Membership Plans</h3>
+                <p class="text-muted mb-0">For added benefits and exclusive service</p>
+              </div>
+              <div class="toggle-switch">
+                <span class="fw-semibold text-muted">Monthly</span>
+                <div class="form-check form-switch m-0">
+                  <input class="form-check-input" type="checkbox" id="billingToggle" checked>
+                </div>
+                <span class="fw-semibold text-success">Yearly</span>
+              </div>
+            </div>
+            <div class="row g-4 equal-row justify-content-center">
+              <!-- Basic Plan -->
+              <div class="col-md-4 d-flex">
+                <div class="plan-card text-start h-100">
+                  <div>
+                    <div class="plan-title text-muted">Basic Plan</div>
+                    <div class="price">Free</div>
+                    <button class="btn btn-upgrade" style="background-color: #FFFFFFCC; color: black;">You are on Basic Plan</button>
+                    <p class="fw-semibold mb-1" style="margin-top: 20px;">Package includes:</p>
+                    <ul>
+                      <li><i class="fa-solid fa-check text-success"></i>Basic fintech directory access</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Save up to 5 favorites</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Messaging service up to 5 months</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Basic profile listing and visibility</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Free articles and content access</li>
+                    </ul>
+                    <p class="fw-semibold mt-3 mb-1">Not included:</p>
+                    <ul>
+                      <li class="text-muted"><i class="fa-solid fa-xmark text-danger"></i>No Analytics</li>
+                      <li class="text-muted"><i class="fa-solid fa-xmark text-danger"></i>No networking events</li>
+                      <li class="text-muted"><i class="fa-solid fa-xmark text-danger"></i>No dedicated support</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Professional Plan -->
+              <div class="col-md-4 d-flex">
+                <div class="plan-card dark text-start h-100">
+                  <div>
+                    <div class="plan-title">Professional Plan <span class="highlight-badge">POPULAR</span></div>
+                    <div class="price price-switch" data-monthly="19" data-yearly="99">$99 <span class="fs-6 fw-normal">/Yearly</span></div>
+                    <button class="btn btn-light btn-upgrade">Upgrade</button>
+                    <p class="fw-semibold mt-4 mb-1" style="color: white;">Package includes:</p>
+                    <ul>
+                      <li><i class="fa-solid fa-check text-success"></i>Enhanced fintech directory access</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Save unlimited favorites</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Unlimited messaging service</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Boosted profile listing and visibility</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Premium reports and content access</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Basic engagement data</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Basic email support</li>
+                    </ul>
+                    <p class="fw-semibold mt-3 mb-1" style="color: white;">Not included:</p>
+                    <ul>
+                      <li style="color: white;"><i class="fa-solid fa-xmark text-danger"></i>No networking events</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Premium Plan -->
+              <div class="col-md-4 d-flex">
+                <div class="plan-card text-start h-100">
+                  <div>
+                    <div class="plan-title text-muted">Premium Plan</div>
+                    <div class="price price-switch" data-monthly="29" data-yearly="149">$149 <span class="fs-6 fw-normal">/Yearly</span></div>
+                    <button class="btn btn-dark btn-upgrade">Upgrade</button>
+                    <p class="fw-semibold mt-4 mb-1">Package includes:</p>
+                    <ul>
+                      <li><i class="fa-solid fa-check text-success"></i>Featured fintech directory access</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Save unlimited favorites</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Unlimited messaging service</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Featured profile listing and visibility</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Publish & showcase own articles</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Custom reports</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Exclusive invitations</li>
+                      <li><i class="fa-solid fa-check text-success"></i>Account manager</li>
+                    </ul>
+                    <p class="plan-note"><strong>Includes everything</strong> with added 24/7 support</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Case Studies & Demo Tab Content -->
+      <div class="finx-tab-content" id="case-studies-tab">
+        <div class="finx-full-content">
+          <h2>Case Study</h2>
+        </div>
+      </div>
+      <!-- Contact Info Tab Content -->
+      <div class="finx-tab-content" id="contact-info-tab">
+        <div class="finx-full-content container py-4">
+          <h2 class="fw-semibold mb-1">How to Reach Out to You?</h2>
+          <p class="text-muted mb-4">Help your users reach out to you via direct contact or social medias</p>
+          <!-- CONTACT INFO SECTION -->
+          <div class="row align-items-start mb-4">
+            <!-- Left column -->
+            <div class="col-md-6">
+              <h5 class="fw-semibold mb-3">Contact Information</h5>
+            </div>
+            <!-- Right column -->
+            <div class="col-md-6">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Country</label>
+                  <select class="form-select finx-country">
+                    <option selected>USA</option>
+                    <option>Canada</option>
+                    <option>UK</option>
+                    <option>India</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">State (opt)</label>
+                  <select class="form-select finx-state">
+                    <option selected>Alabama</option>
+                    <option>California</option>
+                    <option>Texas</option>
+                    <option>New York</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">City (opt)</label>
+                  <input type="text" class="form-control finx-city" placeholder="Huntsville">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Business email</label>
+                  <input type="email" class="form-control finx-email" placeholder="myawesomecompany.com">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Phone number</label>
+                  <div class="input-group finx-phone-group">
+                    <span class="input-group-text finx-country-code">+91</span>
+                    <input type="text" class="form-control finx-phone" placeholder="Enter your number">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="my-4">
+          <!-- SOCIALS SECTION -->
+          <div class="row align-items-start">
+            <!-- Left column -->
+            <div class="col-md-6">
+              <h5 class="fw-semibold mb-3">Socials</h5>
+            </div>
+            <!-- Right column -->
+            <div class="col-md-6">
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label">linkedin.com/company/</label>
+                  <input type="text" class="form-control finx-linkedin" placeholder="Link">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">x.com/</label>
+                  <input type="text" class="form-control finx-x" placeholder="Link">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">instagram.com/</label>
+                  <input type="text" class="form-control finx-instagram" placeholder="Link">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">facebook.com/</label>
+                  <input type="text" class="form-control finx-facebook" placeholder="Link">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Plans & Payment Tab Content (Active by default) -->
+      <div class="finx-tab-content active" id="plans-payment-tab">
+        <div class="finx-payment-container">
+          <!-- LEFT PANEL -->
+          <div class="finx-payment-left">
+            <i class="fas fa-arrow-left finx-arrow-back"></i>
+            <div class="finx-user-box">
+              <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/Frame-1707480128.png" alt="Company Logo" class="finx-user-logo">
+              <div>
+                <div class="company-name">My Awesome Company</div>
+                <div class="finx-user-emaill">myawesomecompany@gmail.com</div>
+              </div>
+            </div>
+            <div class="finx-plan-card mb-4">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <p class="finx-plan-subtitle mb-1">UPGRADING TO</p>
+                  <h4 class="finx-plan-title mb-0">Professional Plan</h4>
+                </div>
+                <div class="text-end">
+                  <h4 class="finx-plan-price mb-0">$99</h4>
+                  <small class="text-muted">Billed Yearly</small>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between mt-3">
+                <a href="#" class="finx-plan-link">Switch Plans</a>
+                <a href="#" class="finx-plan-link">Switch to Monthly</a>
+              </div>
+            </div>
+            <div class="finx-benefits mb-4">
+              <h6>Benefits you'll be getting:</h6>
+              <ul>
+                <li>Premium reports and content access</li>
+                <li>Basic engagement data</li>
+                <li>Basic email support</li>
+              </ul>
+            </div>
+            <form class="finx-form">
+              <h6 class="mb-3">Payment Details</h6>
+              <div class="mb-3">
+                <label>Name on card</label>
+                <input type="text" class="form-control" placeholder="John Smith">
+              </div>
+              <div class="mb-3">
+                <label>Card number</label>
+                <input type="text" class="form-control" placeholder="1234-1234-1234-1234">
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label>Expiration date</label>
+                  <input type="text" class="form-control" placeholder="MM/YY">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label>CVV</label>
+                  <input type="text" class="form-control" placeholder="123">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label>Country</label>
+                  <select class="form-select">
+                    <option>Startup</option>
+                    <option>United States</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label>City</label>
+                  <select class="form-select">
+                    <option>Startup</option>
+                    <option>Alabama</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label>State (opt)</label>
+                  <input type="text" class="form-control" placeholder="Alabama">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label>ZIP Code</label>
+                  <input type="text" class="form-control" placeholder="12345">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label>Address</label>
+                <input type="text" class="form-control" placeholder="myawesomecompany.com">
+              </div>
+              <div class="finx-save-info">
+                <label class="switch">
+                  <input type="checkbox" id="saveInfo">
+                  <span class="slider"></span>
+                </label>
+                <span class="switch-text">Save this information for future payments</span>
+              </div>
+            </form>
+          </div>
+          <!-- RIGHT PANEL (Only for Payment tab) -->
+          <div class="finx-payment-right">
+            <div class="finx-order-summary">
+              <h5>Order Details</h5>
+              <div class="finx-order-item">
+                <span>Professional Plan</span>
+                <span>$89/mo</span>
+              </div>
+              <div class="finx-total d-flex justify-content-between">
+                <span>Total Due</span>
+                <span>$89/mo</span>
+              </div>
+              <p class="text-muted small mt-2">
+                You will be billed every month starting 19th Feb 2025 until cancellation.
+              </p>
+            </div>
+            <button class="finx-confirm-btn btn">Confirm Payment</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+</div>
+
 <div class="dashboard-container full-width">
   <div class="dashboard-row">
     <div class="has-left-sidebar">
@@ -118,9 +890,10 @@ get_header();
               <li>
                 <a href="#tabs-4">
                   <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2.40002 16.1205V3.88047H0.400024V16.1205H2.40002ZM3.80002 2.48047H18.2V0.480469H3.80002V2.48047ZM19.6 3.88047V16.1205H21.6V3.88047H19.6ZM19.6 16.1205C19.6 16.8937 18.9732 17.5205 18.2 17.5205V19.5205C20.0778 19.5205 21.6 17.9982 21.6 16.1205H19.6ZM18.2 2.48047C18.9732 2.48047 19.6 3.10727 19.6 3.88047H21.6C21.6 2.0027 20.0778 0.480469 18.2 0.480469V2.48047ZM2.40002 3.88047C2.40002 3.10727 3.02682 2.48047 3.80002 2.48047V0.480469C1.92226 0.480469 0.400024 2.0027 0.400024 3.88047H2.40002ZM3.80002 17.5205C3.02683 17.5205 2.40002 16.8937 2.40002 16.1205H0.400024C0.400024 17.9982 1.92226 19.5205 3.80002 19.5205V17.5205ZM13.6 10.0006C13.6 11.4365 12.436 12.6006 11 12.6006V14.6006C13.5405 14.6006 15.6 12.5411 15.6 10.0006H13.6ZM11 12.6006C9.56408 12.6006 8.40002 11.4365 8.40002 10.0006H6.40002C6.40002 12.5411 8.45951 14.6006 11 14.6006V12.6006ZM8.40002 10.0006C8.40002 8.56465 9.56408 7.40059 11 7.40059V5.40059C8.45951 5.40059 6.40002 7.46008 6.40002 10.0006H8.40002ZM11 7.40059C12.436 7.40059 13.6 8.56465 13.6 10.0006H15.6C15.6 7.46008 13.5405 5.40059 11 5.40059V7.40059ZM18.2 17.5205H3.80002V19.5205H18.2V17.5205Z" fill="black" fill-opacity="0.8" />
+                    <path d="M2.40002 16.1205V3.88047H0.400024V16.1205H2.40002ZM3.80002 2.48047H18.2V0.480469H3.
+                    
+                    80002V2.48047ZM19.6 3.88047V16.1205H21.6V3.88047H19.6ZM19.6 16.1205C19.6 16.8937 18.9732 17.5205 18.2 17.5205V19.5205C20.0778 19.5205 21.6 17.9982 21.6 16.1205H19.6ZM18.2 2.48047C18.9732 2.48047 19.6 3.10727 19.6 3.88047H21.6C21.6 2.0027 20.0778 0.480469 18.2 0.480469V2.48047ZM2.40002 3.88047C2.40002 3.10727 3.02682 2.48047 3.80002 2.48047V0.480469C1.92226 0.480469 0.400024 2.0027 0.400024 3.88047H2.40002ZM3.80002 17.5205C3.02683 17.5205 2.40002 16.8937 2.40002 16.1205H0.400024C0.400024 17.9982 1.92226 19.5205 3.80002 19.5205V17.5205ZM13.6 10.0006C13.6 11.4365 12.436 12.6006 11 12.6006V14.6006C13.5405 14.6006 15.6 12.5411 15.6 10.0006H13.6ZM11 12.6006C9.56408 12.6006 8.40002 11.4365 8.40002 10.0006H6.40002C6.40002 12.5411 8.45951 14.6006 11 14.6006V12.6006ZM8.40002 10.0006C8.40002 8.56465 9.56408 7.40059 11 7.40059V5.40059C8.45951 5.40059 6.40002 7.46008 6.40002 10.0006H8.40002ZM11 7.40059C12.436 7.40059 13.6 8.56465 13.6 10.0006H15.6C15.6 7.46008 13.5405 5.40059 11 5.40059V7.40059ZM18.2 17.5205H3.80002V19.5205H18.2V17.5205Z" fill="black" fill-opacity="0.8" />
                   </svg>
-
                   Images & videos</a>
               </li>
               <li>
@@ -1100,8 +1873,9 @@ get_footer();
       switch (tabId) {
         case 'dashboard':
           breadcrumbHtml = `
-             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/star-01.png" alt="Icon" class="breadcrumb-icon">
-             <span class="breadcrumb-payment">Dashboard</span>
+             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.89102 2.17056C10.272 1.14106 11.7281 1.14106 12.109 2.17056L14.0051 7.2947C14.1249 7.61837 14.3801 7.87356 14.7038 7.99333L19.8279 9.88944C20.8574 10.2704 20.8574 11.7265 19.8279 12.1074L14.7038 14.0035C14.3801 14.1233 14.1249 14.3785 14.0051 14.7022L12.109 19.8263C11.7281 20.8558 10.272 20.8558 9.89102 19.8263L7.99492 14.7022C7.87515 14.3785 7.61996 14.1233 7.29629 14.0035L2.17215 12.1074C1.14265 11.7265 1.14265 10.2704 2.17215 9.88944L7.29629 7.99333C7.61996 7.87356 7.87515 7.61837 7.99492 7.2947L9.89102 2.17056Z" stroke="#000" stroke-opacity="0.8" stroke-width="2" stroke-linejoin="round" />
+            </svg> Dashboard</span>
            `;
           break;
         case 'general-info':

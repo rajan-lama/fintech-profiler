@@ -62,9 +62,9 @@
 
   $(document).ready(function () {
     // Initialize select2 if not already
-    $("#services").select2({
-      placeholder: "Select Categories",
-    });
+    // $("#services").select2({
+    //   placeholder: "Select Categories",
+    // });
 
     $(".parent-list").hide();
 

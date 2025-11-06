@@ -73,6 +73,14 @@ if (!empty($_GET['fintech'])) {
   } else {
     echo '<p>Please log in to view your profile.</p>';
   }
+
+  /*  ["fintech_pricing_plans"]=> array(1) { [0]=> string(103) "a:1:{i:0;a:3:{s:4:"name";s:6:"Plan B";s:11:"description";s:14:"This is Plan B";s:4:"cost";s:4:"1200";}}" }
+   ["fintech_case_studies"]=> array(1) { [0]=> string(82) "a:1:{i:0;a:2:{s:5:"title";s:14:"Kathmandu Case";s:4:"link";s:13:"CaseLinks.com";}}" } 
+   ["pricing_plans"]=> array(1) { [0]=> string(103) "a:1:{i:0;a:3:{s:4:"type";s:6:"Plan B";s:11:"description";s:14:"This is Plan B";s:4:"cost";s:4:"1200";}}" } 
+   ["case_studies"]=> array(1) { [0]=> string(89) "a:1:{i:0;a:2:{s:5:"title";s:14:"Kathmandu Case";s:4:"link";s:20:"http://CaseLinks.com";}}" } 
+
+  var_dump($meta);
+  */
 }
 get_header();
 ?>
@@ -120,7 +128,6 @@ get_header();
                   <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2.40002 16.1205V3.88047H0.400024V16.1205H2.40002ZM3.80002 2.48047H18.2V0.480469H3.80002V2.48047ZM19.6 3.88047V16.1205H21.6V3.88047H19.6ZM19.6 16.1205C19.6 16.8937 18.9732 17.5205 18.2 17.5205V19.5205C20.0778 19.5205 21.6 17.9982 21.6 16.1205H19.6ZM18.2 2.48047C18.9732 2.48047 19.6 3.10727 19.6 3.88047H21.6C21.6 2.0027 20.0778 0.480469 18.2 0.480469V2.48047ZM2.40002 3.88047C2.40002 3.10727 3.02682 2.48047 3.80002 2.48047V0.480469C1.92226 0.480469 0.400024 2.0027 0.400024 3.88047H2.40002ZM3.80002 17.5205C3.02683 17.5205 2.40002 16.8937 2.40002 16.1205H0.400024C0.400024 17.9982 1.92226 19.5205 3.80002 19.5205V17.5205ZM13.6 10.0006C13.6 11.4365 12.436 12.6006 11 12.6006V14.6006C13.5405 14.6006 15.6 12.5411 15.6 10.0006H13.6ZM11 12.6006C9.56408 12.6006 8.40002 11.4365 8.40002 10.0006H6.40002C6.40002 12.5411 8.45951 14.6006 11 14.6006V12.6006ZM8.40002 10.0006C8.40002 8.56465 9.56408 7.40059 11 7.40059V5.40059C8.45951 5.40059 6.40002 7.46008 6.40002 10.0006H8.40002ZM11 7.40059C12.436 7.40059 13.6 8.56465 13.6 10.0006H15.6C15.6 7.46008 13.5405 5.40059 11 5.40059V7.40059ZM18.2 17.5205H3.80002V19.5205H18.2V17.5205Z" fill="black" fill-opacity="0.8" />
                   </svg>
-
                   Images & videos</a>
               </li>
               <li>
@@ -1065,203 +1072,6 @@ get_header();
       </div>
     </div>
   </div>
-</div>
-<?php
-get_footer();
-?>
 
-<script>
-  jQuery(document).ready(function($) {
-    // Tab switching functionality
-    $('.finx-nav-links li').on('click', function() {
-      // Remove active class from all tabs
-      $('.finx-nav-links li').removeClass('active');
-
-      // Add active class to clicked tab
-      $(this).addClass('active');
-
-      // Get the tab id from data attribute
-      var tabId = $(this).data('tab');
-
-      // Hide all tab content
-      $('.finx-tab-content').removeClass('active');
-
-      // Show the selected tab content
-      $('#' + tabId + '-tab').addClass('active');
-
-      // Update breadcrumb based on active tab
-      updateBreadcrumb(tabId);
-    });
-
-    // Function to update breadcrumb based on active tab
-    function updateBreadcrumb(tabId) {
-      var breadcrumbHtml = '';
-
-      switch (tabId) {
-        case 'dashboard':
-          breadcrumbHtml = `
-             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/star-01.png" alt="Icon" class="breadcrumb-icon">
-             <span class="breadcrumb-payment">Dashboard</span>
-           `;
-          break;
-        case 'general-info':
-          breadcrumbHtml = `
-             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/information-circle-contained.png" alt="Icon" class="breadcrumb-icon">
-             <span class="breadcrumb-payment">General Info</span>
-           `;
-          break;
-        case 'overview':
-          breadcrumbHtml = `
-      <div class="finx-breadcrumb-wrapper">
-        <div class="finx-breadcrumb-left">
-          <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/file-02.png" alt="Icon" class="breadcrumb-icon">
-          <span class="breadcrumb-payment">Overview</span>
-        </div>
-        <div class="finx-breadcrumb-right">
-          <button class="finx-btn-cancel">Preview</button>
-          <button class="finx-btn-save">Save Changes</button>
-        </div>
-      </div>
-    `;
-          break;
-        case 'images-videos':
-          breadcrumbHtml = `
-             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/camera-02.png" alt="Icon" class="breadcrumb-icon">
-             <span class="breadcrumb-payment">Images & Videos</span>
-           `;
-          break;
-        case 'pricing-plans':
-          breadcrumbHtml = `
-             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-1.png" alt="Icon" class="breadcrumb-icon">
-             <span class="breadcrumb-payment">Pricing Plans</span>
-           `;
-          break;
-        case 'case-studies':
-          breadcrumbHtml = `
-             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/book-02.png" alt="Icon" class="breadcrumb-icon">
-             <span class="breadcrumb-payment">Case Studies & Demo</span>
-           `;
-          break;
-        case 'contact-info':
-          breadcrumbHtml = `
-       <div class="finx-breadcrumb-wrapper">
-         <div class="finx-breadcrumb-left">
-           <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-2.png" alt="Icon" class="finx-breadcrumb-icon">
-           <span class="finx-breadcrumb-payment">Contact Info</span>
-         </div>
-         <div class="finx-breadcrumb-right">
-           <button class="finx-btn-cancel">Preview</button>
-           <button class="finx-btn-save">Save Changes</button>
-         </div>
-       </div>
-     `;
-          break;
-        case 'plans-payment':
-          breadcrumbHtml = `
-             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-2.png" alt="Icon" class="breadcrumb-icon">
-             <span class="breadcrumb-plan">Plans</span>
-             <span class="breadcrumb-separator"> / </span>
-             <span class="breadcrumb-payment">Payment</span>
-           `;
-          break;
-        default:
-          breadcrumbHtml = `
-             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-2.png" alt="Icon" class="breadcrumb-icon">
-             <span class="breadcrumb-payment">${tabId}</span>
-           `;
-      }
-
-      $('#dynamic-breadcrumb').html(breadcrumbHtml);
-    }
-
-    // Show popup when Confirm Payment is clicked
-    $(".finx-confirm-btn").on("click", function(e) {
-      e.preventDefault(); // Prevent default (remove if not needed)
-      $("#paymentPopup").fadeIn(300).addClass("show");
-    });
-
-    // Close popup on button click
-    $("#closePopupBtn").on("click", function() {
-      $("#paymentPopup").fadeOut(200, function() {
-        $(this).removeClass("show");
-      });
-    });
-
-    // Close popup when clicking outside the box
-    $("#paymentPopup").on("click", function(e) {
-      if ($(e.target).is("#paymentPopup")) {
-        $(this).fadeOut(200, function() {
-          $(this).removeClass("show");
-        });
-      }
-    });
-
-    // Billing toggle functionality for Pricing Plans tab
-    $("#billingToggle").on("change", function() {
-      if ($(this).is(":checked")) {
-        // Yearly billing selected
-        $(".finx-plan-price").each(function() {
-          var monthlyPrice = $(this).text().replace('$', '');
-          var yearlyPrice = monthlyPrice * 12 * 0.8; // 20% discount
-          $(this).text('$' + yearlyPrice.toFixed(0));
-        });
-        $(".finx-plan-period").text("per year");
-      } else {
-        // Monthly billing selected
-        $(".finx-plan-price").each(function() {
-          var yearlyPrice = $(this).text().replace('$', '');
-          var monthlyPrice = yearlyPrice / 12 / 0.8; // Reverse calculation
-          $(this).text('$' + monthlyPrice.toFixed(0));
-        });
-        $(".finx-plan-period").text("per month");
-      }
-    });
-  });
-</script>
-<script>
-  const toggle = document.getElementById('billingToggle');
-  toggle.addEventListener('change', function() {
-    const isYearly = this.checked;
-    document.querySelectorAll('.price-switch').forEach(el => {
-      const monthly = el.getAttribute('data-monthly');
-      const yearly = el.getAttribute('data-yearly');
-      if (isYearly) {
-        el.innerHTML = `$${yearly} <span class="fs-6 fw-normal">/Yearly</span>`;
-      } else {
-        el.innerHTML = `$${monthly} <span class="fs-6 fw-normal">/Monthly</span>`;
-      }
-    });
-  });
-</script>
-<script>
-  // Add more demo fields
-  document.getElementById("addDemo").addEventListener("click", function() {
-    const demoContainer = document.getElementById("demoFields");
-    const newField = document.createElement("input");
-    newField.type = "text";
-    newField.className = "form-control mb-2";
-    newField.placeholder = "myawesomecompany.com/demo";
-    demoContainer.appendChild(newField);
-  });
-
-  // Add more case study fields
-  document.getElementById("addCase").addEventListener("click", function() {
-    const caseContainer = document.getElementById("caseFields");
-    const newGroup = document.createElement("div");
-    newGroup.className = "row g-2 mb-2";
-    newGroup.innerHTML = `
-      <div class="col-12">
-        <label class="form-label small text-muted">Title</label>
-        <input type="text" class="form-control" placeholder="Name the plan">
-      </div>
-      <div class="col-12">
-        <label class="form-label small text-muted">Link</label>
-        <input type="text" class="form-control" placeholder="Plan benefits">
-      </div>
-    `;
-    caseContainer.appendChild(newGroup);
-  });
-</script>
-<!-- Bootstrap CSS and JS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <?php
+  get_footer();
