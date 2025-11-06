@@ -1,0 +1,2670 @@
+<?php get_header(); ?>
+<style>
+   /* ===========================
+   FinExplore Dashboard STYLES
+   ============================ */
+   .finx-wrapper {
+   font-family: 'Inter', sans-serif;
+   background-color: #f9fafb;
+   color: #333;
+   display: flex;              
+   align-items: flex-start;    
+   min-height: 100vh;
+   margin: 0;                  
+   }
+   a {
+   text-decoration: none;
+   color: inherit;
+   }
+   /* ===========================
+   SIDEBAR
+   ============================ */
+   .finx-sidebar {
+   width: 260px;
+   background-color: #fff;
+   border-right: 1px solid #e5e7eb;
+   padding: 2rem 1rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   }
+   .finx-logo {
+   font-size: 1.25rem;
+   font-weight: 700;
+   color: #ff6b35;
+   margin-bottom: 1rem;
+   margin-right:30px;
+   text-align: center;
+   }
+   .finx-nav-links li {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+   font-family: 'Inter';
+   }
+   .finx-nav-links li img {
+   width: 20px;
+   height: 20px;
+   object-fit: contain;
+   opacity: 0.8;
+   transition: 0.2s;
+   }
+   .finx-nav-links li:hover img,
+   .finx-nav-links li.active img {
+   opacity: 1;
+   filter: brightness(1.1);
+   }
+   .finx-nav-links li {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+   }
+   .finx-nav-links li img {
+   width: 20px;
+   height: 20px;
+   object-fit: contain;
+   opacity: 0.8;
+   transition: 0.2s;
+   }
+   .finx-nav-links li {
+   font-size: 15px;
+   }
+   .finx-nav-links li:hover img,
+   .finx-nav-links li.active img {
+   opacity: 1;
+   filter: brightness(1.1);
+   }
+   .finx-nav-links ul {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+   }
+   .finx-nav-links li {
+   padding: 0.50rem 1rem;
+   border-radius: 8px;
+   margin-bottom: 0.5rem;
+   cursor: pointer;
+   color: #444;
+   transition: all 0.2s;
+   font-family: 'Inter';
+   }
+   .finx-nav-links li:hover,
+   .finx-nav-links li.active {
+   background-color: #f0f1f3;
+   font-weight: 600;
+   color: #ff6b35;
+   }
+   .finx-user-box {
+   padding: 1rem;
+   font-size: 0.875rem;
+   display: flex;
+   align-items: center;
+   gap: 0.75rem; 
+   text-align: left; 
+   margin-left: -13px; 
+   border-top: 1px solid #f2f2f2;
+   }
+   .finx-user-logo {
+   width: 50px;
+   height: 50px;
+   object-fit: cover;
+   flex-shrink: 0; /* prevents logo from shrinking */
+   }
+   .finx-user-email {
+   font-size: 0.8rem;
+   color: #6b7280;
+   white-space: nowrap;       
+   overflow: hidden;          
+   text-overflow: ellipsis;   
+   max-width: 163px;         
+   }
+   /* ===========================
+   MAIN CONTENT
+   ============================ */
+   .finx-main {
+   flex: 1;
+   padding: 2rem;
+   overflow-y: auto;
+   background:#f3f4f6;
+   height: -webkit-fill-available;
+   }
+   .finx-plan-header.mb-3 {
+   background: #FFFFFFCC;
+   padding: 20px;
+   border-radius: 20px;
+   }
+   .finx-breadcrumb {
+   font-size: 0.9rem;
+   color: #6b7280;
+   margin-bottom: 1rem;
+   border-bottom: 1px solid #0000001A;
+   padding-bottom: 10px;
+   margin-left: 31px;
+   }
+   .finx-breadcrumb span {
+   color: #111;
+   font-weight: 500;
+	font-size: 18px;
+   }
+   .finx-breadcrumb {
+   display: flex;
+   align-items: center; 
+   gap: 8px; 
+   }
+   .breadcrumb-icon {
+   width: 20px; /* adjust size as needed */
+   height: 20px;
+   }
+   .first-sec {
+   margin-bottom: 275px;
+   }
+   /* ===========================
+   Dashboard
+   ============================ */
+   .finx-tab-content h2 {
+   font-weight: 600;
+   margin-bottom: 1rem;
+   }
+   .finx-stat-card {
+   border-radius: 1rem;
+   }
+   .finx-premium-card {
+   border-radius: 1rem;
+   }
+   .finx-profile-card {
+   border-radius: 1rem;
+   }
+   .finx-graph-wrapper {
+   min-height: 250px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   }
+   /* ===========================
+   PAYMENT CONTAINER
+   ============================ */
+   .finx-payment-container {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 2rem;
+   }
+   .finx-payment-left,
+   .finx-payment-right {
+   background: #f3f4f6;
+   padding: 2rem;
+   padding-top:unset;
+   }
+   .finx-payment-left {
+   flex: 1 1 65%;
+   }
+   .finx-payment-right {
+   flex: 1 1 30%;
+   align-self: flex-start;
+   border-left: 1px solid #0000001A;
+   height: 988px;
+   }
+   .finx-plan-header h4 {
+   font-weight: 600;
+   font-size: 1.2rem;
+   margin-bottom: 0.25rem;
+   }
+   /* ========== PLAN CARD STYLE ========== */
+   .finx-plan-card {
+   background: #FFFFFFCC;
+   border-radius: 10px;
+   padding: 1.5rem;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+   border: 1px solid #e5e7eb;
+   }
+   .finx-plan-subtitle {
+   text-transform: uppercase;
+   font-size: 0.75rem;
+   font-weight: 600;
+   color: #6b7280;
+   letter-spacing: 0.05em;
+   }
+   .finx-plan-title {
+   font-size: 1.25rem;
+   font-weight: 600;
+   color: #111827;
+   }
+   .finx-form input, .finx-form select {
+   /* border-radius: 8px; */
+   border: 1px solid #0000001A;
+   }
+   .finx-plan-price {
+   font-size: 33px;
+   font-weight: 700;
+   color: #111827;
+   }
+   .finx-plan-link {
+   color: #3b82f6;
+   font-weight: 500;
+   font-size: 0.9rem;
+   text-decoration: none;
+   }
+   .finx-plan-link:hover {
+   text-decoration: underline;
+   }
+   .finx-benefits ul {
+   list-style: none;
+   padding: 0;
+   }
+   .finx-benefits li {
+   position: relative;
+   padding-left: 1.5rem;
+   font-family: 'Inter', sans-serif;
+   font-weight: 400;
+   font-style: normal; 
+   font-size: 14px;
+   line-height: 1.5; 
+   letter-spacing: -0.02em; 
+   }
+   .finx-benefits.mb-4 h6 {
+   font-family: 'Inter', sans-serif;
+   font-weight: 600;
+   font-style: normal; 
+   font-size: 16px;
+   line-height: 1.5; 
+   letter-spacing: -0.02em; 
+   }
+   button.finx-confirm-btn.btn {
+   color: #fff;
+   border: unset;
+   }
+   .finx-benefits li::before {
+   content: "\f00c"; 
+   font-family: "Font Awesome 6 Free";
+   font-weight: 900; 
+   position: absolute;
+   left: 0;
+   top: 0.1rem;
+   color: #000000; 
+   font-size: 0.9rem;
+   }
+   .breadcrumb-plan {
+   color: #aaa !important;
+   }
+   .breadcrumb-separator {
+   color: #aaa !important;
+   }
+   .breadcrumb-payment {
+   color: #337AFF; 
+   }
+   .finx-breadcrumb {
+   display: flex;
+   align-items: center;
+   gap: 5px; 
+   }
+   .breadcrumb-icon {
+   width: 20px; /* adjust as needed */
+   height: 20px;
+   }
+   .finx-form label {
+   font-weight: 500;
+   margin-bottom: 13px;
+   }
+   .finx-form input,
+   .finx-form select {
+   border-radius: 8px;
+   }
+   .finx-save-info {
+   display: flex;
+   align-items: baseline;
+   gap: 0.5rem;
+   margin-top: 1rem;
+   }
+   form.finx-form h6 {
+   font-family: 'Inter', sans-serif;
+   font-weight: 600;        
+   font-style: normal;         
+   font-size: 20px;
+   line-height: 130%;          
+   letter-spacing: -0.02em;    
+   }
+   .company-name {
+   font-family: Inter;
+   font-weight: 400;
+   font-style: Regular;
+   font-size: 20px;
+   leading-trim: NONE;
+   line-height: 160%;
+   letter-spacing: -2%;
+   }
+   .finx-confirm-btn {
+   background: linear-gradient(180deg, #FF7943 0%, #6D1D00  100%);
+   border: none;
+   border-radius: 8px;
+   color: #fff;
+   font-size: 16px;
+   font-weight: 600;
+   padding: 12px 24px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   text-align: center;
+   display: inline-block;
+   }
+   /* Hover effect for a nice interactive feel */
+   .finx-confirm-btn:hover {
+   background: linear-gradient(180deg, #6D1D00 0%, #FF7943 100%);
+   transform: translateY(-2px);
+   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+   color:#fff;
+   }
+   /* ===========================
+   ORDER SUMMARY
+   ============================ */
+   .finx-order-summary h5 {
+   font-weight: 600;
+   margin-bottom: 1.5rem;
+   }
+   .finx-order-item {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 0.5rem;
+   font-size: 0.95rem;
+   }
+   .finx-total {
+   border-top: 1px solid #e5e7eb;
+   padding-top: 0.75rem;
+   font-weight: 700;
+   font-size: 1.1rem;
+   }
+   .finx-confirm-btn {
+   background-color: #ff6b35;
+   color: #fff;
+   font-weight: 600;
+   width: 100%;
+   border-radius: 10px;
+   padding: 0.8rem;
+   margin-top: 2rem;
+   transition: 0.3s;
+   }
+   .finx-confirm-btn:hover {
+   background-color: #e85c2c;
+   }
+   /* Overlay background */
+   .popup-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   background: rgba(0, 0, 0, 0.6);
+   display: none; /* hidden initially */
+   justify-content: center;
+   align-items: center;
+   z-index: 999999; /* high z-index to stay on top */
+   }
+   /* Popup box styling */
+   .popup-box {
+   background: #fff;
+   width: 420px;
+   max-width: 90%;
+   border-radius: 12px;
+   text-align: center;
+   padding: 40px 30px;
+   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+   transform: translate(-50%, -50%) scale(0.8);
+   opacity: 0;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transition: all 0.3s ease;
+   }
+   /* When visible */
+   .popup-overlay.show .popup-box {
+   transform: translate(-50%, -50%) scale(1);
+   opacity: 1;
+   }
+   /* Icon */
+   .popup-icon {
+   width: 80px;
+   height: 80px;
+   margin-bottom: 15px;
+   }
+   /* Heading */
+   .popup-box h2 {
+   font-size: 24px;
+   color: #222;
+   margin-bottom: 10px;
+   }
+   /* Text */
+   .popup-box p {
+   color: #555;
+   margin-bottom: 25px;
+   }
+   /* Button */
+   .popup-btn {
+   background: #f16425;
+   color: white;
+   border: none;
+   padding: 12px 25px;
+   border-radius: 6px;
+   font-size: 15px;
+   cursor: pointer;
+   transition: background 0.3s ease;
+   }
+   .popup-btn:hover {
+   background: #d6521e;
+   }
+   /* ===========================
+   RESPONSIVE
+   ============================ */
+   @media (max-width: 992px) {
+   .finx-sidebar {
+   display: none;
+   }
+   .finx-main {
+   padding: 1rem;
+   }
+   }
+   @media (max-width: 768px) {
+   .finx-payment-container {
+   flex-direction: column;
+   }
+   .finx-payment-left, .finx-payment-right {
+   width: 100%;
+   }
+   }
+   @media (max-width: 600px) {
+   .popup-box {
+   width: 90%;
+   padding: 30px 20px;
+   }
+   .popup-box h2 {
+   font-size: 20px;
+   }
+   .popup-box p {
+   font-size: 14px;
+   margin-bottom: 20px;
+   }
+   .popup-btn {
+   width: 100%;
+   padding: 14px;
+   font-size: 15px;
+   min-width: unset;
+   }
+   .popup-icon {
+   width: 70px;
+   height: 70px;
+   }
+   }
+   .finx-profile-complete-box {
+   background: #f3f4f6;
+   border-radius: 10px;
+   padding: 8px;
+   margin: 7px;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+   margin-bottom: 2em;
+   }
+   .finx-profile-complete-box h4 {
+   font-size: 15px;
+   margin-bottom: 5px;
+   font-weight: 600;
+   color: #111;
+   }
+   .finx-profile-complete-box p {
+   font-size: 13px;
+   color: #555;
+   margin-bottom: 16px;
+   }
+   /* Progress list styling */
+   .finx-progress-list {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   }
+   .finx-progress-list li {
+   position: relative;
+   display: flex;
+   align-items: flex-start;
+   gap: 10px;
+   margin-bottom: 20px;
+   }
+   .progress-item {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
+   }
+   .status-icon {
+   width: 22px;
+   height: 22px;
+   border-radius: 50%;
+   background: #e0e0e0;
+   color: #888;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 11px;
+   z-index: 1;
+   }
+   .progress-line {
+   position: absolute;
+   top: 22px;
+   left: 50%;
+   width: 2px;
+   height: 25px;
+   background: #d0d0d0;
+   transform: translateX(-50%);
+   z-index: 0;
+   }
+   /* Completed Step */
+   .finx-progress-list li.completed .status-icon {
+   background: #2ecc71;
+   color: #fff;
+   }
+   .finx-progress-list li.completed .progress-line {
+   background: #2ecc71;
+   }
+   /* Last item: hide line */
+   .finx-progress-list li:last-child .progress-line {
+   display: none;
+   }
+   /* Text styling */
+   .progress-text {
+   font-size: 13px;
+   color: #333;
+   line-height: 1.3;
+   font-weight:500;
+   }
+   /* Responsive for smaller sidebar widths */
+   @media (max-width: 768px) {
+   .progress-text {
+   font-size: 12px;
+   }
+   }
+   /* ===========================
+   TAB CONTENT STYLES
+   ============================ */
+   .finx-tab-content {
+   display: none;
+   }
+   .finx-tab-content.active {
+   display: block;
+   }
+   .finx-tab-full-width {
+   width: 100%;
+   background: #f3f4f6;
+   padding: 2rem;
+   border-radius: 10px;
+   }
+   /* Switch toggle styles */
+   .switch {
+   position: relative;
+   display: inline-block;
+   width: 50px;
+   height: 24px;
+   }
+   .switch input {
+   opacity: 0;
+   width: 0;
+   height: 0;
+   }
+   .slider {
+   position: absolute;
+   cursor: pointer;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: #ccc;
+   transition: .4s;
+   border-radius: 24px;
+   }
+   .slider:before {
+   position: absolute;
+   content: "";
+   height: 16px;
+   width: 16px;
+   left: 4px;
+   bottom: 4px;
+   background-color: white;
+   transition: .4s;
+   border-radius: 50%;
+   }
+   input:checked + .slider {
+   background-color: #4caf50;
+   }
+   input:checked + .slider:before {
+   transform: translateX(26px);
+   }
+   .switch-text {
+   font-size: 0.9rem;
+   color: #6b7280;
+   }
+   /* Back button */
+   .finx-arrow-back {
+   color: #6b7280;
+   cursor: pointer;
+   margin-bottom: 1rem;
+   display: inline-block;
+   }
+   .finx-arrow-back:hover {
+   color: #ff6b35;
+   }
+   /* Full width content styles */
+   .finx-full-content {
+   border-radius: 10px;
+   margin-bottom: 2rem;
+   }
+   .finx-full-content h2 {
+   font-size: 1.5rem;
+   font-weight: 600;
+   color: #111827;
+   margin-bottom: 1rem;
+   }
+   .finx-full-content p {
+   color: #000;
+   line-height: 1.6;
+   font-size: 13px;
+   font-weight: 600;
+   }
+   .toggle-switch {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   font-family: 'Inter', sans-serif;
+   font-weight: 400;
+   font-style: normal; /* "Regular" corresponds to normal */
+   font-size: 14px;
+   line-height: 150%; /* 1.5 */
+   letter-spacing: -0.02em; /* -2% */
+   /* leading-trim is not widely supported in CSS, so we skip it */
+   }
+   /* Pricing plans specific styles */
+   .finx-pricing-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 2rem;
+   }
+   .finx-pricing-title {
+   font-size: 1.5rem;
+   font-weight: 600;
+   color: #111827;
+   }
+   .finx-pricing-toggle {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+   }
+   .finx-toggle-label {
+   font-size: 0.9rem;
+   color: #6b7280;
+   }
+   .finx-toggle-switch {
+   position: relative;
+   display: inline-block;
+   width: 60px;
+   height: 30px;
+   }
+   .finx-toggle-switch input {
+   opacity: 0;
+   width: 0;
+   height: 0;
+   }
+   .finx-toggle-slider {
+   position: absolute;
+   cursor: pointer;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: #e5e7eb;
+   transition: .4s;
+   border-radius: 34px;
+   }
+   .finx-toggle-slider:before {
+   position: absolute;
+   content: "";
+   height: 22px;
+   width: 22px;
+   left: 4px;
+   bottom: 4px;
+   background-color: white;
+   transition: .4s;
+   border-radius: 50%;
+   }
+   input:checked + .finx-toggle-slider {
+   background-color: #ff6b35;
+   }
+   input:checked + .finx-toggle-slider:before {
+   transform: translateX(30px);
+   }
+   .finx-pricing-cards {
+   display: flex;
+   gap: 2rem;
+   flex-wrap: wrap;
+   }
+   .finx-pricing-card {
+   flex: 1;
+   min-width: 250px;
+   background: #fff;
+   border-radius: 10px;
+   padding: 2rem;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+   border: 1px solid #e5e7eb;
+   transition: all 0.3s ease;
+   }
+   .finx-pricing-card:hover {
+   transform: translateY(-5px);
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+   }
+   .finx-full-content.container.py-4 {
+   background: #f3f4f6!important;
+   border: unset;
+   padding: 30px;
+   }
+   .finx-full-content {
+   box-shadow: none !important;
+   }
+   .finx-pricing-card.popular {
+   border: 2px solid #ff6b35;
+   position: relative;
+   }
+   .finx-popular-badge {
+   position: absolute;
+   top: -10px;
+   left: 50%;
+   transform: translateX(-50%);
+   background: #ff6b35;
+   color: white;
+   padding: 5px 15px;
+   border-radius: 20px;
+   font-size: 0.8rem;
+   font-weight: 600;
+   }
+   .finx-plan-name {
+   font-size: 1.25rem;
+   font-weight: 600;
+   color: #111827;
+   margin-bottom: 0.5rem;
+   }
+   .finx-plan-description {
+   color: #6b7280;
+   font-size: 0.9rem;
+   margin-bottom: 1.5rem;
+   }
+   .finx-plan-price {
+   font-size: 2rem;
+   font-weight: 700;
+   color: #111827;
+   margin-bottom: 1rem;
+   }
+   .finx-plan-period {
+   color: #6b7280;
+   font-size: 0.9rem;
+   }
+   .finx-plan-features {
+   list-style: none;
+   padding: 0;
+   margin: 1.5rem 0;
+   }
+   .finx-plan-features li {
+   padding: 0.5rem 0;
+   position: relative;
+   padding-left: 1.5rem;
+   }
+   .finx-plan-features li::before {
+   content: "\f00c";
+   font-family: "Font Awesome 6 Free";
+   font-weight: 900;
+   position: absolute;
+   left: 0;
+   color: #10b981;
+   }
+   .finx-plan-button {
+   width: 100%;
+   padding: 0.75rem;
+   border-radius: 8px;
+   font-weight: 600;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   border: none;
+   }
+   .finx-plan-button.primary {
+   background: #ff6b35;
+   color: white;
+   }
+   .finx-plan-button.primary:hover {
+   background: #e85c2c;
+   }
+   .finx-plan-button.secondary {
+   background: transparent;
+   color: #ff6b35;
+   border: 1px solid #ff6b35;
+   }
+   .finx-plan-button.secondary:hover {
+   background: #fff5f2;
+   }
+   .finx-full-content.container.py-4 {
+   background: #f3f4f6;
+   border: unset;
+   }
+   .pricing-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 40px;
+   flex-wrap: wrap;
+   }
+   .toggle-switch {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   }
+   .toggle-switch .form-check-input {
+   width: 45px;
+   height: 22px;
+   background-color: #ddd;
+   cursor: pointer;
+   }
+   .toggle-switch .form-check-input:checked {
+   background-color: #16a34a;
+   }
+   .plan-card {
+   border: 3px solid #FFFFFFCC;
+   border-radius: 14px;
+   padding: 30px 25px;
+   background-color: #F4F6F5;
+   transition: all 0.3s ease;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   height: 100%;
+   }
+   .plan-card:hover {
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+   transform: translateY(-3px);
+   }
+   .plan-card.dark {
+   background-color: #0f0f0f;
+   color: #fff;
+   border: none;
+   }
+   .plan-card .plan-title {
+   font-weight: 600;
+   font-size: 14px;
+   margin-bottom: 10px;
+   }
+   .plan-card .price {
+   font-size: 38px;
+   font-weight: 700;
+   margin: 10px 0;
+   }
+   .plan-card .btn-upgrade {
+   width: 100%;
+   border-radius: 10px;
+   font-weight: 600;
+   margin-top: 10px;
+   }
+   .plan-card ul {
+   list-style: none;
+   padding-left: 0;
+   margin-top: 20px;
+   }
+   .plan-card ul li {
+   font-size: 12px;
+   margin-bottom: 8px;
+	font-weight:500;
+   }
+   .plan-card ul li i {
+   margin-right: 8px;
+   }
+   .plan-card ul li.text-muted i {
+   color: #dc3545 !important;
+   }
+   .highlight-badge {
+   background-color: #f97316;
+   color: #fff;
+   font-size: 9px;
+   border-radius: 20px;
+   padding: 3px 10px;
+   margin-left: 191px;
+   }
+   .plan-note {
+   font-size: 14px;
+   color: #666;
+   margin-top: 15px;
+   }
+   /* Make equal height rows */
+   .equal-row {
+   display: flex;
+   flex-wrap: wrap;
+   }
+   .equal-row > [class*='col-'] {
+   display: flex;
+   }
+   .equal-row .plan-card {
+   flex: 1;
+   }
+   .form-label {
+   font-weight: 500;
+   color: #333;
+   font-size: 14px;
+   }
+   .form-control,
+   .form-select {
+   border-radius: 8px;
+   height: 42px;
+   font-size: 14px;
+   }
+   .input-group-text {
+   background-color: #FFFFFFCC;
+   border-right: none;
+   border-radius: 8px 0 0 8px;
+   font-size: 14px;
+   }
+   input[type=date], input[type=email], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=url], select, textarea {
+   border-radius: 3px;
+   padding: .5rem 1rem;
+   transition: all .3s;
+   width: 100%;
+   border: var(--bs-border-width) solid var(--bs-border-color);
+   border-radius: var(--bs-border-radius);
+   }
+   .text-muted {
+   font-size: 14px;
+   }
+   hr {
+   border-top: 1px solid #ddd;
+   }
+   h5 {
+   font-size: 16px;
+   color: #000;
+   }
+   @media (max-width: 768px) {
+   .col-md-6 {
+   flex: 0 0 100%;
+   max-width: 100%;
+   }
+   }
+   .finx-country:focus,
+   .finx-state:focus,
+   .finx-city:focus,
+   .finx-email:focus,
+   .finx-phone:focus,
+   .finx-linkedin:focus,
+   .finx-x:focus,
+   .finx-instagram:focus,
+   .finx-facebook:focus {
+   border-color: #FFFFFFCC;
+   box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+   }
+   /* Breadcrumb Wrapper */
+   .finx-breadcrumb-wrapper {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 97%;
+   padding: 10px 0;
+   }
+   /* Left Section (Icon + Text) */
+   .finx-breadcrumb-left {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   }
+   .finx-breadcrumb-icon {
+   width: 24px;
+   height: 24px;
+   }
+   .finx-breadcrumb-payment {
+   font-size: 16px;
+   font-weight: 600;
+   color: #333;
+   }
+   /* Right Section (Buttons) */
+   .finx-breadcrumb-right {
+   margin-left: auto;
+   display: flex;
+   gap: 10px;
+   }
+   /* Unique Buttons */
+   .finx-btn-cancel {
+   background: transparent;
+   border: 1px solid #ccc;
+   color: #333;
+   padding: 6px 14px;
+   border-radius: 6px;
+   font-size: 14px;
+   font-weight: 500;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   }
+   .finx-btn-cancel:hover {
+   border-color: #000!important;
+   color: #000!important;
+   background:#fff;
+   }
+   .finx-btn-save {
+   background: linear-gradient(180deg, #FF7943 0%, #6D1D00 100%);
+   color: #fff;
+   border: none;
+   border-radius: 8px;
+   padding: 10px 20px;
+   font-weight: 600;
+   cursor: pointer;
+   transition: 0.3s ease;
+   }
+   .finx-btn-save:hover {
+   opacity: 0.9;
+   transform: translateY(-2px);
+   color:#fff;
+   }
+   button {
+   background-color: initial; 
+   color: inherit; 
+   }
+   button:hover {
+   background-color: unset; 
+   color: inherit; 
+   }
+ .multi-select-box {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 6px;
+        min-height: 42px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .multi-tag {
+        background-color: #e9ecef;
+        border-radius: 12px;
+        padding: 4px 10px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .multi-tag span {
+        cursor: pointer;
+        font-weight: bold;
+    }
+.company-description-wrapper {
+  font-family: "Inter", Arial, sans-serif;
+  color: #333;
+}
+
+/* Make Quill editor match Bootstrap’s form-control look */
+.company-editor {
+  height: 250px;
+  border-radius: 0.375rem;
+  background-color: #fafafa;
+  padding: 0;
+}
+
+.ql-toolbar.ql-snow {
+  border-radius: 0.375rem 0.375rem 0 0;
+  border-color: #dee2e6;
+}
+
+.ql-container.ql-snow {
+  border-color: #dee2e6;
+  border-radius: 0 0 0.375rem 0.375rem;
+}
+
+/* Adjust for mobile view */
+@media (max-width: 768px) {
+  .company-description-wrapper .row {
+    flex-direction: column;
+  }
+}
+	
+ .caseField {
+    border: 1px solid #ced4da; /* light grey border */
+    border-radius: 5px; /* rounded corners */
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+ /* Force layout for top section */
+  .finx-media-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  /* Left column */
+  .finx-media-left {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+
+  /* Right column */
+  .finx-media-right {
+    flex: 1 1 50%;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* Image styling */
+  .finx-media-image {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Typography */
+  .finx-media-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 0.5rem;
+  }
+
+  .finx-media-desc {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  /* Upload button */
+  .finx-media-upload-btn {
+    background: linear-gradient(90deg, #d56e10, #ff4500);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .finx-media-upload-btn:hover {
+    background: linear-gradient(90deg, #ff914d, #ff5c33);
+	color:#fff;
+  }
+
+  /* File List Section */
+  .finx-media-file-list {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .finx-media-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    color: #333;
+  }
+
+  .finx-media-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+  }
+
+  .finx-media-table th,
+  .finx-media-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+  }
+
+  .finx-media-table th {
+    color: #444;
+    font-weight: 600;
+  }
+
+  /* File cell with thumbnail */
+  .finx-media-file {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .finx-media-thumb {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+	
+/* Remove all table borders and lines */
+.finx-media-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.finx-media-table th,
+.finx-media-table td {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Optional: tidy spacing */
+.finx-media-table th,
+.finx-media-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Optional: header styling (light weight text) */
+.finx-media-table th {
+  font-weight: 600;
+  color: #333;
+}
+th {
+    color: #00000066 !important;
+}
+
+  /* Actions */
+  .finx-media-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .finx-media-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+  }
+p.upload-info {
+    color: #000000AD;
+}
+
+  .finx-media-icon:hover {
+    background: #f0f0f0;
+  }
+
+  .finx-media-icon img {
+    width: 15px;
+    height: 15px;
+    display: block;
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .finx-media-wrapper {
+      flex-direction: column !important;
+    }
+
+    .finx-media-left,
+    .finx-media-right {
+      max-width: 100%;
+      flex: 1 1 100%;
+    }
+
+    .finx-media-right {
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+  }
+.upload-limit {
+  font-size: 0.9rem;
+  color: #000000AD;
+  margin-bottom: 10px;
+}
+p.upload-limit {
+    margin-top: 81px;
+}
+tr {
+    border-bottom: 1px solid #0000001A!important;
+}
+ /* --- Popup Styling --- */
+    .upload-modal .modal-content {
+      border-radius: 15px;
+      padding: 20px;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		background: #F1F1F1;
+    }
+
+    .upload-dropzone {
+      border: 2px dashed #d1d5db;
+      border-radius: 10px;
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #FFFFFF4D;
+      transition: border-color 0.3s ease;
+    }
+
+    .upload-dropzone:hover {
+      border-color: #0d6efd;
+    }
+td.finx-media-file{
+    font-weight: 600;
+}
+
+    .upload-icon {
+      width: 30px;
+      margin-bottom: 15px;
+    }
+
+    .upload-file-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin-top: 15px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .upload-progress {
+      height: 6px;
+      background-color: #e5e7eb;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .upload-progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #6BC229;
+      transition: width 0.3s ease;
+    }
+	#uploadBtn.btn.btn-primary {
+  background: linear-gradient(90deg, #d56e10, #ff4500);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#uploadBtn.btn.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 69, 0, 0.4);
+}
+
+#uploadBtn.btn.btn-primary:active {
+  transform: scale(0.97);
+}
+button.btn.btn-secondary.me-2 {
+    background: #fff;
+    color: #000;
+}
+</style>
+<div class="finx-wrapper">
+   <!-- SIDEBAR -->
+   <aside class="finx-sidebar">
+      <div class="first-sec">
+         <div class="finx-logo">
+            <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/Layer-1.png" alt="FinExplore360 Logo" class="img-fluid finx-logo-img">
+         </div>
+         <div class="finx-nav-links">
+            <ul>
+               <li data-tab="dashboard">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/star-01.png" alt="">
+                  Dashboard
+               </li>
+               <li data-tab="general-info">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/information-circle-contained.png" alt="">
+                  General Info
+               </li>
+               <li data-tab="overview">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/file-02.png" alt="">
+                  Overview
+               </li>
+               <li data-tab="images-videos">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/camera-02.png" alt="">
+                  Images & Videos
+               </li>
+               <li data-tab="pricing-plans">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-1.png" alt="">
+                  Pricing Plans
+               </li>
+               <li data-tab="case-studies">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/book-02-1.png" alt="">
+                  Case Studies & Demo
+               </li>
+               <li data-tab="contact-info">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/send-01-1.png" alt="">
+                  Contact Info
+               </li>
+               <li data-tab="plans-payment" class="active">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-2.png" alt="">
+                  Plans & Payment
+               </li>
+            </ul>
+         </div>
+      </div>
+      <!-- COMPLETE YOUR PROFILE SECTION -->
+      <div class="finx-profile-complete-box">
+         <h4>Complete Your Profile</h4>
+         <p>A complete profile attracts <strong>72%</strong> more fintech companies</p>
+         <ul class="finx-progress-list">
+            <li class="completed">
+               <div class="progress-item">
+                  <span class="status-icon"><i class="fa-solid fa-check"></i></span>
+                  <span class="progress-line"></span>
+               </div>
+               <span class="progress-text">Overview and Description</span>
+            </li>
+            <li>
+               <div class="progress-item">
+                  <span class="status-icon"></span>
+                  <span class="progress-line"></span>
+               </div>
+               <span class="progress-text">Plans and Pricing Models</span>
+            </li>
+            <li>
+               <div class="progress-item">
+                  <span class="status-icon"></span>
+                  <span class="progress-line"></span>
+               </div>
+               <span class="progress-text">Demos and Case Studies</span>
+            </li>
+            <li>
+               <div class="progress-item">
+                  <span class="status-icon"></span>
+               </div>
+               <span class="progress-text">Contact Information and Socials</span>
+            </li>
+         </ul>
+      </div>
+      <div class="finx-user-box">
+         <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/Frame-1707480128.png" alt="Company Logo" class="finx-user-logo">
+         <div>
+            <div>My Awesome Company</div>
+            <div class="finx-user-email">myawesomecompany@gm..</div>
+         </div>
+      </div>
+   </aside>
+   <!-- MAIN CONTENT -->
+   <main class="finx-main">
+      <!-- Breadcrumb - will be updated dynamically -->
+      <div class="finx-breadcrumb" id="dynamic-breadcrumb">
+         <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-2.png" alt="Icon" class="breadcrumb-icon">
+         <span class="breadcrumb-plan">Plans</span>
+         <span class="breadcrumb-separator"> / </span>
+         <span class="breadcrumb-payment">Payment</span>
+      </div>
+      <!-- Dashboard Tab Content -->
+      <div class="finx-tab-content" id="dashboard-tab">
+         <div class="finx-full-content container py-4" >
+           <!-- Welcome and Stats -->
+<div class="header-section" style="border-bottom: 1px solid #0000000A; padding-bottom: 20px; margin-bottom: 12px;">
+   <div class="finx-left-section" style="
+      display: grid;
+      grid-template-columns: 40% 58.5%;
+      align-items: start;
+      gap: 20px;
+   ">
+      <!-- Left: Welcome Text -->
+      <div class="finx-welcome-text">
+         <h5 class="text-secondary" style="margin-bottom: 5px;">Welcome,</h5>
+         <h3 class="fw-bold" style="margin-bottom: 10px;">ThoughtMachine</h3>
+         <p class="text-muted small" style="max-width: 400px; margin: 0;">
+            Monitor current trends, and useful insights to help you manage your company profile.
+         </p>
+      </div>
+
+      <!-- Right: Stats Section -->
+      <div class="stats-section" style="
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         gap: 15px;
+      ">
+         <!-- Demo Request -->
+         <div class="card shadow-sm border-0" style="background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="card-body" style="padding: 15px;">
+               <p class="text-muted small" style="margin-bottom: 5px;">Demo Request</p>
+               <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px;">
+                  <h3 class="fw-bold" style="margin: 0;">25</h3>
+                  <div style="text-align: center;">
+                     <div style="width: 25px; height: 25px; background-color: #22c55e; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 3px;">
+                        <i class="fa-solid fa-arrow-up" style="color: #fff; font-size: 15px;"></i>
+                     </div>
+                     <span class="text-muted small" style="font-size: 16px;">20%</span>
+                  </div>
+               </div>
+               <p class="text-muted small" style="margin: 0;">This week</p>
+            </div>
+         </div>
+
+         <!-- Redirect to Website -->
+         <div class="card shadow-sm border-0" style="background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="card-body" style="padding: 15px;">
+               <p class="text-muted small" style="margin-bottom: 5px;">Redirect to Website</p>
+               <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px;">
+                  <h3 class="fw-bold" style="margin: 0;">20</h3>
+                  <div style="text-align: center;">
+                     <div style="width: 25px; height: 25px; background-color: #E50303; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 3px;">
+                        <i class="fa-solid fa-arrow-down" style="color: #fff; font-size: 15px;"></i>
+                     </div>
+                     <span class="text-muted small" style="font-size: 16px;">10%</span>
+                  </div>
+               </div>
+               <p class="text-muted small" style="margin: 0;">This week</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+            <!-- Engagement + Premium Section -->
+            <div class="row g-4 mb-4">
+               <!-- Engagement Categories -->
+               <div class="col-lg-6">
+                  <div class="card shadow-none border-0 finx-engagement-card" style="background-color: transparent;">
+                     <div class="card-body">
+                        <div class="mb-3">
+                           <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/lightning-01.png" alt="Logo" style="width:40px; height:40px; display:block; margin-bottom:8px;">
+                           <h5 class="fw-semibold mb-0">Engagement Categories</h5>
+                        </div>
+                        <p class="text-muted small mb-4">
+                           Categories that bring the most views for your profile
+                        </p>
+                        <ul class="list-unstyled small mb-0 mt-20" style="margin-top: 50px;">
+                           <li class="d-flex justify-content-between mb-2">
+                              <span>Online Banking Platforms</span> <span class="fw-semibold">71%</span>
+                           </li>
+                           <li class="d-flex justify-content-between mb-2">
+                              <span>Digital Onboarding Solutions</span> <span class="fw-semibold">20%</span>
+                           </li>
+                           <li class="d-flex justify-content-between mb-2">
+                              <span>Bill Pay Solutions</span> <span class="fw-semibold">9%</span>
+                           </li>
+                           <li class="d-flex justify-content-between">
+                              <span>Online Banking Platforms</span> <span class="fw-semibold">&lt;1%</span>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <!-- Premium Membership -->
+               <div class="col-lg-6">
+                  <div class="card shadow-sm border-0 text-center finx-premium-card">
+                     <div class="card-body p-4" style="text-align: left;">
+                        <div class="d-flex align-items-center mb-3">
+                           <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Frame-1707480232.png" alt="Premium Logo" width="60" height="60">
+                           <p class="text-muted small mb-0" 
+                              style="margin-left: 229px; background-color: #0000000D; padding: 6px;
+                              border-radius: 5px ">
+                              Starting $12/month
+                           </p>
+                        </div>
+                        <h4 class="fw-bold mb-2">Get Premium </br> Membership</h4>
+                        <p class="text-muted small mb-3">
+                           Get your chance up by up to <strong>64%</strong> to be seen </br>and get contacted
+                        </p>
+                        <a href="#" class="btn px-4" style="background-color: #ff6b35; color: white; width: 100%;">Get Membership</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Profile Views -->
+            <div class="card shadow-sm border-0 finx-profile-card">
+               <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                     <h5 class="fw-semibold mb-0">Profile Views</h5>
+                     <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-outline-secondary active">Weekly</button>
+                        <button type="button" class="btn btn-outline-secondary">Monthly</button>
+                     </div>
+                  </div>
+                  <p class="text-success small mb-3">+20% vs last week (Feb 16–22)</p>
+                  <!-- Graph Image -->
+                  <div class="border rounded p-3 text-center bg-light finx-graph-wrapper">
+                     <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Frame-42990.png" alt="Profile Views Graph" class="img-fluid rounded">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- General Info Tab Content -->
+    <div class="finx-tab-content" id="general-info-tab">
+    <div class="finx-full-content">
+   <div class="finx-full-content container py-4">
+    <h2 class="fw-semibold mb-1">Basic Information</h2>
+    <p class="text-muted mb-4">The most basic required information needed to qualify for listing</p>
+	   <!-- Company Profile Picture Section -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-6">
+			 <h5 class="fw-semibold mb-3">Company Profile Picture</h5>
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+            <!-- Image Preview (hidden by default) -->
+            <div class="me-3">
+                <img id="companyImagePreview" 
+                     src="" 
+                     alt="Company Logo Preview" 
+                     class="border rounded d-none" 
+                     style="width: 80px; height: 80px; object-fit: cover;">
+            </div>
+            <!-- Upload Controls -->
+            <div>
+                <input type="file" id="companyImageInput" accept=".jpg,.png,.svg,.zip" class="d-none">
+                <button type="button" id="uploadButton" class="btn btn-light border">Upload Image</button>
+                <p class="text-muted small mb-0">Supports .jpg, .png, .svg and .zip files</p>
+            </div>
+        </div>
+    </div>
+	    <hr class="my-4">
+
+    <!-- CONTACT INFO SECTION -->
+    <div class="row align-items-start mb-4">
+        <div class="col-md-6">
+            <h5 class="fw-semibold mb-3">Basic Information</h5>
+        </div>
+        <div class="col-md-6">
+            <div class="row g-3">
+                <div class="col-12">
+                    <label class="form-label">Company Name</label>
+                    <input type="text" class="form-control" placeholder="My awesome Company">
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Website Link</label>
+                    <input type="text" class="form-control" placeholder="myawesomecompany.com">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Founded In</label>
+                    <input type="text" class="form-control" placeholder="Year">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Company Size</label>
+                    <select class="form-select">
+                        <option selected>Start Up</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                        <option>Option 4</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Slogan (opt)</label>
+                    <input type="text" class="form-control" placeholder="Enter company slogan">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <!-- Services Provided Section -->
+    <div class="row align-items-start">
+        <div class="col-md-6">
+            <h5 class="fw-semibold mb-3">Services Provided</h5>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">What services do you offer?</label>
+                <div id="selected-services" class="multi-select-box"></div>
+            </div>
+
+            <div class="mb-3">
+                <p class="fw-semibold mb-2">Digital Banking</p>
+                <div>
+                    <div><input type="checkbox" class="service-option" value="Online Banking Platforms"> Online Banking Platforms</div>
+                    <div><input type="checkbox" class="service-option" value="Digital Onboarding Solutions"> Digital Onboarding Solutions</div>
+                    <div><input type="checkbox" class="service-option" value="Bill Pay Solutions"> Bill Pay Solutions</div>
+                    <div><input type="checkbox" class="service-option" value="Account Opening Solutions"> Account Opening Solutions</div>
+                    <div><input type="checkbox" class="service-option" value="Personal Finance Management Tools"> Personal Finance Management Tools</div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <p class="fw-semibold mb-2">Regulatory & Compliance</p>
+                <div>
+                    <div><input type="checkbox" class="service-option" value="OFAC Solutions"> OFAC Solutions</div>
+                    <div><input type="checkbox" class="service-option" value="Anti-Money Laundering"> Anti-Money Laundering</div>
+                    <div><input type="checkbox" class="service-option" value="Know Your Customer"> Know Your Customer</div>
+                    <div><input type="checkbox" class="service-option" value="Verification of Payee Solutions"> Verification of Payee Solutions</div>
+                    <div><input type="checkbox" class="service-option" value="Regulatory Compliance Solutions"> Regulatory Compliance Solutions</div>
+                    <div><input type="checkbox" class="service-option" value="Risk Assessment and Management Tools"> Risk Assessment and Management Tools</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+    </div>
+  </div>
+<!-- Overview Tab Content -->
+<div class="finx-tab-content" id="overview-tab">
+  <div class="finx-full-content">
+
+    <div class="finx-full-content container py-4">
+
+      <!-- Title and subtitle -->
+      <div class="mb-4">
+        <h3 class="fw-semibold mb-3">Describe your Company</h3>
+        <p class="text-muted mb-0">
+          Write something about your company that clicks for the financial institutions
+        </p>
+      </div>
+
+     <div class="row gy-4 mt-4">
+    
+    <div class="left-col" style="flex: 0 0 40%; max-width: 40%;">
+      <h5 class="fw-semibold mb-2">About</h5>
+      <p class="text-secondary small mb-0">
+        What is company does, services, advantages and key features you provide
+      </p>
+    </div>
+
+    <div class="right-col" style="flex: 0 0 60%; max-width: 60%;">
+      <div class="mb-2">
+        <label for="editor" class="form-label small text-muted">Introduce your company</label>
+        <div id="editor" class="company-editor form-control"></div>
+      </div>
+      <p class="text-end text-muted small mb-0">Max 500 words</p>
+    </div>
+
+</div>
+
+    </div>
+
+  </div>
+</div>
+    <!-- Images & Videos Tab Content -->
+<div class="finx-tab-content" id="images-videos-tab">
+  <div class="finx-full-content">
+    <div class="finx-full-content container py-4">
+
+      <!-- Top Section: Left + Right -->
+      <div class="finx-media-wrapper">
+        <!-- Left Section -->
+        <div class="finx-media-left">
+          <h2 class="finx-media-title">Upload Multimedia</h2>
+          <p class="upload-info">
+            Add images and videos of your product to showcase its features and create a stronger impression.
+          </p>
+			<p class="upload-limit">Limited to 1 video and 4 images</p>
+          <button class="finx-media-upload-btn">Upload Files</button>
+        </div>
+
+        <!-- Right Section (Image beside Upload Multimedia) -->
+        <div class="finx-media-right">
+          <img
+            src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Frame-1707480204.png"
+            alt="Product showcase"
+            class="finx-media-image"
+          />
+        </div>
+      </div>
+
+      <!-- Bottom Section: File List -->
+      <div class="finx-media-file-list">
+        <h3 class="finx-media-subtitle">Uploaded Files</h3>
+		  <p class="upload-info">
+			  Uploaded files will be shown in order in the detail page 
+		  </p>
+        <table class="finx-media-table">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>File Name</th>
+              <th>Up. Date</th>
+              <th>Size</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td class="finx-media-file">
+                <img
+                  src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/5231290ee28ce48f49180fbd56324ed4635c222d.jpg"
+                  alt="File thumbnail"
+                  class="finx-media-thumb"
+                />
+                Cover-Video.mp4
+              </td>
+              <td>24 Jan 2025</td>
+              <td>12.8 MB</td>
+              <td class="finx-media-actions">
+                <button class="finx-media-icon">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Icon-5.png" alt="Download" />
+                </button>
+                <button class="finx-media-icon">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Icon-6.png" alt="Delete" />
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td class="finx-media-file">
+                <img
+                  src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/5231290ee28ce48f49180fbd56324ed4635c222d.jpg"
+                  alt="File thumbnail"
+                  class="finx-media-thumb"
+                />
+                product_showcase1.jpg
+              </td>
+              <td>24 Jan 2025</td>
+              <td>12.8 MB</td>
+              <td class="finx-media-actions">
+                <button class="finx-media-icon">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Icon-5.png" alt="Download" />
+                </button>
+                <button class="finx-media-icon">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Icon-6.png" alt="Delete" />
+                </button>
+              </td>
+            </tr>
+			      <tr>
+              <td>3</td>
+              <td class="finx-media-file">
+                <img
+                  src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/5231290ee28ce48f49180fbd56324ed4635c222d.jpg"
+                  alt="File thumbnail"
+                  class="finx-media-thumb"
+                />
+                Company_showcase1.jpg
+              </td>
+              <td>24 Jan 2025</td>
+              <td>12.8 MB</td>
+              <td class="finx-media-actions">
+                <button class="finx-media-icon">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Icon-5.png" alt="Download" />
+                </button>
+                <button class="finx-media-icon">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Icon-6.png" alt="Delete" />
+                </button>
+              </td>
+            </tr>
+			    <tr>
+              <td>4</td>
+              <td class="finx-media-file">
+                <img
+                  src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/5231290ee28ce48f49180fbd56324ed4635c222d.jpg"
+                  alt="File thumbnail"
+                  class="finx-media-thumb"
+                />
+                Demo_showcase1.jpg
+              </td>
+              <td>24 Jan 2025</td>
+              <td>12.8 MB</td>
+              <td class="finx-media-actions">
+                <button class="finx-media-icon">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Icon-5.png" alt="Download" />
+                </button>
+                <button class="finx-media-icon">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Icon-6.png" alt="Delete" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+      <!-- Pricing Plans Tab Content -->
+      <div class="finx-tab-content" id="pricing-plans-tab">
+         <div class="finx-full-content">
+            <div class="finx-full-content container py-4">
+               <div class="pricing-header">
+                  <div>
+                     <h3 class="fw-bold mb-1">Checkout Membership Plans</h3>
+                     <p class="text-muted mb-0">For added benefits and exclusive service</p>
+                  </div>
+                  <div class="toggle-switch">
+                     <span class="fw-semibold text-muted">Monthly</span>
+                     <div class="form-check form-switch m-0">
+                        <input class="form-check-input" type="checkbox" id="billingToggle" checked>
+                     </div>
+                     <span class="fw-semibold text-success">Yearly</span>
+                  </div>
+               </div>
+               <div class="row g-4 equal-row justify-content-center">
+                  <!-- Basic Plan -->
+                  <div class="col-md-4 d-flex">
+                     <div class="plan-card text-start h-100">
+                        <div>
+                           <div class="plan-title text-muted">Basic Plan</div>
+                           <div class="price">Free</div>
+                           <button class="btn btn-upgrade" style="background-color: #FFFFFFCC; color: black;">You are on Basic Plan</button>
+                           <p class="fw-semibold mb-1" style="margin-top: 20px;">Package includes:</p>
+                           <ul>
+                              <li><i class="fa-solid fa-check text-success"></i>Basic fintech directory access</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Save up to 5 favorites</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Messaging service up to 5 months</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Basic profile listing and visibility</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Free articles and content access</li>
+                           </ul>
+                           <p class="fw-semibold mt-3 mb-1">Not included:</p>
+                           <ul>
+                              <li class="text-muted"><i class="fa-solid fa-xmark text-danger"></i>No Analytics</li>
+                              <li class="text-muted"><i class="fa-solid fa-xmark text-danger"></i>No networking events</li>
+                              <li class="text-muted"><i class="fa-solid fa-xmark text-danger"></i>No dedicated support</li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Professional Plan -->
+                  <div class="col-md-4 d-flex">
+                     <div class="plan-card dark text-start h-100">
+                        <div>
+                           <div class="plan-title">Professional Plan <span class="highlight-badge">POPULAR</span></div>
+                           <div class="price price-switch" data-monthly="19" data-yearly="99">$99 <span class="fs-6 fw-normal">/Yearly</span></div>
+                           <button class="btn btn-light btn-upgrade">Upgrade</button>
+                           <p class="fw-semibold mt-4 mb-1" style="color: white;">Package includes:</p>
+                           <ul>
+                              <li><i class="fa-solid fa-check text-success"></i>Enhanced fintech directory access</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Save unlimited favorites</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Unlimited messaging service</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Boosted profile listing and visibility</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Premium reports and content access</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Basic engagement data</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Basic email support</li>
+                           </ul>
+                           <p class="fw-semibold mt-3 mb-1" style="color: white;">Not included:</p>
+                           <ul>
+                              <li style="color: white;"><i class="fa-solid fa-xmark text-danger"></i>No networking events</li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Premium Plan -->
+                  <div class="col-md-4 d-flex">
+                     <div class="plan-card text-start h-100">
+                        <div>
+                           <div class="plan-title text-muted">Premium Plan</div>
+                           <div class="price price-switch" data-monthly="29" data-yearly="149">$149 <span class="fs-6 fw-normal">/Yearly</span></div>
+                           <button class="btn btn-dark btn-upgrade">Upgrade</button>
+                           <p class="fw-semibold mt-4 mb-1">Package includes:</p>
+                           <ul>
+                              <li><i class="fa-solid fa-check text-success"></i>Featured fintech directory access</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Save unlimited favorites</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Unlimited messaging service</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Featured profile listing and visibility</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Publish & showcase own articles</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Custom reports</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Exclusive invitations</li>
+                              <li><i class="fa-solid fa-check text-success"></i>Account manager</li>
+                           </ul>
+                           <p class="plan-note"><strong>Includes everything</strong> with added 24/7 support</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Case Studies & Demo Tab Content -->
+      <div class="finx-tab-content" id="case-studies-tab">
+         <div class="finx-full-content">
+             <div class="container mt-4 p-4">
+      <h5 class="fw-semibold mb-2">Showcase your Product</h5>
+      <p class="text-muted mb-4">
+        Help your users to decide why they should choose you by showing your experiences
+      </p>
+
+      <!-- Demo Section -->
+      <div class="row mb-4 align-items-start">
+        <div class="col-md-6">
+          <h6 class="fw-semibold mb-2">Demo</h6>
+        </div>
+        <div class="col-md-6">
+          <div id="demoFields">
+            <label class="form-label small text-muted">Demo link</label>
+            <input type="text" class="form-control mb-2" placeholder="myawesomecompany.com/demo">
+          </div>
+          <button class="btn btn-outline-secondary btn-sm" id="addDemo">
+            <i class="fas fa-plus"></i> Add more
+          </button>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Case Study Section -->
+      <div class="row align-items-start">
+        <div class="col-md-6">
+          <h6 class="fw-semibold mb-2">Case Study</h6>
+        </div>
+       <div class="col-md-6">
+  <div id="caseContainer">
+    <div class="caseField p-3 mb-2 border rounded">
+      <div class="row g-2 mb-2">
+        <div class="col-12">
+          <label class="form-label small text-muted">Title</label>
+          <input type="text" class="form-control" placeholder="Name the plan">
+        </div>
+        <div class="col-12">
+          <label class="form-label small text-muted">Link</label>
+          <input type="text" class="form-control" placeholder="Plan benefits">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-outline-secondary btn-sm" id="addCase">
+    <i class="fas fa-plus"></i> Add more
+</button>
+</div>
+      </div>
+
+    </div>
+         </div>
+      </div>
+      <!-- Contact Info Tab Content -->
+      <div class="finx-tab-content" id="contact-info-tab">
+         <div class="finx-full-content container py-4">
+            <h2 class="fw-semibold mb-1">How to Reach Out to You?</h2>
+            <p class="text-muted mb-4">Help your users reach out to you via direct contact or social medias</p>
+            <!-- CONTACT INFO SECTION -->
+            <div class="row align-items-start mb-4">
+               <!-- Left column -->
+               <div class="col-md-6">
+                  <h5 class="fw-semibold mb-3">Contact Information</h5>
+               </div>
+               <!-- Right column -->
+               <div class="col-md-6">
+                  <div class="row g-3">
+                     <div class="col-md-6">
+                        <label class="form-label">Country</label>
+                        <select class="form-select finx-country">
+                           <option selected>USA</option>
+                           <option>Canada</option>
+                           <option>UK</option>
+                           <option>India</option>
+                        </select>
+                     </div>
+                     <div class="col-md-6">
+                        <label class="form-label">State (opt)</label>
+                        <select class="form-select finx-state">
+                           <option selected>Alabama</option>
+                           <option>California</option>
+                           <option>Texas</option>
+                           <option>New York</option>
+                        </select>
+                     </div>
+                     <div class="col-12">
+                        <label class="form-label">City (opt)</label>
+                        <input type="text" class="form-control finx-city" placeholder="Huntsville">
+                     </div>
+                     <div class="col-12">
+                        <label class="form-label">Business email</label>
+                        <input type="email" class="form-control finx-email" placeholder="myawesomecompany.com">
+                     </div>
+                     <div class="col-12">
+                        <label class="form-label">Phone number</label>
+                        <div class="input-group finx-phone-group">
+                           <span class="input-group-text finx-country-code">+91</span>
+                           <input type="text" class="form-control finx-phone" placeholder="Enter your number">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <hr class="my-4">
+            <!-- SOCIALS SECTION -->
+            <div class="row align-items-start">
+               <!-- Left column -->
+               <div class="col-md-6">
+                  <h5 class="fw-semibold mb-3">Socials</h5>
+               </div>
+               <!-- Right column -->
+               <div class="col-md-6">
+                  <div class="row g-3">
+                     <div class="col-12">
+                        <label class="form-label">linkedin.com/company/</label>
+                        <input type="text" class="form-control finx-linkedin" placeholder="Link">
+                     </div>
+                     <div class="col-12">
+                        <label class="form-label">x.com/</label>
+                        <input type="text" class="form-control finx-x" placeholder="Link">
+                     </div>
+                     <div class="col-12">
+                        <label class="form-label">instagram.com/</label>
+                        <input type="text" class="form-control finx-instagram" placeholder="Link">
+                     </div>
+                     <div class="col-12">
+                        <label class="form-label">facebook.com/</label>
+                        <input type="text" class="form-control finx-facebook" placeholder="Link">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Plans & Payment Tab Content (Active by default) -->
+      <div class="finx-tab-content active" id="plans-payment-tab">
+         <div class="finx-payment-container">
+            <!-- LEFT PANEL -->
+            <div class="finx-payment-left">
+               <i class="fas fa-arrow-left finx-arrow-back"></i>
+               <div class="finx-user-box">
+                  <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/Frame-1707480128.png" alt="Company Logo" class="finx-user-logo">
+                  <div>
+                     <div class="company-name">My Awesome Company</div>
+                     <div class="finx-user-emaill">myawesomecompany@gmail.com</div>
+                  </div>
+               </div>
+               <div class="finx-plan-card mb-4">
+                  <div class="d-flex justify-content-between align-items-start">
+                     <div>
+                        <p class="finx-plan-subtitle mb-1">UPGRADING TO</p>
+                        <h4 class="finx-plan-title mb-0">Professional Plan</h4>
+                     </div>
+                     <div class="text-end">
+                        <h4 class="finx-plan-price mb-0">$99</h4>
+                        <small class="text-muted">Billed Yearly</small>
+                     </div>
+                  </div>
+                  <div class="d-flex justify-content-between mt-3">
+                     <a href="#" class="finx-plan-link">Switch Plans</a>
+                     <a href="#" class="finx-plan-link">Switch to Monthly</a>
+                  </div>
+               </div>
+               <div class="finx-benefits mb-4">
+                  <h6>Benefits you'll be getting:</h6>
+                  <ul>
+                     <li>Premium reports and content access</li>
+                     <li>Basic engagement data</li>
+                     <li>Basic email support</li>
+                  </ul>
+               </div>
+               <form class="finx-form">
+                  <h6 class="mb-3">Payment Details</h6>
+                  <div class="mb-3">
+                     <label>Name on card</label>
+                     <input type="text" class="form-control" placeholder="John Smith">
+                  </div>
+                  <div class="mb-3">
+                     <label>Card number</label>
+                     <input type="text" class="form-control" placeholder="1234-1234-1234-1234">
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6 mb-3">
+                        <label>Expiration date</label>
+                        <input type="text" class="form-control" placeholder="MM/YY">
+                     </div>
+                     <div class="col-md-6 mb-3">
+                        <label>CVV</label>
+                        <input type="text" class="form-control" placeholder="123">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6 mb-3">
+                        <label>Country</label>
+                        <select class="form-select">
+                           <option>Startup</option>
+                           <option>United States</option>
+                        </select>
+                     </div>
+                     <div class="col-md-6 mb-3">
+                        <label>City</label>
+                        <select class="form-select">
+                           <option>Startup</option>
+                           <option>Alabama</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6 mb-3">
+                        <label>State (opt)</label>
+                        <input type="text" class="form-control" placeholder="Alabama">
+                     </div>
+                     <div class="col-md-6 mb-3">
+                        <label>ZIP Code</label>
+                        <input type="text" class="form-control" placeholder="12345">
+                     </div>
+                  </div>
+                  <div class="mb-3">
+                     <label>Address</label>
+                     <input type="text" class="form-control" placeholder="myawesomecompany.com">
+                  </div>
+                  <div class="finx-save-info">
+                     <label class="switch">
+                     <input type="checkbox" id="saveInfo">
+                     <span class="slider"></span>
+                     </label>
+                     <span class="switch-text">Save this information for future payments</span>
+                  </div>
+               </form>
+            </div>
+            <!-- RIGHT PANEL (Only for Payment tab) -->
+            <div class="finx-payment-right">
+               <div class="finx-order-summary">
+                  <h5>Order Details</h5>
+                  <div class="finx-order-item">
+                     <span>Professional Plan</span>
+                     <span>$89/mo</span>
+                  </div>
+                  <div class="finx-total d-flex justify-content-between">
+                     <span>Total Due</span>
+                     <span>$89/mo</span>
+                  </div>
+                  <p class="text-muted small mt-2">
+                     You will be billed every month starting 19th Feb 2025 until cancellation.
+                  </p>
+               </div>
+               <button class="finx-confirm-btn btn">Confirm Payment</button>
+            </div>
+         </div>
+      </div>
+   </main>
+</div>
+<!-- Popup Structure (Hidden by Default) -->
+<div class="popup-overlay" id="paymentPopup">
+   <div class="popup-box">
+      <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/Icon-3.png" alt="Success Icon" class="popup-icon">
+      <h2>Congratulations!</h2>
+      <p>Your monthly subscription has been activated</p>
+      <button class="popup-btn" id="closePopupBtn">Great! Take me back to the Dashboard</button>
+   </div>
+</div>
+  <!-- Upload Modal -->
+  <div class="modal fade upload-modal" id="uploadModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <h5 class="mb-3">Upload Images & Videos</h5>
+		  <p>
+			  Choose files to upload
+		  </p>
+
+        <div class="upload-dropzone mb-3" id="dropzone">
+          <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/Icon-7.png" alt="Upload Icon" class="upload-icon">
+          <p class="mb-1 fw-semibold">Drag your file(s) to start uploading</p>
+          <p class="text-muted small mb-2">OR</p>
+          <button class="btn btn-outline-secondary btn-sm" id="browseFiles">Browse files</button>
+          <p class="text-muted small mt-2">Only supports .jpg, .png, .svg and MP4 files</p>
+          <input type="file" id="fileInput" hidden>
+        </div>
+
+        <div id="fileList"></div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <button class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" id="uploadBtn">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php get_footer(); ?>
+<script>
+   jQuery(document).ready(function($) {
+     // Tab switching functionality
+     $('.finx-nav-links li').on('click', function() {
+       // Remove active class from all tabs
+       $('.finx-nav-links li').removeClass('active');
+       
+       // Add active class to clicked tab
+       $(this).addClass('active');
+       
+       // Get the tab id from data attribute
+       var tabId = $(this).data('tab');
+       
+       // Hide all tab content
+       $('.finx-tab-content').removeClass('active');
+       
+       // Show the selected tab content
+       $('#' + tabId + '-tab').addClass('active');
+       
+       // Update breadcrumb based on active tab
+       updateBreadcrumb(tabId);
+     });
+   
+     // Function to update breadcrumb based on active tab
+     function updateBreadcrumb(tabId) {
+       var breadcrumbHtml = '';
+       
+       switch(tabId) {
+         case 'dashboard':
+           breadcrumbHtml = `
+             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/star-01.png" alt="Icon" class="breadcrumb-icon">
+             <span class="breadcrumb-payment">Dashboard</span>
+           `;
+           break;
+       case 'general-info':
+  breadcrumbHtml = `
+    <div class="finx-breadcrumb-wrapper">
+      <div class="finx-breadcrumb-left">
+        <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/information-circle-contained.png" alt="Icon" class="breadcrumb-icon">
+        <span class="breadcrumb-payment">General Info</span>
+      </div>
+      <div class="finx-breadcrumb-right">
+        <button class="finx-btn-cancel">Preview</button>
+        <button class="finx-btn-save">Save Changes</button>
+      </div>
+    </div>
+  `;
+  break;
+
+        case 'overview':
+    breadcrumbHtml = `
+      <div class="finx-breadcrumb-wrapper">
+        <div class="finx-breadcrumb-left">
+          <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/file-02.png" alt="Icon" class="breadcrumb-icon">
+          <span class="breadcrumb-payment">Overview</span>
+        </div>
+        <div class="finx-breadcrumb-right">
+          <button class="finx-btn-cancel">Preview</button>
+          <button class="finx-btn-save">Save Changes</button>
+        </div>
+      </div>
+    `;
+    break;
+      case 'images-videos':
+  breadcrumbHtml = `
+    <div class="finx-breadcrumb-wrapper">
+      <div class="finx-breadcrumb-left">
+        <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/camera-02.png" alt="Icon" class="breadcrumb-icon">
+        <span class="breadcrumb-payment">Images & Videos</span>
+      </div>
+      <div class="finx-breadcrumb-right">
+        <button class="finx-btn-cancel">Preview</button>
+        <button class="finx-btn-save">Save Changes</button>
+      </div>
+    </div>
+  `;
+  break;
+         case 'pricing-plans':
+           breadcrumbHtml = `
+             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-1.png" alt="Icon" class="breadcrumb-icon">
+             <span class="breadcrumb-payment">Pricing Plans</span>
+           `;
+           break;
+       case 'case-studies':
+  breadcrumbHtml = `
+    <div class="finx-breadcrumb-wrapper">
+      <div class="finx-breadcrumb-left">
+        <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/book-02-1.png" alt="Icon" class="breadcrumb-icon">
+        <span class="breadcrumb-payment">Case Studies & Demo</span>
+      </div>
+      <div class="finx-breadcrumb-right">
+        <button class="finx-btn-cancel">Preview</button>
+        <button class="finx-btn-save">Save Changes</button>
+      </div>
+    </div>
+  `;
+  break;
+       case 'contact-info':
+     breadcrumbHtml = `
+       <div class="finx-breadcrumb-wrapper">
+         <div class="finx-breadcrumb-left">
+           <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/send-01-1.png" alt="Icon" class="finx-breadcrumb-icon">
+           <span class="finx-breadcrumb-payment">Contact Info</span>
+         </div>
+         <div class="finx-breadcrumb-right">
+           <button class="finx-btn-cancel">Preview</button>
+           <button class="finx-btn-save">Save Changes</button>
+         </div>
+       </div>
+     `;
+     break;
+         case 'plans-payment':
+           breadcrumbHtml = `
+             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-2.png" alt="Icon" class="breadcrumb-icon">
+             <span class="breadcrumb-plan">Plans</span>
+             <span class="breadcrumb-separator"> / </span>
+             <span class="breadcrumb-payment">Payment</span>
+           `;
+           break;
+         default:
+           breadcrumbHtml = `
+             <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-2.png" alt="Icon" class="breadcrumb-icon">
+             <span class="breadcrumb-payment">${tabId}</span>
+           `;
+       }
+       
+       $('#dynamic-breadcrumb').html(breadcrumbHtml);
+     }
+   
+     // Show popup when Confirm Payment is clicked
+     $(".finx-confirm-btn").on("click", function(e) {
+       e.preventDefault(); // Prevent default (remove if not needed)
+       $("#paymentPopup").fadeIn(300).addClass("show");
+     });
+   
+     // Close popup on button click
+     $("#closePopupBtn").on("click", function() {
+       $("#paymentPopup").fadeOut(200, function() {
+         $(this).removeClass("show");
+       });
+     });
+   
+     // Close popup when clicking outside the box
+     $("#paymentPopup").on("click", function(e) {
+       if ($(e.target).is("#paymentPopup")) {
+         $(this).fadeOut(200, function() {
+           $(this).removeClass("show");
+         });
+       }
+     });
+   
+     // Billing toggle functionality for Pricing Plans tab
+     $("#billingToggle").on("change", function() {
+       if ($(this).is(":checked")) {
+         // Yearly billing selected
+         $(".finx-plan-price").each(function() {
+           var monthlyPrice = $(this).text().replace('$', '');
+           var yearlyPrice = monthlyPrice * 12 * 0.8; // 20% discount
+           $(this).text('$' + yearlyPrice.toFixed(0));
+         });
+         $(".finx-plan-period").text("per year");
+       } else {
+         // Monthly billing selected
+         $(".finx-plan-price").each(function() {
+           var yearlyPrice = $(this).text().replace('$', '');
+           var monthlyPrice = yearlyPrice / 12 / 0.8; // Reverse calculation
+           $(this).text('$' + monthlyPrice.toFixed(0));
+         });
+         $(".finx-plan-period").text("per month");
+       }
+     });
+   });
+</script>
+<script>
+   const toggle = document.getElementById('billingToggle');
+   toggle.addEventListener('change', function() {
+     const isYearly = this.checked;
+     document.querySelectorAll('.price-switch').forEach(el => {
+       const monthly = el.getAttribute('data-monthly');
+       const yearly = el.getAttribute('data-yearly');
+       if (isYearly) {
+         el.innerHTML = `$${yearly} <span class="fs-6 fw-normal">/Yearly</span>`;
+       } else {
+         el.innerHTML = `$${monthly} <span class="fs-6 fw-normal">/Monthly</span>`;
+       }
+     });
+   });
+</script>
+<script>
+  // Add more demo fields
+  document.getElementById("addDemo").addEventListener("click", function () {
+    const demoContainer = document.getElementById("demoFields");
+    const newField = document.createElement("input");
+    newField.type = "text";
+    newField.className = "form-control mb-2";
+    newField.placeholder = "myawesomecompany.com/demo";
+    demoContainer.appendChild(newField);
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    $('#addCase').click(function() {
+      var newCaseField = `
+        <div class="caseField p-3 mb-2 border rounded">
+          <div class="row g-2 mb-2">
+            <div class="col-12">
+              <label class="form-label small text-muted">Title</label>
+              <input type="text" class="form-control" placeholder="Name the plan">
+            </div>
+            <div class="col-12">
+              <label class="form-label small text-muted">Link</label>
+              <input type="text" class="form-control" placeholder="Plan benefits">
+            </div>
+          </div>
+        </div>
+      `;
+      $('#caseContainer').append(newCaseField);
+    });
+  });
+</script>
+<script>
+$(document).ready(function() {
+    $('.service-option').on('change', function() {
+        const value = $(this).val();
+        const selectedBox = $('#selected-services');
+
+        if ($(this).is(':checked')) {
+            // Add tag if checked
+            if (selectedBox.find(`[data-value="${value}"]`).length === 0) {
+                const tag = $(`<div class="multi-tag" data-value="${value}">${value} <span>&times;</span></div>`);
+                selectedBox.append(tag);
+            }
+        } else {
+            // Remove tag if unchecked
+            selectedBox.find(`[data-value="${value}"]`).remove();
+        }
+    });
+
+    // Remove tag and uncheck box when × clicked
+    $('#selected-services').on('click', 'span', function() {
+        const tag = $(this).closest('.multi-tag');
+        const value = tag.data('value');
+        tag.remove();
+        $(`.service-option[value="${value}"]`).prop('checked', false);
+    });
+});
+</script>
+<script>
+$(document).ready(function(){
+    // Trigger file input when button is clicked
+    $('#uploadButton').click(function(){
+        $('#companyImageInput').click();
+    });
+
+    // Preview uploaded image
+    $('#companyImageInput').on('change', function(e){
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                $('#companyImagePreview').attr('src', e.target.result).removeClass('d-none');
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please upload a valid image file (.jpg, .png, .svg)');
+        }
+    });
+});
+</script>
+<!-- Initialize Quill -->
+<script>
+  var quill = new Quill('#editor', {
+    theme: 'snow',
+    placeholder: 'Introduce your company...',
+    modules: {
+      toolbar: [
+        [{ header: [1, 2, false] }],
+        ['bold', 'italic', 'underline'],
+        ['blockquote', 'code-block'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['link'],
+        ['clean']
+      ]
+    }
+  });
+</script>
+<script>
+$(document).ready(function () {
+  var file;
+
+  // Open modal
+  $(".finx-media-upload-btn").click(function () {
+    $("#uploadModal").modal("show");
+  });
+
+  // Browse file
+  $("#browseFiles").click(function () {
+    $("#fileInput").click();
+  });
+
+  // Handle file select
+  $("#fileInput").change(function (e) {
+    file = e.target.files[0];
+    if (file) {
+      $("#fileList").html(`
+        <div class="upload-file-info">
+          <div>
+            <strong>${file.name}</strong><br>
+            <small>${(file.size / 1024 / 1024).toFixed(2)} MB</small>
+          </div>
+          <button class="btn btn-sm btn-link text-danger p-0" id="removeFile">✕</button>
+        </div>
+        <div class="upload-progress mt-2">
+          <div class="upload-progress-bar" id="uploadProgressBar"></div>
+        </div>
+        <div class="small text-muted mt-1" id="uploadStatus">Waiting to upload...</div>
+      `);
+    }
+  });
+
+  // Remove file
+  $(document).on("click", "#removeFile", function () {
+    $("#fileList").empty();
+    $("#fileInput").val("");
+    file = null;
+  });
+
+  // Simulated upload progress with time remaining
+  $("#uploadBtn").click(function () {
+    if (!file) {
+      alert("Please select a file first.");
+      return;
+    }
+
+    var progress = 0;
+    var uploadSpeedMBps = 0.2; // Simulated upload speed: 0.2 MB per second
+    var totalMB = file.size / 1024 / 1024; // File size in MB
+    var totalSeconds = totalMB / uploadSpeedMBps; // Total simulated upload time in seconds
+    var elapsedSeconds = 0;
+
+    $("#uploadStatus").text(`Uploading... ${totalMB.toFixed(2)} MB`);
+
+    var interval = setInterval(function () {
+      elapsedSeconds += 0.2; // increment elapsed time (interval is 200ms)
+      progress += (0.2 / totalSeconds) * 100; // progress percentage
+      if (progress > 100) progress = 100;
+
+      // Update progress bar
+      $("#uploadProgressBar").css("width", progress + "%");
+
+      // Calculate remaining time
+      var remainingSeconds = totalSeconds - elapsedSeconds;
+      if (remainingSeconds < 0) remainingSeconds = 0;
+
+      // Update status text
+      $("#uploadStatus").text(`${totalMB.toFixed(2)} MB • ${remainingSeconds.toFixed(1)} sec remaining`);
+
+      // Complete
+      if (progress >= 100) {
+        clearInterval(interval);
+        $("#uploadStatus").text(`Upload complete! ${totalMB.toFixed(2)} MB`);
+      }
+    }, 200); // 200ms interval
+  });
+});
+</script>
+
+
+
+
+<!-- Bootstrap CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

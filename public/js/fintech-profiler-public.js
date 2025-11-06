@@ -28,519 +28,372 @@
    * Although scripts in the WordPress core, Plugins and Themes may be
    * practising this, we should strive to set a better example in our own work.
    */
-
-  // document.querySelector("form").addEventListener("keydown", function (e) {
-  //   if (e.key === "Enter") {
-  //     e.preventDefault();
-  //   }
-  // });
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.querySelector(".toggle-more");
-    const after = document.querySelector(".content-after");
-
-    if (btn && after) {
-      btn.addEventListener("click", function () {
-        if (after.style.display === "none") {
-          after.style.display = "block";
-          btn.textContent = "Show Less";
-        } else {
-          after.style.display = "none";
-          btn.textContent = "Show More";
-          window.scrollTo({
-            top: document.querySelector(".content-before").offsetTop,
-            behavior: "smooth",
-          });
-        }
-      });
-    }
-  });
-
-  $(function () {
-    $("#tabs").tabs();
-  });
-
-  $(document).ready(function () {
-    // Initialize select2 if not already
-    // $("#services").select2({
-    //   placeholder: "Select Categories",
-    // });
-
-    $(".parent-list").hide();
-
-    // Function to sync and merge values
-    function syncValues() {
-      let select2Values = $("#services").val() || [];
-      let checkboxValues = $('input[name="category[]"]:checked')
-        .map(function () {
-          return $(this).val();
-        })
-        .get();
-
-      // Merge and remove duplicates
-      let mergedValues = [...new Set([...select2Values, ...checkboxValues])];
-
-      // Update Select2
-      $("#services").val(mergedValues).trigger("change.select2");
-
-      $("#selected_category").val(mergedValues);
-
-      console.log("mergedValues:", mergedValues);
-    }
-
-    // Whenever select2 changes → sync
-    $("#services").on("change", function () {
-      syncValues();
-      let selectedValues = $(this).val() || [];
-      $(".parent-list").hide();
-      selectedValues.forEach(function (val) {
-        $(".category-" + val).show();
-      });
-    });
-
-    // Whenever checkboxes change → sync
-    $('input[name="category[]"]').on("change", function () {
-      syncValues();
-    });
-
-    // On form submit → make sure values are synced
-    $("form").on("submit", function () {
-      syncValues();
-    });
-  });
-
-  $(function () {
-    var icons = {
-      header: "ui-icon-circle-arrow-e",
-      activeHeader: "ui-icon-circle-arrow-s",
-    };
-    $("#accordion").accordion({ icons: icons });
-  });
 })(jQuery);
 
-jQuery(document).ready(function ($) {
-  $(".fintech-carousel").owlCarousel({
-    loop: true,
-    margin: 16,
-    nav: true,
-    dots: false,
-    // autoHeight: true,
-    // autoplay: true,
-    navText: [
-      '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.6667 19L4 12M4 12L10.6667 5M4 12L20 12" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-      '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-      // '<i class="fa fa-angle-left"></i>',
-      // '<i class="fa fa-angle-right"></i>'
-    ],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 1,
-      },
-      1000: {
-        items: 2,
-      },
-    },
+
+/*** Custom JS */
+
+jQuery(document).ready(function($) {
+  // Tab switching functionality
+  $('.finx-nav-links li').on('click', function() {
+    // Remove active class from all tabs
+    $('.finx-nav-links li').removeClass('active');
+    
+    // Add active class to clicked tab
+    $(this).addClass('active');
+    
+    // Get the tab id from data attribute
+    var tabId = $(this).data('tab');
+    
+    // Hide all tab content
+    $('.finx-tab-content').removeClass('active');
+    
+    // Show the selected tab content
+    $('#' + tabId + '-tab').addClass('active');
+    
+    // Update breadcrumb based on active tab
+    updateBreadcrumb(tabId);
   });
 
-  $("#slider-range").slider({
-    range: true,
-    min: 0,
-    max: 500,
-    values: [75, 300],
-    slide: function (event, ui) {
-      //   $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-      $("#min_price").val("$" + ui.values[0]);
-      $("#max_price").val("$" + ui.values[1]);
-    },
-  });
+  // Function to update breadcrumb based on active tab
+  function updateBreadcrumb(tabId) {
+    var breadcrumbHtml = '';
+    
+    switch(tabId) {
+      case 'dashboard':
+        breadcrumbHtml = `
+          <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/star-01.png" alt="Icon" class="breadcrumb-icon">
+          <span class="breadcrumb-payment">Dashboard</span>
+        `;
+        break;
+    case 'general-info':
+breadcrumbHtml = `
+<div class="finx-breadcrumb-wrapper">
+  <div class="finx-breadcrumb-left">
+    <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/information-circle-contained.png" alt="Icon" class="breadcrumb-icon">
+    <span class="breadcrumb-payment">General Info</span>
+  </div>
+  <div class="finx-breadcrumb-right">
+    <button class="finx-btn-cancel">Preview</button>
+    <button class="finx-btn-save">Save Changes</button>
+  </div>
+</div>
+`;
+break;
 
-  //   $("#applyFilters").on("click", function (e) {
-  //     e.preventDefault();
-  //     $("#fintech-filter").submit();
-  //   });
-
-  //   jQuery("#postLink").on("click", function (e) {
-  //     e.preventDefault();
-  //     $("<form>", {
-  //       method: "POST",
-  //       action: "/submit.php",
-  //     })
-  //       .append(
-  //         $("<input>", {
-  //           type: "hidden",
-  //           name: "id",
-  //           value: "123",
-  //         })
-  //       )
-  //       .appendTo("body")
-  //       .submit();
-  //   });
-
-  //   jQuery(document).ready(function ($) {
-  //     $("#fintech-filter").on("change", "input, select", function () {
-  //       let formData = $("#fintech-filter").serialize();
-  //       console.log(formData);
-
-  //       $.ajax({
-  //         url: fintech_ajax.ajax_url,
-  //         type: "POST",
-  //         data: {
-  //           action: "fintech_filter",
-  //           security: fintech_ajax.nonce,
-  //           form: formData,
-  //         },
-  //         beforeSend: function () {
-  //           $(".inner-row").html("<p>Loading...</p>");
-  //         },
-  //         success: function (response) {
-  //           if (response.success) {
-  //             $(".inner-row").html(response.data.html);
-  //           } else {
-  //             $(".inner-row").html("<p>No results found.</p>");
-  //           }
-  //         },
-  //       });
-  //     });
-  //   });
-
-  jQuery(document).ready(function ($) {
-    $("#fintech-filter").on("click", function (e) {
-      e.preventDefault();
-
-      let formData = $("#fintech-filter-form").serialize();
-
-      let searchVal = $("#archive-search").val();
-      formData += "&search=" + encodeURIComponent(searchVal);
-
-      $.ajax({
-        url: fintech_ajax.ajax_url,
-        type: "POST",
-        data: {
-          action: "fintech_filter",
-          security: fintech_ajax.nonce,
-          form: formData,
-        },
-        beforeSend: function () {
-          $(".inner-row").html("<p>Loading...</p>");
-        },
-        success: function (response) {
-          if (response.success) {
-            $(".inner-row").html(response.data.html);
-          } else {
-            $(".inner-row").html("<p>No results found.</p>");
-          }
-        },
-      });
-    });
-  });
-
-  jQuery(document).ready(function ($) {
-    $(".btn-getting-started").on("click", function () {
-      $(".fp-hidden-field").toggleClass("show");
-      // $(".fp-hidden-field.show").removeClass("show").addClass("hide");
-    });
-
-    // Toggle children on icon click
-    $(document).on("click", ".toggle-icon", function () {
-      var $icon = $(this);
-      var $children = $icon.closest("li").children(".children");
-
-      $children.slideToggle(200);
-
-      $(this).closest("li").toggleClass("open");
-
-      // Toggle icon direction
-      // $icon.text($icon.text() === "▶" ? "▼" : "▶");
-    });
-  });
-
-  jQuery(document).ready(function ($) {
-    var countries = [];
-
-    $.getJSON(
-      fintech_ajax.site_url + "public/img/countries.json",
-      function (data) {
-        countries = data;
-
-        $.each(countries, function (index, country) {
-          $("#country").append(
-            $("<option>", { value: country.code, text: country.name })
-          );
-        });
-
-        // ✅ Select the saved/default country
-        $("#country").val(fintech_ajax.country).trigger("change");
-        $("#state").val(fintech_ajax.state).trigger("change");
-      }
-    );
-
-    $("#country").on("change", function () {
-      var selectedCode = $(this).val();
-      var country = countries.find((c) => c.code === selectedCode);
-
-      $("#state").empty().append('<option value="">Select State</option>');
-      if (country && country.states) {
-        $.each(country.states, function (i, state) {
-          $("#state").append(
-            $("<option>", { value: state.name, text: state.name })
-          );
-        });
-      }
-    });
-    // Load JSON file
-    // $.getJSON(
-    //   fintech_ajax.site_url + "public/img/countries.json",
-    //   function (data) {
-    //     countries = data;
-
-    //     // Populate country dropdown
-    //     $.each(countries, function (index, country) {
-    //       $("#country").append(
-    //         $("<option>", { value: country.code, text: country.name })
-    //       );
-    //     });
-    //   }
-    // );
-
-    // // On country change → populate states
-    // $("#country").on("change", function () {
-    //   var selectedCode = $(this).val();
-    //   var country = countries.find((c) => c.code === selectedCode);
-
-    //   $("#state").empty().append('<option value="">Select State</option>');
-    //   if (country && country.states) {
-    //     $.each(country.states, function (i, state) {
-    //       $("#state").append(
-    //         $("<option>", { value: state.name, text: state.name })
-    //       );
-    //     });
-    //   }
-    // });
-    // Example: countries.json data
-    // var countries = [
-    //   {
-    //     name: "United States",
-    //     phonecode: "+1",
-    //     code: "US",
-    //     states: [
-    //       { name: "Alabama", cities: ["Abbeville", "Adamsville", "Alabaster"] },
-    //       { name: "Alaska", cities: ["Anchorage", "Juneau", "Fairbanks"] },
-    //     ],
-    //   },
-    //   {
-    //     name: "Canada",
-    //     phonecode: "+1",
-    //     code: "CA",
-    //     states: [
-    //       { name: "Alberta", cities: ["Calgary", "Edmonton"] },
-    //       { name: "Ontario", cities: ["Toronto", "Ottawa"] },
-    //     ],
-    //   },
-    // ];
-    // // Populate country dropdown
-    // $.each(countries, function (index, country) {
-    //   $("#country").append(
-    //     '<option value="' + index + '">' + country.name + "</option>"
-    //   );
-    // });
-    // // On country change, populate states
-    // $("#country").on("change", function () {
-    //   var countryIndex = $(this).val();
-    //   var $state = $("#state");
-    //   $state.empty();
-    //   $state.append('<option value="">Select State</option>');
-    //   if (countryIndex !== "") {
-    //     var states = countries[countryIndex].states;
-    //     $.each(states, function (i, state) {
-    //       $state.append(
-    //         '<option value="' + state.name + '">' + state.name + "</option>"
-    //       );
-    //     });
-    //   }
-    // });
-  });
-});
-
-jQuery(document).ready(function ($) {
-  let totalPages = $(".fp-page").length;
-  console.log("Total Pages:", totalPages);
-  let currentPage = 1;
-  console.log("currentPage Pages:", currentPage);
-  $("#prevBtn").hide();
-
-  $("#nextBtn").on("click", function () {
-    console.log("currentPage Pages inc:", currentPage);
-    if (currentPage < totalPages) {
-      currentPage = currentPage + 1;
-      $("#currentPage").val(currentPage);
-
-      $(".fp-page").hide();
-      $("#fp-page-" + currentPage).show();
-      if (currentPage === totalPages) {
-        $("#nextBtn").hide();
-        $("#fp-submit-btn").show();
-      } else {
-        $("#nextBtn").show();
-        $("#fp-submit-btn").hide();
-      }
-      if (currentPage > 1) {
-        $("#prevBtn").show();
-        $("#prevBtn").prop("disabled", false);
-      }
-      if (currentPage === 1) {
-        $("#prevBtn").hide();
-        $("#prevBtn").prop("disabled", true);
-      } else {
-        $("#prevBtn").show();
-        $("#prevBtn").prop("disabled", false);
-      }
-      // scrollToPage(currentPage + 1);
+    case 'overview':
+breadcrumbHtml = `
+  <div class="finx-breadcrumb-wrapper">
+    <div class="finx-breadcrumb-left">
+      <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/file-02.png" alt="Icon" class="breadcrumb-icon">
+      <span class="breadcrumb-payment">Overview</span>
+    </div>
+    <div class="finx-breadcrumb-right">
+      <button class="finx-btn-cancel">Preview</button>
+      <button class="finx-btn-save">Save Changes</button>
+    </div>
+  </div>
+`;
+break;
+  case 'images-videos':
+breadcrumbHtml = `
+<div class="finx-breadcrumb-wrapper">
+  <div class="finx-breadcrumb-left">
+    <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/camera-02.png" alt="Icon" class="breadcrumb-icon">
+    <span class="breadcrumb-payment">Images & Videos</span>
+  </div>
+  <div class="finx-breadcrumb-right">
+    <button class="finx-btn-cancel">Preview</button>
+    <button class="finx-btn-save">Save Changes</button>
+  </div>
+</div>
+`;
+break;
+      case 'pricing-plans':
+        breadcrumbHtml = `
+          <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-1.png" alt="Icon" class="breadcrumb-icon">
+          <span class="breadcrumb-payment">Pricing Plans</span>
+        `;
+        break;
+    case 'case-studies':
+breadcrumbHtml = `
+<div class="finx-breadcrumb-wrapper">
+  <div class="finx-breadcrumb-left">
+    <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/book-02-1.png" alt="Icon" class="breadcrumb-icon">
+    <span class="breadcrumb-payment">Case Studies & Demo</span>
+  </div>
+  <div class="finx-breadcrumb-right">
+    <button class="finx-btn-cancel">Preview</button>
+    <button class="finx-btn-save">Save Changes</button>
+  </div>
+</div>
+`;
+break;
+    case 'contact-info':
+  breadcrumbHtml = `
+    <div class="finx-breadcrumb-wrapper">
+      <div class="finx-breadcrumb-left">
+        <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/11/send-01-1.png" alt="Icon" class="finx-breadcrumb-icon">
+        <span class="finx-breadcrumb-payment">Contact Info</span>
+      </div>
+      <div class="finx-breadcrumb-right">
+        <button class="finx-btn-cancel">Preview</button>
+        <button class="finx-btn-save">Save Changes</button>
+      </div>
+    </div>
+  `;
+  break;
+      case 'plans-payment':
+        breadcrumbHtml = `
+          <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-2.png" alt="Icon" class="breadcrumb-icon">
+          <span class="breadcrumb-plan">Plans</span>
+          <span class="breadcrumb-separator"> / </span>
+          <span class="breadcrumb-payment">Payment</span>
+        `;
+        break;
+      default:
+        breadcrumbHtml = `
+          <img src="https://jamesw705.sg-host.com/wp-content/uploads/2025/10/tag-2.png" alt="Icon" class="breadcrumb-icon">
+          <span class="breadcrumb-payment">${tabId}</span>
+        `;
     }
-  });
-
-  $("#prevBtn").on("click", function () {
-    $(".fp-page").removeClass("active");
-    console.log("currentPage Pages dec:", currentPage);
-    if (currentPage > 1) {
-      currentPage = currentPage - 1;
-      $("#currentPage").val(currentPage);
-      // scrollToPage(currentPage - 1);
-
-      $(".fp-page").hide();
-      $("#fp-page-" + currentPage).show();
-      if (currentPage === totalPages) {
-        $("#nextBtn").hide();
-        $("#fp-submit-btn").show();
-      } else {
-        $("#nextBtn").show();
-        $("#fp-submit-btn").hide();
-      }
-      if (currentPage > 1) {
-        $("#prevBtn").show();
-        $("#prevBtn").prop("disabled", false);
-      }
-      if (currentPage === 1) {
-        $("#prevBtn").hide();
-        $("#prevBtn").prop("disabled", true);
-      } else {
-        $("#prevBtn").show();
-        $("#prevBtn").prop("disabled", false);
-      }
-    }
-  });
-});
-
-jQuery(document).ready(function ($) {
-  // Add Pricing Plan
-  $("#add-pricing-plan").on("click", function () {
-    let clone = $("#pricing-plans-wrapper .pricing-plan-item:first").clone();
-    clone.find("input").val(""); // clear values
-    $("#pricing-plans-wrapper").append(clone);
-  });
-
-  // Remove Pricing Plan
-  $(document).on("click", ".remove-plan", function () {
-    if ($("#pricing-plans-wrapper .pricing-plan-item").length > 1) {
-      $(this).closest(".pricing-plan-item").remove();
-    } else {
-      alert("At least one plan is required.");
-    }
-  });
-
-  // Add Case Study
-  $("#add-case-study").on("click", function () {
-    let clone = $("#case-studies-wrapper .case-study-item:first").clone();
-    clone.find("input").val(""); // clear values
-    $("#case-studies-wrapper").append(clone);
-  });
-
-  // Remove Case Study
-  $(document).on("click", ".remove-case", function () {
-    if ($("#case-studies-wrapper .case-study-item").length > 1) {
-      $(this).closest(".case-study-item").remove();
-    } else {
-      alert("At least one case study is required.");
-    }
-  });
-
-  if ($("#toggle").is(":checked")) {
-    $(".pricing-renewal-duration").text("/ Yearly");
-  } else {
-    $(".pricing-renewal-duration").text("/ Monthly");
+    
+    $('#dynamic-breadcrumb').html(breadcrumbHtml);
   }
 
-  $("#toggle").change(function () {
+  // Show popup when Confirm Payment is clicked
+  $(".finx-confirm-btn").on("click", function(e) {
+    e.preventDefault(); // Prevent default (remove if not needed)
+    $("#paymentPopup").fadeIn(300).addClass("show");
+  });
+
+  // Close popup on button click
+  $("#closePopupBtn").on("click", function() {
+    $("#paymentPopup").fadeOut(200, function() {
+      $(this).removeClass("show");
+    });
+  });
+
+  // Close popup when clicking outside the box
+  $("#paymentPopup").on("click", function(e) {
+    if ($(e.target).is("#paymentPopup")) {
+      $(this).fadeOut(200, function() {
+        $(this).removeClass("show");
+      });
+    }
+  });
+
+  // Billing toggle functionality for Pricing Plans tab
+  $("#billingToggle").on("change", function() {
     if ($(this).is(":checked")) {
-      $(".pricing-renewal-duration").text("/ Yearly");
+      // Yearly billing selected
+      $(".finx-plan-price").each(function() {
+        var monthlyPrice = $(this).text().replace('$', '');
+        var yearlyPrice = monthlyPrice * 12 * 0.8; // 20% discount
+        $(this).text('$' + yearlyPrice.toFixed(0));
+      });
+      $(".finx-plan-period").text("per year");
     } else {
-      $(".pricing-renewal-duration").text("/ Monthly");
+      // Monthly billing selected
+      $(".finx-plan-price").each(function() {
+        var yearlyPrice = $(this).text().replace('$', '');
+        var monthlyPrice = yearlyPrice / 12 / 0.8; // Reverse calculation
+        $(this).text('$' + monthlyPrice.toFixed(0));
+      });
+      $(".finx-plan-period").text("per month");
     }
   });
 });
 
-jQuery(document).ready(function ($) {
-  $("#link-changepw").click(function (e) {
-    e.preventDefault();
-    console.log("clicked");
 
-    $("#password-settings-1").hide();
-    $("#password-settings-2").show();
+const toggle = document.getElementById('billingToggle');
+toggle.addEventListener('change', function() {
+  const isYearly = this.checked;
+  document.querySelectorAll('.price-switch').forEach(el => {
+    const monthly = el.getAttribute('data-monthly');
+    const yearly = el.getAttribute('data-yearly');
+    if (isYearly) {
+      el.innerHTML = `$${yearly} <span class="fs-6 fw-normal">/Yearly</span>`;
+    } else {
+      el.innerHTML = `$${monthly} <span class="fs-6 fw-normal">/Monthly</span>`;
+    }
   });
 });
 
-jQuery(document).ready(function ($) {
+
+  // Add more demo fields
+  document.getElementById("addDemo").addEventListener("click", function () {
+    const demoContainer = document.getElementById("demoFields");
+    const newField = document.createElement("input");
+    newField.type = "text";
+    newField.className = "form-control mb-2";
+    newField.placeholder = "myawesomecompany.com/demo";
+    demoContainer.appendChild(newField);
+  });
+
+
+  $(document).ready(function() {
+    $('#addCase').click(function() {
+      var newCaseField = `
+        <div class="caseField p-3 mb-2 border rounded">
+          <div class="row g-2 mb-2">
+            <div class="col-12">
+              <label class="form-label small text-muted">Title</label>
+              <input type="text" class="form-control" placeholder="Name the plan">
+            </div>
+            <div class="col-12">
+              <label class="form-label small text-muted">Link</label>
+              <input type="text" class="form-control" placeholder="Plan benefits">
+            </div>
+          </div>
+        </div>
+      `;
+      $('#caseContainer').append(newCaseField);
+    });
+  });
+
+
+$(document).ready(function() {
+    $('.service-option').on('change', function() {
+        const value = $(this).val();
+        const selectedBox = $('#selected-services');
+
+        if ($(this).is(':checked')) {
+            // Add tag if checked
+            if (selectedBox.find(`[data-value="${value}"]`).length === 0) {
+                const tag = $(`<div class="multi-tag" data-value="${value}">${value} <span>&times;</span></div>`);
+                selectedBox.append(tag);
+            }
+        } else {
+            // Remove tag if unchecked
+            selectedBox.find(`[data-value="${value}"]`).remove();
+        }
+    });
+
+    // Remove tag and uncheck box when × clicked
+    $('#selected-services').on('click', 'span', function() {
+        const tag = $(this).closest('.multi-tag');
+        const value = tag.data('value');
+        tag.remove();
+        $(`.service-option[value="${value}"]`).prop('checked', false);
+    });
+});
+
+
+$(document).ready(function(){
+    // Trigger file input when button is clicked
+    $('#uploadButton').click(function(){
+        $('#companyImageInput').click();
+    });
+
+    // Preview uploaded image
+    $('#companyImageInput').on('change', function(e){
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                $('#companyImagePreview').attr('src', e.target.result).removeClass('d-none');
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please upload a valid image file (.jpg, .png, .svg)');
+        }
+    });
+});
+
+<!-- Initialize Quill -->
+
+  var quill = new Quill('#editor', {
+    theme: 'snow',
+    placeholder: 'Introduce your company...',
+    modules: {
+      toolbar: [
+        [{ header: [1, 2, false] }],
+        ['bold', 'italic', 'underline'],
+        ['blockquote', 'code-block'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['link'],
+        ['clean']
+      ]
+    }
+  });
+
+
+$(document).ready(function () {
+  var file;
+
   // Open modal
-  $("#btn-delete-account").on("click", function (e) {
-    e.preventDefault();
-    $("#account-delete-modal").fadeIn(200);
+  $(".finx-media-upload-btn").click(function () {
+    $("#uploadModal").modal("show");
   });
 
-  // Close modal when cancel is clicked
-  $("#cancel-delete").on("click", function () {
-    $("#account-delete-modal").fadeOut(200);
+  // Browse file
+  $("#browseFiles").click(function () {
+    $("#fileInput").click();
   });
 
-  $("#btn-cross").on("click", function () {
-    $("#account-delete-modal").fadeOut(200);
-  });
-
-  // Optional: Close modal if clicked outside the box
-  $("#account-delete-modal").on("click", function (e) {
-    if ($(e.target).is("#account-delete-modal, .account-delete-overlay")) {
-      $(this).fadeOut(200);
+  // Handle file select
+  $("#fileInput").change(function (e) {
+    file = e.target.files[0];
+    if (file) {
+      $("#fileList").html(`
+        <div class="upload-file-info">
+          <div>
+            <strong>${file.name}</strong><br>
+            <small>${(file.size / 1024 / 1024).toFixed(2)} MB</small>
+          </div>
+          <button class="btn btn-sm btn-link text-danger p-0" id="removeFile">✕</button>
+        </div>
+        <div class="upload-progress mt-2">
+          <div class="upload-progress-bar" id="uploadProgressBar"></div>
+        </div>
+        <div class="small text-muted mt-1" id="uploadStatus">Waiting to upload...</div>
+      `);
     }
   });
-});
 
-jQuery(document).ready(function ($) {
-  $(".truncate-text").each(function () {
-    const maxLength = 25;
-    const text = $(this).text().trim();
-    if (text.length > maxLength) {
-      $(this).text(text.substring(0, maxLength) + "...");
-    }
+  // Remove file
+  $(document).on("click", "#removeFile", function () {
+    $("#fileList").empty();
+    $("#fileInput").val("");
+    file = null;
   });
-});
 
-jQuery(document).ready(function ($) {
-  $(".progress-container").each(function () {
-    const label = $(this).find(".progress-label");
-    const bar = $(this).find(".progress-bar");
-    const match = label.text().match(/(\d+)\/(\d+)/);
-
-    if (match) {
-      const current = parseInt(match[1]);
-      const total = parseInt(match[2]);
-      const percent = (current / total) * 100;
-
-      // Animate bar fill
-      bar.animate({ width: percent + "%" }, 600);
-
-      // Optionally, update label to show percentage
-      // label.text(percent.toFixed(0) + '% Completed');
+  // Simulated upload progress with time remaining
+  $("#uploadBtn").click(function () {
+    if (!file) {
+      alert("Please select a file first.");
+      return;
     }
+
+    var progress = 0;
+    var uploadSpeedMBps = 0.2; // Simulated upload speed: 0.2 MB per second
+    var totalMB = file.size / 1024 / 1024; // File size in MB
+    var totalSeconds = totalMB / uploadSpeedMBps; // Total simulated upload time in seconds
+    var elapsedSeconds = 0;
+
+    $("#uploadStatus").text(`Uploading... ${totalMB.toFixed(2)} MB`);
+
+    var interval = setInterval(function () {
+      elapsedSeconds += 0.2; // increment elapsed time (interval is 200ms)
+      progress += (0.2 / totalSeconds) * 100; // progress percentage
+      if (progress > 100) progress = 100;
+
+      // Update progress bar
+      $("#uploadProgressBar").css("width", progress + "%");
+
+      // Calculate remaining time
+      var remainingSeconds = totalSeconds - elapsedSeconds;
+      if (remainingSeconds < 0) remainingSeconds = 0;
+
+      // Update status text
+      $("#uploadStatus").text(`${totalMB.toFixed(2)} MB • ${remainingSeconds.toFixed(1)} sec remaining`);
+
+      // Complete
+      if (progress >= 100) {
+        clearInterval(interval);
+        $("#uploadStatus").text(`Upload complete! ${totalMB.toFixed(2)} MB`);
+      }
+    }, 200); // 200ms interval
   });
 });

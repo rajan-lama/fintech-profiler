@@ -1541,26 +1541,3 @@ function fp_handle_fintech_dashboard_profile_submission()
         }
     }
 }
-
-
-
-add_action('wp_ajax_fintech_filter_action', 'fintech_filter_action');
-add_action('wp_ajax_nopriv_fintech_filter_action', 'fintech_filter_action');
-
-function fintech_filter_action()
-{
-    $selected_categories = isset($_POST['fintech-category']) ? $_POST['fintech-category'] : [];
-
-    // Example: just output the selected categories
-    if (!empty($selected_categories)) {
-        echo '<ul>';
-        foreach ($selected_categories as $cat_id) {
-            echo '<li>Category ID: ' . esc_html($cat_id) . '</li>';
-        }
-        echo '</ul>';
-    } else {
-        echo '<p>No categories selected.</p>';
-    }
-
-    wp_die(); // Required for AJAX to end properly
-}
