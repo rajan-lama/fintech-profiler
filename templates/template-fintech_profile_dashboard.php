@@ -48,8 +48,13 @@ if (!empty($_GET['fintech'])) {
   $fintech_pricing_plans = get_post_meta($fintech_id, 'fintech_pricing_plans', true);
   $fintech_case_studies = get_post_meta($fintech_id, 'fintech_case_studies', true);
 
-  $pricing_plans = get_post_meta($fintech_id, 'pricing_plans', true);
-  $case_studies = get_post_meta($fintech_id, 'case_studies', true);
+  if (! is_array($fintech_pricing_plans)) {
+    $fintech_pricing_plans = array();
+  }
+
+  if (! is_array($fintech_case_studies)) {
+    $fintech_case_studies = array();
+  }
 
   $attached_images = get_post_meta($fintech_id, 'fintech_attached_images', true);
 
@@ -798,7 +803,7 @@ get_header();
                     </div>
                     <div class="dashboard-right">
                       <div id="case-studies-wrapper">
-                        <?php foreach ($case_studies as $case) { ?>
+                        <?php foreach ($fintech_case_studies as $case) { ?>
                           <div class="case-study-item">
                             <p>
                               <button type="button" class="remove-case button">x</button>

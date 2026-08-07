@@ -8,8 +8,8 @@ get_header();
 
         $meta = get_post_meta(get_the_ID());
 
-        $meta_pricing = get_post_meta(get_the_ID(), 'pricing_plans', true);
-        $meta_cs = get_post_meta(get_the_ID(), 'case_studies', true);
+        $meta_pricing = get_post_meta(get_the_ID(), 'fintech_pricing_plans', true);
+        $meta_cs = get_post_meta(get_the_ID(), 'fintech_case_studies', true);
 
         // var_dump('meta', $meta);
         // var_dump('meta_pricing', $meta_pricing);

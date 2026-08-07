@@ -107,14 +107,14 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         'read_fintech_profile',
       );
 
-      // // Add caps to fintech_manager
-      // $fintech_role = get_role('fintech_manager');
-      // if ($fintech_role) {
-      //   foreach ($fin_caps as $cap) {
-      //     $fintech_role->add_cap($cap, true);
-      //   }
-      //   $fintech_role->add_cap('upload_files', true);
-      // }
+      // Add caps to fintech_manager
+      $fintech_role = get_role('fintech_manager');
+      if ($fintech_role) {
+        foreach ($caps as $cap) {
+          $fintech_role->add_cap($cap, true);
+        }
+        $fintech_role->add_cap('upload_files', true);
+      }
 
       // 🔑 Add caps to administrator
       $admin_role = get_role('administrator');
@@ -485,7 +485,7 @@ if (! class_exists('Fintech_Profiler_CPT_Fintech')) {
         $post_id = isset($args[0]) ? $args[0] : 0;
         $post = get_post($post_id);
 
-        if ($post && $post->post_type === 'fintech') {
+        if ($post && $post->post_type === 'fintech_profiles') {
           $post_author = (int) $post->post_author;
           $user_id = (int) $user_id;
 

@@ -77,7 +77,7 @@ class Fintech_Profiler_Public
 		 * class.
 		 */
 		// wp_enqueue_style('jquery-ui-slider');
-		if (is_post_type_archive('fintech') || is_page_template('templates/create_fintech_profile.php') || is_page_template('templates/fintech_profile_dashboard.php')) {
+		if (is_post_type_archive('fintech_profiles') || is_page_template('templates/create_fintech_profile.php') || is_page_template('templates/fintech_profile_dashboard.php')) {
 			wp_enqueue_style('jquery-ui', 'https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css', array(), '2.3.4', 'all');
 		}
 

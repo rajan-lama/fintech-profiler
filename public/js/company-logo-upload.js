@@ -243,6 +243,7 @@ jQuery(document).ready(function ($) {
       formData.append("action", "upload_documents");
       formData.append("post_id", postID);
       formData.append("attach_media[]", file);
+      formData.append("_wpnonce", fp_media.nonce);
 
       const previewItem = previewContainer
         .find(".image-preview[data-temp='true']")
@@ -333,9 +334,23 @@ jQuery(document).ready(function ($) {
         action: "remove_uploaded_image",
         image_url: imageURL,
         post_id: postID,
+        _wpnonce: fp_media.nonce,
       },
       success: function (response) {
         if (response.success) {
+          // Keep the hidden field in sync so the removed image is not
+          // re-added when the form is submitted.
+          const removedId = response.data.id;
+          if (removedId) {
+            const input = $("#attached_images");
+            const ids = input
+              .val()
+              .split(",")
+              .map((id) => id.trim())
+              .filter((id) => id && id !== String(removedId));
+            input.val(ids.join(","));
+          }
+
           imageDiv.fadeOut(300, function () {
             $(this).remove();
             saveOrderToMeta();
@@ -361,6 +376,7 @@ jQuery(document).ready(function ($) {
         action: "update_image_order",
         post_id: postID,
         order: orderedURLs,
+        _wpnonce: fp_media.nonce,
       },
     });
   }

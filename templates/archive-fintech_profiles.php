@@ -63,7 +63,7 @@ get_header();
                         <?php
                         $selected_cats = !empty($_GET['category']) ? (array) $_GET['category'] : [];
 
-                        $post_type = 'fintech';
+                        $post_type = 'fintech_profiles';
 
                         $taxonomies = get_object_taxonomies($post_type);
 

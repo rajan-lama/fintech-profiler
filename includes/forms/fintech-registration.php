@@ -146,7 +146,7 @@ function fp_handle_frontend_actions()
   }
 
   if ($action === 'financial_register') {
-    financial_process_register();
+    fp_process_register();
   }
 
   if ($action === 'reset_request') {
@@ -321,11 +321,14 @@ function fp_process_register()
     }
   }
 
+  // This handler serves both the fintech and financial registration forms.
+  $is_financial = ('financial_register' === (isset($_POST['fp_action']) ? sanitize_key(wp_unslash($_POST['fp_action'])) : 'fintech_register'));
+
   $username = isset($_POST['fp_reg_user']) ? sanitize_user(wp_unslash($_POST['fp_reg_user']), true) : fp_generate_unique_username_from_email(isset($_POST['fp_reg_email']) ? sanitize_email(wp_unslash($_POST['fp_reg_email'])) : '');
   $email    = isset($_POST['fp_reg_email']) ? sanitize_email(wp_unslash($_POST['fp_reg_email'])) : '';
   $pass     = isset($_POST['fp_reg_pass']) ? $_POST['fp_reg_pass'] : '';
-  $role     = isset($_POST['fp_reg_role']) ? sanitize_key(wp_unslash($_POST['fp_reg_role'])) : 'fintech_manager';
-  $redirect = isset($_POST['redirect_to']) ? esc_url_raw(wp_unslash($_POST['redirect_to'])) : home_url(fp_DEFAULT_REDIRECT);
+  $role     = isset($_POST['fp_reg_role']) ? sanitize_key(wp_unslash($_POST['fp_reg_role'])) : ($is_financial ? 'financial_manager' : 'fintech_manager');
+  $redirect = isset($_POST['redirect_to']) ? esc_url_raw(wp_unslash($_POST['redirect_to'])) : home_url($is_financial ? '/create-financial-profile' : fp_DEFAULT_REDIRECT);
 
   $errors = new WP_Error();
 
@@ -343,6 +346,10 @@ function fp_process_register()
 
   if (email_exists($email)) {
     $errors->add('email_exists', 'Email already registered.');
+  }
+
+  if (strlen($pass) < 8) {
+    $errors->add('weak_password', 'Password must be at least 8 characters long.');
   }
 
   if (! empty($role) && fp_VALIDATE_ROLE && ! get_role($role)) {
